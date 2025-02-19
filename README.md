@@ -3,7 +3,7 @@
 
 ### Table Of Contents
 
-1) [plot_temperature_summary(station, product_type](#plot_temperature_summarystation-product_type)
+1) [plot_temperature_summary(station, product_type)](#plot_temperature_summarystation-product_type)
 
 
 #### plot_temperature_summary(station, product_type)
