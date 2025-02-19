@@ -185,9 +185,9 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax4.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax4.plot(df['DATE'], df['DEP'], color='black', zorder=5)
     ax4.text(0.94, 0.85, f"MAX = {str(maxima[3])} [°F]\nMEAN = {str(means[3])} [°F]\nMIN = {str(minima[3])} [°F]", fontsize=5, fontweight='bold', transform=ax4.transAxes, bbox=props, zorder=10)
-    ax4.axhline(y=maxima[2], color='darkred', linestyle='--', zorder=1, alpha=0.5)
-    ax4.axhline(y=means[2], color='dimgrey', linestyle='--', zorder=1, alpha=0.5)
-    ax4.axhline(y=minima[2], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
+    ax4.axhline(y=maxima[3], color='darkred', linestyle='--', zorder=1, alpha=0.5)
+    ax4.axhline(y=means[3], color='dimgrey', linestyle='--', zorder=1, alpha=0.5)
+    ax4.axhline(y=minima[3], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
 
     ax5 = fig.add_subplot(gs[8:10, 0:10])
     ax5.set_title(f"HDD [Red] & CDD [Blue]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
