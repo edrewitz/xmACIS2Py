@@ -18,3 +18,4 @@ setup(
     description="ACIS2 Data Analysis and Graphical Generation.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown"
+)
