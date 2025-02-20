@@ -8,9 +8,10 @@ try:
     from datetime import datetime, timedelta, UTC
 except Exception as e:
     from datetime import datetime, timedelta
+    
 pd.set_option('future.no_silent_downcasting', True)
 
-def xmacis_to_csv(station, start_date, end_date):
+def xmacis_to_csv(station, start_date, end_date, parameter):
 
     r'''
     This function gets the xmACIS2 data for a given station and given period
@@ -60,7 +61,10 @@ def xmacis_to_csv(station, start_date, end_date):
     
         df = df.replace({'M':np.NaN})
 
-        nan_counts = df['AVG'].isna().sum()
+        if parameter != 'PCP':
+            nan_counts = df['AVG'].isna().sum()
+        else:
+            nan_counts = df['PCP'].isna().sum()
     
         df = df.replace('T', 0.00)
     
