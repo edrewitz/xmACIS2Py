@@ -8,7 +8,7 @@ try:
     from datetime import datetime, timedelta, UTC
 except Exception as e:
     from datetime import datetime, timedelta
-
+pd.set_option('future.no_silent_downcasting', True)
 
 def xmacis_to_csv(station, start_date, end_date):
 
@@ -59,13 +59,12 @@ def xmacis_to_csv(station, start_date, end_date):
         df = pd.DataFrame(b,columns=output_cols)
     
         df = df.replace({'M':np.NaN})
-    
-        df = df.dropna(axis=1)
-        df = df.dropna(axis=0)
+
+        nan_counts = df['AVG'].isna().sum()
     
         df = df.replace('T', 0.00)
     
-        return df, start_date, end_date
+        return df, start_date, end_date, nan_counts
 
     except Exception as e:
         print(f"{station} is not found in xmACIS2. Please try again with a different station.")
