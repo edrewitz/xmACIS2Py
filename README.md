@@ -7,7 +7,7 @@
 
 1) [plot_temperature_summary(station, product_type)](#plot_temperature_summarystation-product_type)
 2) [plot_precipitation_summary(station, product_type)](#plot_precipitation_summarystation-product_type)
-3) [References]()
+3) [References](#references)
 
 
 #### plot_temperature_summary(station, product_type)
