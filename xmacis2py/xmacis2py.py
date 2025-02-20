@@ -196,7 +196,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
 def plot_precipitation_summary(station, product_type, start_date=None, end_date=None):
 
     r'''
-    This function plots a graphic showing the Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Precipitation Summary for a given station for a given time period. 
 
     Required Arguments:
 
