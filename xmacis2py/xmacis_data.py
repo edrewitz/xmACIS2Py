@@ -437,3 +437,4 @@ def get_sum_hdd_cdd(df):
 
     return hdd, cdd
   
+  
