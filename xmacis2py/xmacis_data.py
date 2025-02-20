@@ -48,56 +48,142 @@ def xmacis_to_csv(station, start_date, end_date):
     input_dict = {"elems":["maxt","mint","avgt",{"name":"avgt","normal":"departure"},"hdd","cdd","pcpn","snow","snwd"],"sid":station,"sdate":start_date,"edate":end_date}
     output_cols = ['DATE','MAX','MIN','AVG','DEP','HDD','CDD','PCP','SNW','DPT']
 
-    params = urllib.parse.urlencode({'params':json.dumps(input_dict)}).encode("utf-8")
-    req = urllib.request.Request('http://data.rcc-acis.org/StnData', params, {'Accept':'application/json'})
-    response = urllib.request.urlopen(req)
-    a = response.read()
-    z= json.loads(a)
-    b=z["data"]
+    try:
+        params = urllib.parse.urlencode({'params':json.dumps(input_dict)}).encode("utf-8")
+        req = urllib.request.Request('http://data.rcc-acis.org/StnData', params, {'Accept':'application/json'})
+        response = urllib.request.urlopen(req)
+        a = response.read()
+        z= json.loads(a)
+        b=z["data"]
+    
+        df = pd.DataFrame(b,columns=output_cols)
+    
+        df = df.replace({'M':np.NaN})
+    
+        df = df.dropna(axis=1)
+        df = df.dropna(axis=0)
+    
+        df = df.replace('T', 0.00)
+    
+        return df, start_date, end_date
 
-    df = pd.DataFrame(b,columns=output_cols)
-
-    df = df.replace({'M':np.NaN})
-
-    df = df.dropna()
-
-    df = df.replace('T', 0.00)
-
-    return df, start_date, end_date
+    except Exception as e:
+        print(f"{station} is not found in xmACIS2. Please try again with a different station.")
 
 def get_means(df):
 
     means = []
     
-    mean_max = df['MAX'].mean()
-    mean_min = df['MIN'].mean()
-    mean_avg = df['AVG'].mean()
-    mean_dep = df['DEP'].mean()
-    mean_hdd = df['HDD'].mean()
-    mean_cdd = df['CDD'].mean()
-    mean_pcp = df['PCP'].mean()
-    mean_snw = df['SNW'].mean()
-    mean_dpt = df['DPT'].mean()
+    try:
+        mean_max = df['MAX'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_min = df['MIN'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_avg = df['AVG'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_dep = df['DEP'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_hdd = df['HDD'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_cdd = df['CDD'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_pcp = df['PCP'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_snw = df['SNW'].mean()
+    except Exception as e:
+        pass
+    try:
+        mean_dpt = df['DPT'].mean()
+    except Exception as e:
+        pass
 
-    mean_max = int(round(mean_max, 0))
-    mean_min = int(round(mean_min, 0))
-    mean_avg = float(round(mean_avg, 1))
-    mean_dep = float(round(mean_dep, 1))
-    mean_hdd = int(round(mean_hdd, 0))
-    mean_cdd = int(round(mean_cdd, 0))
-    mean_pcp = float(round(mean_pcp, 2))
-    mean_snw = float(round(mean_snw, 1))
-    mean_dpt = int(round(mean_dpt, 0))
-    
-    means.append(mean_max)
-    means.append(mean_min)
-    means.append(mean_avg)
-    means.append(mean_dep)
-    means.append(mean_hdd)
-    means.append(mean_cdd)
-    means.append(mean_pcp)
-    means.append(mean_snw)
-    means.append(mean_dpt)
+    try:
+        mean_max = int(round(mean_max, 0))
+    except Exception as e:
+        pass
+    try:
+        mean_min = int(round(mean_min, 0))
+    except Exception as e:
+        pass
+    try:
+        mean_avg = float(round(mean_avg, 1))
+    except Exception as e:
+        pass
+    try:
+        mean_dep = float(round(mean_dep, 1))
+    except Exception as e:
+        pass
+    try:
+        mean_hdd = int(round(mean_hdd, 0))
+    except Exception as e:
+        pass
+    try:
+        mean_cdd = int(round(mean_cdd, 0))
+    except Exception as e:
+        pass
+    try:
+        mean_pcp = float(round(mean_pcp, 2))
+    except Exception as e:
+        pass
+    try:
+        mean_snw = float(round(mean_snw, 1))
+    except Exception as e:
+        pass
+    try:
+        mean_dpt = int(round(mean_dpt, 0))
+    except Exception as e:
+        pass
+
+    try:
+        means.append(mean_max)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_min)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_avg)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_dep)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_hdd)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_cdd)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_pcp)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_snw)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_dpt)
+    except Exception as e:
+        pass
     
     return means
 
@@ -105,35 +191,116 @@ def get_maxima(df):
 
     maxima = []
     
-    max_max = df['MAX'].max()
-    max_min = df['MIN'].max()
-    max_avg = df['AVG'].max()
-    max_dep = df['DEP'].max()
-    max_hdd = df['HDD'].max()
-    max_cdd = df['CDD'].max()
-    max_pcp = df['PCP'].max()
-    max_snw = df['SNW'].max()
-    max_dpt = df['DPT'].max()
+    try:
+        max_max = df['MAX'].max()
+    except Exception as e:
+        pass
+    try:
+        max_min = df['MIN'].max()
+    except Exception as e:
+        pass
+    try:
+        max_avg = df['AVG'].max()
+    except Exception as e:
+        pass
+    try:
+        max_dep = df['DEP'].max()
+    except Exception as e:
+        pass
+    try:
+        max_hdd = df['HDD'].max()
+    except Exception as e:
+        pass
+    try:
+        max_cdd = df['CDD'].max()
+    except Exception as e:
+        pass
+    try:
+        max_pcp = df['PCP'].max()
+    except Exception as e:
+        pass
+    try:
+        max_snw = df['SNW'].max()
+    except Exception as e:
+        pass
+    try:
+        max_dpt = df['DPT'].max()
+    except Exception as e:
+        pass
 
-    max_max = int(round(max_max, 0))
-    max_min = int(round(max_min, 0))
-    max_avg = float(round(max_avg, 1))
-    max_dep = float(round(max_dep, 1))
-    max_hdd = int(round(max_hdd, 0))
-    max_cdd = int(round(max_cdd, 0))
-    max_pcp = float(round(max_pcp, 2))
-    max_snw = float(round(max_snw, 1))
-    max_dpt = int(round(max_dpt, 0))
+    try:
+        max_max = int(round(max_max, 0))
+    except Exception as e:
+        pass
+    try:
+        max_min = int(round(max_min, 0))
+    except Exception as e:
+        pass
+    try:
+        max_avg = float(round(max_avg, 1))
+    except Exception as e:
+        pass
+    try:
+        max_dep = float(round(max_dep, 1))
+    except Exception as e:
+        pass
+    try:
+        max_hdd = int(round(max_hdd, 0))
+    except Exception as e:
+        pass
+    try:
+        max_cdd = int(round(max_cdd, 0))
+    except Exception as e:
+        pass
+    try:
+        max_pcp = float(round(max_pcp, 2))
+    except Exception as e:
+        pass
+    try:
+        max_snw = float(round(max_snw, 1))
+    except Exception as e:
+        pass
+    try:
+        max_dpt = int(round(max_dpt, 0))
+    except Exception as e:
+        pass
 
-    maxima.append(max_max)
-    maxima.append(max_min)
-    maxima.append(max_avg)
-    maxima.append(max_dep)
-    maxima.append(max_hdd)
-    maxima.append(max_cdd)
-    maxima.append(max_pcp)
-    maxima.append(max_snw)
-    maxima.append(max_dpt)
+    try:
+        maxima.append(max_max)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_min)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_avg)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_dep)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_hdd)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_cdd)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_pcp)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_snw)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_dpt)
+    except Exception as e:
+        pass
     
     return maxima
 
@@ -141,42 +308,129 @@ def get_minima(df):
 
     minima = []
 
-    min_max = df['MAX'].min()
-    min_min = df['MIN'].min()
-    min_avg = df['AVG'].min()
-    min_dep = df['DEP'].min()
-    min_hdd = df['HDD'].min()
-    min_cdd = df['CDD'].min()
-    min_pcp = df['PCP'].min()
-    min_snw = df['SNW'].min()
-    min_dpt = df['DPT'].min()
+    try:
+        min_max = df['MAX'].min()
+    except Exception as e:
+        pass
+    try:
+        min_min = df['MIN'].min()
+    except Exception as e:
+        pass
+    try:
+        min_avg = df['AVG'].min()
+    except Exception as e:
+        pass
+    try:
+        min_dep = df['DEP'].min()
+    except Exception as e:
+        pass
+    try:
+        min_hdd = df['HDD'].min()
+    except Exception as e:
+        pass
+    try:
+        min_cdd = df['CDD'].min()
+    except Exception as e:
+        pass
+    try:
+        min_pcp = df['PCP'].min()
+    except Exception as e:
+        pass
+    try:
+        min_snw = df['SNW'].min()
+    except Exception as e:
+        pass
+    try:
+        min_dpt = df['DPT'].min()
+    except Exception as e:
+        pass
 
-    min_max = int(round(min_max, 0))
-    min_min = int(round(min_min, 0))
-    min_avg = float(round(min_avg, 1))
-    min_dep = float(round(min_dep, 1))
-    min_hdd = int(round(min_hdd, 0))
-    min_cdd = int(round(min_cdd, 0))
-    min_pcp = float(round(min_pcp, 2))
-    min_snw = float(round(min_snw, 1))
-    min_dpt = int(round(min_dpt, 0))
+    try:
+        min_max = int(round(min_max, 0))
+    except Exception as e:
+        pass
+    try:
+        min_min = int(round(min_min, 0))
+    except Exception as e:
+        pass
+    try:
+        min_avg = float(round(min_avg, 1))
+    except Exception as e:
+        pass
+    try:
+        min_dep = float(round(min_dep, 1))
+    except Exception as e:
+        pass
+    try:
+        min_hdd = int(round(min_hdd, 0))
+    except Exception as e:
+        pass
+    try:
+        min_cdd = int(round(min_cdd, 0))
+    except Exception as e:
+        pass
+    try:
+        min_pcp = float(round(min_pcp, 2))
+    except Exception as e:
+        pass
+    try:
+        min_snw = float(round(min_snw, 1))
+    except Exception as e:
+        pass
+    try:
+        min_dpt = int(round(min_dpt, 0))
+    except Exception as e:
+        pass
 
-    minima.append(min_max)
-    minima.append(min_min)
-    minima.append(min_avg)
-    minima.append(min_dep)
-    minima.append(min_hdd)
-    minima.append(min_cdd)
-    minima.append(min_pcp)
-    minima.append(min_snw)
-    minima.append(min_dpt)
+    try:
+        minima.append(min_max)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_min)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_avg)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_dep)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_hdd)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_cdd)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_pcp)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_snw)
+    except Exception as e:
+        pass
+    try:
+        minima.append(min_dpt)
+    except Exception as e:
+        pass
     
     return minima
 
 def get_sum_hdd_cdd(df):
 
-    hdd = df['HDD'].sum()
-    cdd = df['CDD'].sum()
+    try:
+        hdd = df['HDD'].sum()
+    except Exception as e:
+        pass
+    try:
+        cdd = df['CDD'].sum()
+    except Exception as e:
+        pass
 
     return hdd, cdd
   
