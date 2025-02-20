@@ -117,7 +117,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     except Exception as e:
         pass    
 
-    df, start_date, end_date = xm.xmacis_to_csv(station, start_date, end_date)
+    df, start_date, end_date, df_days = xm.xmacis_to_csv(station, start_date, end_date)
 
     file = df.to_csv(csv_fname, index=False)
     os.replace(f"{csv_fname}", f"{path}/{csv_fname}")
@@ -125,7 +125,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
 
     df = pd.read_csv(f"{path}/{csv_fname}")
 
-    missing_days = d - (len(df) - 1)
+    missing_days = df_days
 
     print(f"There are {missing_days} missing days of data.")
 
