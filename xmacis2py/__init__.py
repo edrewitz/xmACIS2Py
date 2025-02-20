@@ -1,1 +1,1 @@
-from xmacis2py.xmacis2py import plot_temperature_summary
+from xmacis2py.xmacis2py import plot_temperature_summary, plot_precipitation_summary
