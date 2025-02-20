@@ -22,7 +22,7 @@ def update_csv_file_paths(station, product_type):
 
     return path, path_print
 
-def update_image_file_paths(station, product_type):
+def update_image_file_paths(station, product_type, plot_type):
 
     if os.path.exists(f"ACIS Graphics"):
         pass
@@ -39,7 +39,12 @@ def update_image_file_paths(station, product_type):
     else:
         os.mkdir(f"ACIS Graphics/{station}/{product_type}")
 
-    path = f"ACIS Graphics/{station.upper()}/{product_type}"
-    path_print = f"f:ACIS Graphics/{station.upper()}/{product_type}"
+    if os.path.exists(f"ACIS Graphics/{station}/{product_type}/{plot_type}"):
+        pass
+    else:
+        os.mkdir(f"ACIS Graphics/{station}/{product_type}/{plot_type}")
+
+    path = f"ACIS Graphics/{station.upper()}/{product_type}/{plot_type}"
+    path_print = f"f:ACIS Graphics/{station.upper()}/{product_type}/{plot_type}"
 
     return path, path_print    
