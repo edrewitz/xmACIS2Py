@@ -17,6 +17,8 @@ except Exception as e:
 mpl.rcParams['font.weight'] = 'bold'
 mpl.rcParams['xtick.labelsize'] = 5
 mpl.rcParams['ytick.labelsize'] = 5
+mpl.rcParams['font.size'] = 6
+
 props = dict(boxstyle='round', facecolor='wheat', alpha=1)
 
 try:
@@ -117,7 +119,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     except Exception as e:
         pass    
 
-    df, start_date, end_date, df_days = xm.xmacis_to_csv(station, start_date, end_date)
+    df, start_date, end_date, df_days = xm.xmacis_to_csv(station, start_date, end_date, 'AVG')
 
     file = df.to_csv(csv_fname, index=False)
     os.replace(f"{csv_fname}", f"{path}/{csv_fname}")
@@ -186,7 +188,141 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax5.plot(df['DATE'], df['CDD'], color='darkblue', zorder=5)
     ax5.text(0.935, 0.9, f"Total HDD = {str(hdd_sum)}\nTotal CDD = {str(cdd_sum)}", fontsize=5, fontweight='bold', transform=ax5.transAxes, bbox=props, zorder=10)
 
-    img_path, img_path_print = update_image_file_paths(station, product_type)
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'Temperature Summary')
+    fname = f"{station.upper()}_{product_type}.png"
+    fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
+    print(f"Saved {fname} to {img_path_print}")
+
+def plot_precipitation_summary(station, product_type, start_date=None, end_date=None):
+
+    r'''
+    This function plots a graphic showing the Temperature Summary for a given station for a given time period. 
+
+    Required Arguments:
+
+    1) station (String) - The identifier of the ACIS2 station. 
+    2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+       A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+    Optional Arguments:
+    1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+    2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+    '''
+
+    try:
+        today = datetime.now(UTC)
+    except Exception as e:
+        today = datetime.utcnow()
+
+
+    if product_type == 'Past 7 Days' or product_type == 7:
+
+        product_type = 'Past 7 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=9)
+        d = 7
+        decimate = 1
+
+    elif product_type == 'Past 10 Days' or product_type == 10:
+
+        product_type = 'Past 10 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=12) 
+        d = 10
+        decimate = 1
+
+    elif product_type == 'Past 15 Days' or product_type == 15:
+
+        product_type = 'Past 15 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=17)  
+        d = 15
+        decimate = 1
+
+    elif product_type == 'Past 30 Days' or product_type == 30:
+
+        product_type = 'Past 30 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=32)   
+        d = 30
+        decimate = 1
+
+    elif product_type == 'Past 60 Days' or product_type == 60:
+
+        product_type = 'Past 60 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=62)  
+        d = 60
+        decimate = 2
+
+    elif product_type == 'Past 90 Days' or product_type == 90:
+
+        product_type = 'Past 90 Days'
+        end_date = today - timedelta(days=2)
+        start_date = today - timedelta(days=92) 
+        d = 90
+        decimate = 5
+
+    else:
+        start_date = start_date
+        end_date = end_date
+        t1 = datetime.strptime(start_date, '%Y-%m-%d')
+        t2 = datetime.strptime(end_date, '%Y-%m-%d')
+        d1 = t1.day
+        d2 = t2.day
+        d = abs(d2 - d1)
+
+    csv_fname = f"{station}_{product_type}.csv"
+
+    path, path_print = update_csv_file_paths(station, product_type)
+
+    try:
+        if os.path.exists(f"{path}/{csv_fname}"):
+            os.remove(f"{path}/{csv_fname}")
+            print(f"Removed {csv_fname} from {path_print}.")
+        else:
+            pass
+    except Exception as e:
+        pass    
+
+    df, start_date, end_date, df_days = xm.xmacis_to_csv(station, start_date, end_date, 'PCP')
+
+    file = df.to_csv(csv_fname, index=False)
+    os.replace(f"{csv_fname}", f"{path}/{csv_fname}")
+    print(f"Saved {csv_fname} to {path_print}.")
+
+    df = pd.read_csv(f"{path}/{csv_fname}")
+
+    missing_days = df_days
+
+    print(f"There are {missing_days} missing days of data.")
+
+    means = xm.get_means(df)
+    maxima = xm.get_maxima(df)
+    minima = xm.get_minima(df)
+    hdd_sum, cdd_sum = xm.get_sum_hdd_cdd(df)
+
+    fig = plt.figure(figsize=(14,8))
+    fig.set_facecolor('aliceblue')
+    gs = gridspec.GridSpec(10, 10)
+
+    fig.suptitle(f"{station.upper()} Precipitation Summary [{product_type.upper()}]", fontsize=18, fontweight='bold')
+
+    ax1 = fig.add_subplot(1,1,1)
+    ax1.xaxis.set_major_formatter(md.DateFormatter('%d'))
+    ax1.text(0.35, 1.065, f"Valid: {start_date} to {end_date}", fontsize=12, fontweight='bold', transform=ax1.transAxes)
+    ax1.text(0.425, 1.04, f"Missing Days = {str(missing_days)}", fontsize=9, fontweight='bold', transform=ax1.transAxes)
+    ax1.text(0.93, 0.975, f"MAX = {str(maxima[6])} [IN]\nMEAN = {str(means[6])} [IN]", fontsize=5, fontweight='bold', transform=ax1.transAxes, bbox=props, zorder=10)
+    ax1.text(0.0001, 1.01, f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", fontsize=6, fontweight='bold', transform=ax1.transAxes, bbox=props)
+    ax1.axhline(y=maxima[6], color='darkgreen', linestyle='--', zorder=1, alpha=0.5)
+    ax1.axhline(y=means[6], color='dimgrey', linestyle='--', zorder=1, alpha=0.5)
+
+    plt.bar(df['DATE'], df['PCP'])
+    bars = plt.bar(df['DATE'], df['PCP'], color='green')
+    plt.bar_label(bars)
+
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'Precipitation Summary')
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")
