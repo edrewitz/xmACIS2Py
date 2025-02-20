@@ -46,27 +46,8 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     except Exception as e:
         today = datetime.utcnow()
 
-    if product_type == 'Custom' or product_type == 'custom':
 
-        if end_date.year == today.year and end_date.month == today.month and end_date.day == today.day:
-            end_date = end_date - timedelta(days=2)
-    
-        if type(start_date) != type('String'):
-            syear = str(start_date.year)
-            smonth = str(start_date.month)
-            sday = str(start_date.day)
-            start_date = f"{syear}-{smonth}-{sday}"
-        else:
-            pass
-        if type(end_date) != type('String'):
-            eyear = str(end_date.year)
-            emonth = str(end_date.month)
-            eday = str(end_date.day)
-            end_date = f"{eyear}-{emonth}-{eday}"
-        else:
-            pass
-
-    elif product_type == 'Past 7 Days' or product_type == 7:
+    if product_type == 'Past 7 Days' or product_type == 7:
 
         product_type = 'Past 7 Days'
         end_date = today - timedelta(days=2)
@@ -114,6 +95,15 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         d = 90
         decimate = 5
 
+    else:
+        start_date = start_date
+        end_date = end_date
+        t1 = datetime.strptime(start_date, '%Y-%m-%d')
+        t2 = datetime.strptime(end_date, '%Y-%m-%d')
+        d1 = t1.day
+        d2 = t2.day
+        d = abs(d2 - d1)
+
     csv_fname = f"{station}_{product_type}.csv"
 
     path, path_print = update_csv_file_paths(station, product_type)
@@ -157,7 +147,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax1.text(0.35, 1.45, f"Valid: {start_date} to {end_date}", fontsize=12, fontweight='bold', transform=ax1.transAxes)
     ax1.text(0.425, 1.37, f"Missing Days = {str(missing_days)}", fontsize=9, fontweight='bold', transform=ax1.transAxes)
     ax1.text(0.94, 0.85, f"MAX = {str(maxima[0])} [°F]\nMEAN = {str(means[0])} [°F]\nMIN = {str(minima[0])} [°F]", fontsize=5, fontweight='bold', transform=ax1.transAxes, bbox=props, zorder=10)
-    ax1.text(0.01, 1.02, f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", fontsize=6, fontweight='bold', transform=ax1.transAxes, bbox=props)
+    ax1.text(0.0001, 1.02, f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", fontsize=6, fontweight='bold', transform=ax1.transAxes, bbox=props)
     ax1.axhline(y=maxima[0], color='darkred', linestyle='--', zorder=1, alpha=0.5)
     ax1.axhline(y=means[0], color='dimgrey', linestyle='--', zorder=1, alpha=0.5)
     ax1.axhline(y=minima[0], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
@@ -200,4 +190,3 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")
-
