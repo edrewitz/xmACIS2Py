@@ -143,7 +143,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     fig.suptitle(f"{station.upper()} Temperature Summary [{product_type.upper()}]", fontsize=18, fontweight='bold')
 
     ax1 = fig.add_subplot(gs[0:2, 0:10])
-    ax1.set_title(f"Daily Maximum Temperature [°F]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
+    ax1.set_title(f"Daily Maximum Temperature [°F]", fontweight='bold', y=0.89, alpha=0.9, loc='left', zorder=11)
     ax1.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax1.plot(df['DATE'], df['MAX'], color='red', zorder=5)
     ax1.text(0.35, 1.45, f"Valid: {start_date} to {end_date}", fontsize=12, fontweight='bold', transform=ax1.transAxes)
@@ -155,7 +155,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax1.axhline(y=minima[0], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
 
     ax2 = fig.add_subplot(gs[2:4, 0:10])
-    ax2.set_title(f"Daily Minimum Temperature [°F]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
+    ax2.set_title(f"Daily Minimum Temperature [°F]", fontweight='bold', y=0.89, alpha=0.9, loc='left', zorder=11)
     ax2.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax2.plot(df['DATE'], df['MIN'], color='blue', zorder=5)
     ax2.text(0.94, 0.85, f"MAX = {str(maxima[1])} [°F]\nMEAN = {str(means[1])} [°F]\nMIN = {str(minima[1])} [°F]", fontsize=5, fontweight='bold', transform=ax2.transAxes, bbox=props, zorder=10)
@@ -164,7 +164,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax2.axhline(y=minima[1], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
 
     ax3 = fig.add_subplot(gs[4:6, 0:10])
-    ax3.set_title(f"Daily Average Temperature [°F]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
+    ax3.set_title(f"Daily Average Temperature [°F]", fontweight='bold', y=0.89, alpha=0.9, loc='left', zorder=11)
     ax3.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax3.plot(df['DATE'], df['AVG'], color='grey', zorder=5)
     ax3.text(0.93, 0.85, f"MAX = {str(maxima[2])} [°F]\nMEAN = {str(means[2])} [°F]\nMIN = {str(minima[2])} [°F]", fontsize=5, fontweight='bold', transform=ax3.transAxes, bbox=props, zorder=10)
@@ -173,7 +173,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax3.axhline(y=minima[2], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
 
     ax4 = fig.add_subplot(gs[6:8, 0:10])
-    ax4.set_title(f"Daily Temperature Departure [°F]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
+    ax4.set_title(f"Daily Temperature Departure [°F]", fontweight='bold', y=0.89, alpha=0.9, loc='left', zorder=11)
     ax4.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax4.plot(df['DATE'], df['DEP'], color='black', zorder=5)
     ax4.text(0.94, 0.85, f"MAX = {str(maxima[3])} [°F]\nMEAN = {str(means[3])} [°F]\nMIN = {str(minima[3])} [°F]", fontsize=5, fontweight='bold', transform=ax4.transAxes, bbox=props, zorder=10)
@@ -182,7 +182,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax4.axhline(y=minima[3], color='darkblue', linestyle='--', zorder=1, alpha=0.5)
 
     ax5 = fig.add_subplot(gs[8:10, 0:10])
-    ax5.set_title(f"HDD [Red] & CDD [Blue]", fontweight='bold', y=0.88, alpha=0.7, loc='left', zorder=11)
+    ax5.set_title(f"HDD [Red] & CDD [Blue]", fontweight='bold', y=0.89, alpha=0.9, loc='left', zorder=11)
     ax5.xaxis.set_major_formatter(md.DateFormatter('%d'))
     ax5.plot(df['DATE'], df['HDD'], color='darkred', zorder=5)
     ax5.plot(df['DATE'], df['CDD'], color='darkblue', zorder=5)
