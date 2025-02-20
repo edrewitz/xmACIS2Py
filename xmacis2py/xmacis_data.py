@@ -9,8 +9,6 @@ try:
 except Exception as e:
     from datetime import datetime, timedelta
     
-pd.set_option('future.no_silent_downcasting', True)
-
 def xmacis_to_csv(station, start_date, end_date, parameter):
 
     r'''
@@ -58,14 +56,18 @@ def xmacis_to_csv(station, start_date, end_date, parameter):
         b=z["data"]
     
         df = pd.DataFrame(b,columns=output_cols)
-    
-        df = df.replace({'M':np.NaN})
+
+        try:
+            df = df.replace({'M':np.NaN})
+        except Exception as e:
+            df = df.infer_objects(copy=False)
+            df.replace('M', np.nan, inplace=True)
 
         if parameter != 'PCP':
             nan_counts = df['AVG'].isna().sum()
         else:
             nan_counts = df['PCP'].isna().sum()
-    
+
         df = df.replace('T', 0.00)
     
         return df, start_date, end_date, nan_counts
@@ -436,5 +438,3 @@ def get_sum_hdd_cdd(df):
         pass
 
     return hdd, cdd
-  
-  
