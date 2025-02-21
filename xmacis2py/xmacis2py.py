@@ -7,6 +7,8 @@ import numpy as np
 import pandas as pd
 import os
 import xmacis2py.xmacis_data as xm
+import warnings
+warnings.filterwarnings('ignore')
 
 from xmacis2py.file_funcs import update_csv_file_paths, update_image_file_paths
 try:
