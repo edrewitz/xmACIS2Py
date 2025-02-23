@@ -1,4 +1,6 @@
 import os
+import warnings
+warnings.filterwarnings('ignore')
 
 def update_csv_file_paths(station, product_type):
 
