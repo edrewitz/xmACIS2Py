@@ -4,7 +4,7 @@ build-system:
   build-backend: setuptools.build_meta
 project:
   name: xmacis2py
-  version: '1.0'
+  version: '1.0.1'
   authors:
     - name: 'Eric J Drewitz, USDA/USFS'
   description: ACIS2 Data Analysis and Graphical Generation
