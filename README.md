@@ -21,8 +21,8 @@ Required Arguments:
    A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
 
 Optional Arguments:
-1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
-2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. year-month-day/2025-02-22)
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. year-month-day/2025-02-22)
 
 #### plot_precipitation_summary(station, product_type)
 
@@ -35,8 +35,8 @@ Required Arguments:
    A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
 
 Optional Arguments:
-1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
-2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. year-month-day/2025-02-22)
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. year-month-day/2025-02-22)
 
 
 #### References
