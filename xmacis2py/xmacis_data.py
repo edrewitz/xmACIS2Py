@@ -507,8 +507,68 @@ def get_precipitation_sum(df):
     return precip_sum
 
 
+def rank_top_5(df, parameter):
 
+    r'''
+    This function will rank the top 5 days and totals for a given parameter in the analysis period.
 
+    Required Arguments:
+
+    1) df (Pandas DataFrame)
+
+    2) parameter (String) - The parameter the user wishes to query. 
+
+    Returns: Top 5 days and totals for a given parameter
+    '''
+
+    top_5 = []
+    
+    df = df.sort_values([parameter], ascending=False)
+    rank_1 = df[parameter].iloc[0]
+    rank_2 = df[parameter].iloc[1]
+    rank_3 = df[parameter].iloc[2]
+    rank_4 = df[parameter].iloc[3]
+    rank_5 = df[parameter].iloc[4]
+
+    top_5.append(rank_1)
+    top_5.append(rank_2)
+    top_5.append(rank_3)
+    top_5.append(rank_4)
+    top_5.append(rank_5)
+
+    return top_5
+    
+
+def rank_bottom_5(df, parameter):
+
+    r'''
+    This function will rank the bottom 5 days and totals for a given parameter in the analysis period.
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame)
+
+    2) parameter (String) - The parameter the user wishes to query. 
+
+    Returns: Bottom 5 days and totals for a given parameter
+    '''
+
+    bottom_5 = []
+    
+    df = df.sort_values([parameter], ascending=True)
+    rank_1 = df[parameter].iloc[0]
+    rank_2 = df[parameter].iloc[1]
+    rank_3 = df[parameter].iloc[2]
+    rank_4 = df[parameter].iloc[3]
+    rank_5 = df[parameter].iloc[4]
+
+    bottom_5.append(rank_1)
+    bottom_5.append(rank_2)
+    bottom_5.append(rank_3)
+    bottom_5.append(rank_4)
+    bottom_5.append(rank_5)
+
+    return bottom_5
 
 
 
