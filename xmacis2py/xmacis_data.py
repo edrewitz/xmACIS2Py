@@ -3,14 +3,13 @@ import requests
 import json
 import pandas as pd
 import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
 
 try:
     from datetime import datetime, timedelta, UTC
 except Exception as e:
     from datetime import datetime, timedelta
-    
+
+
 def xmacis_to_csv(station, start_date, end_date, parameter):
 
     r'''
@@ -23,6 +22,8 @@ def xmacis_to_csv(station, start_date, end_date, parameter):
     2) start_date (datetime array) - The start date of the period
 
     3) end_date (datetime array) - The end date of the period
+
+    4) parameter (String) - The parameter the user wishes to query
 
     '''
 
@@ -78,6 +79,17 @@ def xmacis_to_csv(station, start_date, end_date, parameter):
         print(f"{station} is not found in xmACIS2. Please try again with a different station.")
 
 def get_means(df):
+
+    r'''
+    This function calculates the means in the dataframe
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame) 
+
+    Returns: The means of each parameter's dataframe
+
+    '''
 
     means = []
     
@@ -196,6 +208,17 @@ def get_means(df):
 
 def get_maxima(df):
 
+    r'''
+    This function finds the maxima in the dataframe
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame) 
+
+    Returns: The maxima of each parameter's dataframe
+
+    '''
+
     maxima = []
     
     try:
@@ -312,6 +335,17 @@ def get_maxima(df):
     return maxima
 
 def get_minima(df):
+
+    r'''
+    This function finds the minima in the dataframe
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame) 
+
+    Returns: The minima of each parameter's dataframe
+
+    '''
 
     minima = []
 
@@ -430,6 +464,17 @@ def get_minima(df):
 
 def get_sum_hdd_cdd(df):
 
+    r'''
+    This function finds the sums of the heating and cooling degree days dataframes. 
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame) 
+
+    Returns: The sum of each parameter's dataframe
+
+    '''
+
     try:
         hdd = df['HDD'].sum()
     except Exception as e:
@@ -440,3 +485,40 @@ def get_sum_hdd_cdd(df):
         pass
 
     return hdd, cdd
+
+def get_precipitation_sum(df):
+
+    r'''
+    This function finds the sums of precipitation in the dataframe 
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame) 
+
+    Returns: The precipitation sum
+
+    '''
+
+    try:
+        precip_sum = df['PCP'].sum()
+    except Exception as e:
+        pass
+
+    return precip_sum
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
