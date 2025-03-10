@@ -10,7 +10,7 @@ except Exception as e:
     from datetime import datetime, timedelta
 
 
-def xmacis_to_csv(station, start_date, end_date, parameter):
+def xmacis_to_df(station, start_date, end_date, parameter):
 
     r'''
     This function gets the xmACIS2 data for a given station and given period
@@ -522,6 +522,7 @@ def rank_top_5(df, parameter):
     '''
 
     top_5 = []
+    dates = []
     
     df = df.sort_values([parameter], ascending=False)
     rank_1 = df[parameter].iloc[0]
@@ -530,13 +531,26 @@ def rank_top_5(df, parameter):
     rank_4 = df[parameter].iloc[3]
     rank_5 = df[parameter].iloc[4]
 
+    date_1 = df['DATE'].iloc[0]
+    date_2 = df['DATE'].iloc[1]
+    date_3 = df['DATE'].iloc[2]
+    date_4 = df['DATE'].iloc[3]
+    date_5 = df['DATE'].iloc[4]
+
     top_5.append(rank_1)
     top_5.append(rank_2)
     top_5.append(rank_3)
     top_5.append(rank_4)
     top_5.append(rank_5)
 
-    return top_5
+    dates.append(date_1)
+    dates.append(date_2)
+    dates.append(date_3)
+    dates.append(date_4)
+    dates.append(date_5)
+        
+
+    return top_5, dates
     
 
 def rank_bottom_5(df, parameter):
@@ -554,6 +568,7 @@ def rank_bottom_5(df, parameter):
     '''
 
     bottom_5 = []
+    dates = []
     
     df = df.sort_values([parameter], ascending=True)
     rank_1 = df[parameter].iloc[0]
@@ -562,13 +577,25 @@ def rank_bottom_5(df, parameter):
     rank_4 = df[parameter].iloc[3]
     rank_5 = df[parameter].iloc[4]
 
+    date_1 = df['DATE'].iloc[0]
+    date_2 = df['DATE'].iloc[1]
+    date_3 = df['DATE'].iloc[2]
+    date_4 = df['DATE'].iloc[3]
+    date_5 = df['DATE'].iloc[4]
+
     bottom_5.append(rank_1)
     bottom_5.append(rank_2)
     bottom_5.append(rank_3)
     bottom_5.append(rank_4)
     bottom_5.append(rank_5)
 
-    return bottom_5
+    dates.append(date_1)
+    dates.append(date_2)
+    dates.append(date_3)
+    dates.append(date_4)
+    dates.append(date_5)
+
+    return bottom_5, dates
 
 
 
