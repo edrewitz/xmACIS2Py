@@ -11,6 +11,11 @@
 # xmACIS2Py
 **Creating xmACIS2 Summary Graphics in Python**
 
+### Jupyter Lab Tutorials
+
+1) [Creating 30 and 90 Day Temperature and Precipitation Summaries for Riverside, CA Municipal Airport (KRAL)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/KRAL.ipynb)
+2) [Creating Summaries With Custom Dates Nov 1st - Nov 30th 2024 for Saint Paul, AK (PASN)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/PASN.ipynb)
+
 ### Table Of Contents
 
 1) [plot_temperature_summary(station, product_type)](#plot_temperature_summarystation-product_type)
