@@ -19,8 +19,8 @@
 ### Table Of Contents
 
 1) [plot_temperature_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/tree/main?tab=readme-ov-file#plot_temperature_summarystation-product_type)
-2) [plot_precipitation_summary(station, product_type)](#plot_precipitation_summarystation-product_type)
-3) [References](#references)
+2) [plot_precipitation_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/tree/main?tab=readme-ov-file#plot_precipitation_summarystation-product_type)
+3) [References](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#references)
 
 
 #### plot_temperature_summary(station, product_type)
