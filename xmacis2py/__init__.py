@@ -1,1 +1,1 @@
-from xmacis2py.xmacis2py import plot_temperature_summary, plot_precipitation_summary
+from xmacis2py.xmacis2py import plot_temperature_summary, plot_precipitation_summary, plot_maximum_temperature_summary, plot_minimum_temperature_summary, plot_average_temperature_summary, plot_average_temperature_departure_summary, plot_hdd_summary, plot_cdd_summary, plot_gdd_summary
