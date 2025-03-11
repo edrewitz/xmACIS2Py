@@ -30,12 +30,17 @@ This function plots a graphic showing the Temperature Summary for a given statio
 Required Arguments:
 
 1) station (String) - The identifier of the ACIS2 station. 
+
 2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
-   A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
 
 Optional Arguments:
-1) start_date (String) - Default=None. Enter the start date as a string (i.e. year-month-day/2025-02-22)
-2) end_date (String) - Default=None. Enter the end date as a string (i.e. year-month-day/2025-02-22)
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
 #### plot_precipitation_summary(station, product_type)
 
@@ -44,13 +49,150 @@ This function plots a graphic showing the Precipitation Summary for a given stat
 Required Arguments:
 
 1) station (String) - The identifier of the ACIS2 station. 
+
 2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
-   A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
 
 Optional Arguments:
-1) start_date (String) - Default=None. Enter the start date as a string (i.e. year-month-day/2025-02-22)
-2) end_date (String) - Default=None. Enter the end date as a string (i.e. year-month-day/2025-02-22)
 
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_sum (Boolean) - Default = False. When set to True, running sums will be shown
+
+#### plot_maximum_temperature_summary(station, product_type)
+
+This function plots a graphic showing the Maximum Temperature Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
+
+#### plot_minimum_temperature_summary(station, product_type)
+
+This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
+
+#### plot_average_temperature_summary(station, product_type)
+
+This function plots a graphic showing the Average Temperature Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
+
+#### plot_average_temperature_departure_summary(station, product_type)
+
+This function plots a graphic showing the Average Temperature Departure Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
+
+#### plot_hdd_summary(station, product_type):
+
+This function plots a graphic showing the Heating Degree Days Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means and sums will be hidden
+
+#### plot_cdd_summary(station, product_type):
+
+This function plots a graphic showing the Cooling Degree Days Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means and sums will be hidden
+
+#### plot_gdd_summary(station, product_type):
+
+This function plots a graphic showing the Growing Degree Days Summary for a given station for a given time period. 
+
+Required Arguments:
+
+1) station (String) - The identifier of the ACIS2 station. 
+
+2) product_type (String or Integer) - The type of product. 'Past 7 Days' as a string or enter 7 for the same result. 
+ A value of 'custom' or 'Custom' will result in the user entering a custom start/stop date. 
+
+Optional Arguments:
+
+1) start_date (String) - Default=None. Enter the start date as a string (i.e. 01-01-2025)
+
+2) end_date (String) - Default=None. Enter the end date as a string (i.e. 01-01-2025)
+
+3) show_running_mean (Boolean) - Default = True. When set to False, running means and sums will be hidden
 
 #### References
 
