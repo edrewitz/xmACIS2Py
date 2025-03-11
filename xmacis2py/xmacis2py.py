@@ -67,7 +67,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -75,7 +74,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -83,7 +81,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -91,7 +88,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -99,7 +95,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -107,7 +102,6 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
 
     else:
         start_date = start_date
@@ -340,7 +334,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -348,7 +341,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -356,7 +348,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -364,7 +355,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -372,7 +362,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -380,7 +369,6 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
 
     else:
         start_date = start_date
@@ -491,7 +479,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -499,7 +486,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -507,7 +493,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -515,7 +500,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -523,7 +507,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -531,7 +514,6 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
 
     else:
         start_date = start_date
@@ -649,7 +631,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -657,7 +638,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -665,7 +645,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -673,7 +652,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -681,7 +659,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -689,7 +666,6 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
 
     else:
         start_date = start_date
@@ -807,7 +783,6 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -815,7 +790,6 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -823,7 +797,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
+        
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -831,7 +805,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
+        
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -839,7 +813,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
+        
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -847,7 +821,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
+        
 
     else:
         start_date = start_date
@@ -965,7 +939,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
+        
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -973,7 +947,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
+        
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -981,7 +955,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
+        
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -989,7 +963,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
+        
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -997,7 +971,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
+        
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1005,7 +979,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
+        
 
     else:
         start_date = start_date
@@ -1123,7 +1097,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
+        
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1131,7 +1105,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
+        
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1139,7 +1113,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
+        
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1147,7 +1121,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
+        
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1155,7 +1129,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
+        
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1163,7 +1137,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
+        
 
     else:
         start_date = start_date
@@ -1280,7 +1254,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
+        
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1288,7 +1262,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
+        
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1296,7 +1270,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
+        
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1304,7 +1278,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
+        
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1312,7 +1286,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
+        
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1320,7 +1294,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
+        
 
     else:
         start_date = start_date
@@ -1437,7 +1411,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        decimate = 1
+        
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1445,7 +1419,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        decimate = 1
+        
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1453,7 +1427,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        decimate = 1
+        
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1461,7 +1435,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        decimate = 1
+        
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1469,7 +1443,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        decimate = 2
+        
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1477,7 +1451,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        decimate = 5
+        
 
     else:
         start_date = start_date
