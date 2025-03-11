@@ -49,8 +49,8 @@ def xmacis_to_df(station, start_date, end_date, parameter):
         pass
 
 
-    input_dict = {"elems":["maxt","mint","avgt",{"name":"avgt","normal":"departure"},"hdd","cdd","pcpn","snow","snwd"],"sid":station,"sdate":start_date,"edate":end_date}
-    output_cols = ['DATE','MAX','MIN','AVG','DEP','HDD','CDD','PCP','SNW','DPT']
+    input_dict = {"elems":["maxt","mint","avgt",{"name":"avgt","normal":"departure"},"hdd","cdd","pcpn","snow","snwd", "gdd"],"sid":station,"sdate":start_date,"edate":end_date}
+    output_cols = ['DATE','MAX','MIN','AVG','DEP','HDD','CDD','PCP','SNW','DPT', 'GDD']
 
     try:
         params = urllib.parse.urlencode({'params':json.dumps(input_dict)}).encode("utf-8")
@@ -131,7 +131,11 @@ def get_means(df):
         mean_dpt = df['DPT'].mean()
     except Exception as e:
         pass
-
+    try:
+        mean_gdd = df['GDD'].mean()
+    except Exception as e:
+        pass
+        
     try:
         mean_max = int(round(mean_max, 0))
     except Exception as e:
@@ -166,6 +170,10 @@ def get_means(df):
         pass
     try:
         mean_dpt = int(round(mean_dpt, 0))
+    except Exception as e:
+        pass
+    try:
+        mean_gdd = int(round(mean_gdd, 0))
     except Exception as e:
         pass
 
@@ -203,6 +211,10 @@ def get_means(df):
         pass
     try:
         means.append(mean_dpt)
+    except Exception as e:
+        pass
+    try:
+        means.append(mean_gdd)
     except Exception as e:
         pass
     
@@ -259,6 +271,10 @@ def get_maxima(df):
         max_dpt = df['DPT'].max()
     except Exception as e:
         pass
+    try:
+        max_gdd = df['GDD'].max()
+    except Exception as e:
+        pass
 
     try:
         max_max = int(round(max_max, 0))
@@ -296,6 +312,10 @@ def get_maxima(df):
         max_dpt = int(round(max_dpt, 0))
     except Exception as e:
         pass
+    try:
+        max_gdd = int(round(max_gdd, 0))
+    except Exception as e:
+        pass
 
     try:
         maxima.append(max_max)
@@ -331,6 +351,10 @@ def get_maxima(df):
         pass
     try:
         maxima.append(max_dpt)
+    except Exception as e:
+        pass
+    try:
+        maxima.append(max_gdd)
     except Exception as e:
         pass
     
@@ -387,6 +411,10 @@ def get_minima(df):
         min_dpt = df['DPT'].min()
     except Exception as e:
         pass
+    try:
+        min_gdd = df['GDD'].min()
+    except Exception as e:
+        pass
 
     try:
         min_max = int(round(min_max, 0))
@@ -422,6 +450,10 @@ def get_minima(df):
         pass
     try:
         min_dpt = int(round(min_dpt, 0))
+    except Exception as e:
+        pass
+    try:
+        min_gdd = int(round(min_gdd, 0))
     except Exception as e:
         pass
 
@@ -461,13 +493,17 @@ def get_minima(df):
         minima.append(min_dpt)
     except Exception as e:
         pass
+    try:
+        minima.append(min_gdd)
+    except Exception as e:
+        pass
     
     return minima
 
 def get_sum_hdd_cdd(df):
 
     r'''
-    This function finds the sums of the heating and cooling degree days dataframes. 
+    This function finds the sums of the heating, cooling and growing degree days dataframes. 
 
     Required Arguments:
 
@@ -485,8 +521,12 @@ def get_sum_hdd_cdd(df):
         cdd = df['CDD'].sum()
     except Exception as e:
         pass
-
-    return hdd, cdd
+    try:
+        gdd = df['GDD'].sum()
+    except Exception as e:
+        pass
+        
+    return hdd, cdd, gdd
 
 def get_precipitation_sum(df):
 
@@ -525,19 +565,21 @@ def rank_top_5(df, parameter):
 
     top_5 = []
     dates = []
-    
-    df = df.sort_values([parameter], ascending=False)
-    rank_1 = df[parameter].iloc[0]
-    rank_2 = df[parameter].iloc[1]
-    rank_3 = df[parameter].iloc[2]
-    rank_4 = df[parameter].iloc[3]
-    rank_5 = df[parameter].iloc[4]
 
-    date_1 = df['DATE'].iloc[0]
-    date_2 = df['DATE'].iloc[1]
-    date_3 = df['DATE'].iloc[2]
-    date_4 = df['DATE'].iloc[3]
-    date_5 = df['DATE'].iloc[4]
+    df_top = df
+    
+    df_top = df_top.sort_values([parameter], ascending=False)
+    rank_1 = df_top[parameter].iloc[0]
+    rank_2 = df_top[parameter].iloc[1]
+    rank_3 = df_top[parameter].iloc[2]
+    rank_4 = df_top[parameter].iloc[3]
+    rank_5 = df_top[parameter].iloc[4]
+
+    date_1 = df_top['DATE'].iloc[0]
+    date_2 = df_top['DATE'].iloc[1]
+    date_3 = df_top['DATE'].iloc[2]
+    date_4 = df_top['DATE'].iloc[3]
+    date_5 = df_top['DATE'].iloc[4]
 
     top_5.append(rank_1)
     top_5.append(rank_2)
@@ -571,19 +613,21 @@ def rank_bottom_5(df, parameter):
 
     bottom_5 = []
     dates = []
-    
-    df = df.sort_values([parameter], ascending=True)
-    rank_1 = df[parameter].iloc[0]
-    rank_2 = df[parameter].iloc[1]
-    rank_3 = df[parameter].iloc[2]
-    rank_4 = df[parameter].iloc[3]
-    rank_5 = df[parameter].iloc[4]
 
-    date_1 = df['DATE'].iloc[0]
-    date_2 = df['DATE'].iloc[1]
-    date_3 = df['DATE'].iloc[2]
-    date_4 = df['DATE'].iloc[3]
-    date_5 = df['DATE'].iloc[4]
+    df_bot = df
+    
+    df_bot = df_bot.sort_values([parameter], ascending=True)
+    rank_1 = df_bot[parameter].iloc[0]
+    rank_2 = df_bot[parameter].iloc[1]
+    rank_3 = df_bot[parameter].iloc[2]
+    rank_4 = df_bot[parameter].iloc[3]
+    rank_5 = df_bot[parameter].iloc[4]
+
+    date_1 = df_bot['DATE'].iloc[0]
+    date_2 = df_bot['DATE'].iloc[1]
+    date_3 = df_bot['DATE'].iloc[2]
+    date_4 = df_bot['DATE'].iloc[3]
+    date_5 = df_bot['DATE'].iloc[4]
 
     bottom_5.append(rank_1)
     bottom_5.append(rank_2)
@@ -600,8 +644,54 @@ def rank_bottom_5(df, parameter):
     return bottom_5, dates
 
 
+def running_sum(df, parameter):
+
+    r'''
+    This function returns a list of the running sum of the data. 
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame)
+
+    2) parameter (String) - The parameter abbreviation. 
+
+    Returns: A list of the running sums
+
+    '''
+
+    sums = []
+    current_sum = 0
+    df = df.interpolate(limit=3)
+
+    for i in range(0, len(df[parameter]), 1):
+        current_sum += df[parameter].iloc[i]
+        sums.append(current_sum)
+
+    return sums
 
 
+def running_mean(df, parameter):
+    
+    r'''
+    Calculates the running mean of a dataframe.
+
+    Required Arguments:
+
+    1) df (Pandas DataFrame)
+
+    2) parameter (String) - The parameter abbreviation. 
+
+    Returns: A list of the running means of the dataframe
+    '''
+    running_sum = 0
+    running_means = []
+    df = df.interpolate(limit=3)
+    
+    for i, value in enumerate(df[parameter]):
+        running_sum += value
+        running_means.append(running_sum / (i + 1))
+        
+    return running_means
 
 
 
