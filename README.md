@@ -13,8 +13,17 @@
 
 ### Jupyter Lab Tutorials
 
-1) [Creating 30 and 90 Day Temperature and Precipitation Summaries for Riverside, CA Municipal Airport (KRAL)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/KRAL.ipynb)
-2) [Creating Summaries With Custom Dates Nov 1st - Nov 30th 2024 for Saint Paul, AK (PASN)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/PASN.ipynb)
+1) In this example we will make 30 and 90-day temperature and precipitation summaries for KRAL - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/KRAL.ipynb)
+2) In this example we will use a custom date range (via changing the optional arguments) and make a temperature and precipitation graphic for PASN (This also is an example with missing data!") - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/PASN.ipynb)
+3) In this example we will remove the running mean from a temperature summary (via changing the optional arguments) for KJFK - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/running_mean.ipynb)
+4) In this example we will add the running sum to a precipitation summary graphic (via changing the optional arguments) for KRAL - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/running_sum.ipynb)
+5) In this example we will plot the maximum temperature summary for KLAX - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/LAX.ipynb)
+6) In this example we will plot the minimum temperature summary for KONT - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/ONT.ipynb)
+7) In this example we will plot the average temperature summary for KSTC - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/avg.ipynb)
+8) In this example we will plot the average temperature departure summary for KSTC - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/avg_dep.ipynb)
+9) In this example we will plot the heating degree days summary for KRAL - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/hdd.ipynb)
+10) In this example we will plot the cooling degree days summary for KBRO - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/cdd.ipynb)
+11) In this example we will plot the growing degree days summary for KBRO - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/gdd.ipynb)
 
 ### Table Of Contents
 
