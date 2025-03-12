@@ -1,3 +1,13 @@
+"""
+xmACIS2Py is software that makes visualizations of ACIS2 data for any station in the ACIS2 database. 
+
+This is the file that holds all of the graphics functions. 
+
+This file was written by: (C) Meteorologist Eric J. Drewitz
+                                       USDA/USFS
+
+"""
+
 import matplotlib as mpl
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
@@ -27,6 +37,8 @@ warm = dict(boxstyle='round', facecolor='darkred', alpha=1)
 cool = dict(boxstyle='round', facecolor='darkblue', alpha=1)
 green = dict(boxstyle='round', facecolor='darkgreen', alpha=1)
 gray = dict(boxstyle='round', facecolor='gray', alpha=1)
+purple = dict(boxstyle='round', facecolor='purple', alpha=1)
+orange = dict(boxstyle='round', facecolor='orange', alpha=1)
 
 try:
     utc = datetime.now(UTC)
@@ -67,6 +79,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -74,6 +87,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -81,6 +95,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -88,6 +103,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -95,6 +111,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -102,6 +119,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
+        decimate = 5
 
     else:
         start_date = start_date
@@ -163,7 +181,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax1 = fig.add_subplot(6, 1, 1)
     ax1.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax1.set_ylim((np.nanmin(df['MAX']) - 5), (np.nanmax(df['MAX']) + 5))
-    ax1.set_title(f"MAX T [°F]", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax1.set_title(f"MAX T [°F]", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=warm)
     ax1.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     ax1.bar(df['DATE'], df['MAX'], color='red', zorder=1, alpha=0.3)
     if show_running_mean == True:
@@ -184,7 +202,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax2 = fig.add_subplot(6, 1, 2)
     ax2.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax2.set_ylim((np.nanmin(df['MIN']) - 5), (np.nanmax(df['MIN']) + 5))
-    ax2.set_title(f"MIN T [°F]", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax2.set_title(f"MIN T [°F]", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=cool)
     ax2.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     ax2.bar(df['DATE'], df['MIN'], color='blue', zorder=1, alpha=0.3)
     if show_running_mean == True:
@@ -201,7 +219,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax3 = fig.add_subplot(6, 1, 3)
     ax3.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax3.set_ylim((np.nanmin(df['AVG']) - 5), (np.nanmax(df['AVG']) + 5))
-    ax3.set_title(f"AVG T [°F]", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax3.set_title(f"AVG T [°F]", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=gray)
     ax3.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     ax3.bar(df['DATE'], df['AVG'], color='black', zorder=1, alpha=0.3)
     if show_running_mean == True:
@@ -219,7 +237,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax4 = fig.add_subplot(6, 1, 4)
     ax4.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax4.set_ylim((np.nanmin(df['DEP']) - 5), (np.nanmax(df['DEP']) + 5))
-    ax4.set_title(f"T DEP [°F]", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax4.set_title(f"T DEP [°F]", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=gray)
     ax4.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     ax4.bar(df['DATE'], df['DEP'], color='black', zorder=1, alpha=0.3)
     if show_running_mean == True:
@@ -235,7 +253,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
 
     ax5 = fig.add_subplot(6, 1, 5)
     ax5.yaxis.set_major_locator(MaxNLocator(integer=True))
-    ax5.set_title(f"HDD & CDD", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax5.set_title(f"HDD & CDD", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=purple)
     ax5.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     if hdd_sum > cdd_sum:
         ax5.bar(df['DATE'], df['HDD'], color='darkred', zorder=1, alpha=0.3)
@@ -247,7 +265,7 @@ def plot_temperature_summary(station, product_type, start_date=None, end_date=No
     ax6 = fig.add_subplot(6, 1, 6)
     ax6.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax6.set_ylim(np.nanmin(df['GDD']), (np.nanmax(df['GDD']) + 5))
-    ax6.set_title(f"GDD", fontweight='bold', alpha=1, loc='right', zorder=11)
+    ax6.set_title(f"GDD", fontweight='bold', alpha=1, loc='right', color='white', zorder=15, y=0.825, bbox=green)
     ax6.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     ax6.bar(df['DATE'], df['GDD'], color='green', zorder=1, alpha=0.3)
     ax6.axhline(y=means[9], color='dimgrey', linestyle='--', zorder=3)
@@ -334,6 +352,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -341,6 +360,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -348,6 +368,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -355,6 +376,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -362,6 +384,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -369,6 +392,7 @@ def plot_precipitation_summary(station, product_type, start_date=None, end_date=
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
+        decimate = 5
 
     else:
         start_date = start_date
@@ -479,6 +503,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -486,6 +511,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -493,6 +519,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -500,6 +527,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -507,6 +535,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -514,6 +543,7 @@ def plot_maximum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
+        decimate = 5
 
     else:
         start_date = start_date
@@ -631,6 +661,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -638,6 +669,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -645,6 +677,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -652,6 +685,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -659,6 +693,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -666,6 +701,7 @@ def plot_minimum_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
+        decimate = 5
 
     else:
         start_date = start_date
@@ -783,6 +819,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -790,6 +827,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -797,7 +835,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -805,7 +843,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -813,7 +851,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -821,7 +859,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        
+        decimate = 5
 
     else:
         start_date = start_date
@@ -900,7 +938,7 @@ def plot_average_temperature_summary(station, product_type, start_date=None, end
     bottom_5, bottom_dates = xm.rank_bottom_5(df, 'AVG')
     for i, k, j in zip(x, z, r):
         ax.text(0.125 + (0.15*k), -0.25, f"#{j} {str(round(bottom_5[i],1))} [°F] - {bottom_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=cool)                 
-    img_path, img_path_print = update_image_file_paths(station, product_type, 'Avg T Summary', show_running_data, running_type='Mean')
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'Min T Summary', show_running_data, running_type='Mean')
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")  
@@ -939,7 +977,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -947,7 +985,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -955,7 +993,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -963,7 +1001,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -971,7 +1009,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -979,7 +1017,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        
+        decimate = 5
 
     else:
         start_date = start_date
@@ -1058,7 +1096,7 @@ def plot_average_temperature_departure_summary(station, product_type, start_date
     bottom_5, bottom_dates = xm.rank_bottom_5(df, 'DEP')
     for i, k, j in zip(x, z, r):
         ax.text(0.125 + (0.15*k), -0.25, f"#{j} {str(round(bottom_5[i],1))} [°F] - {bottom_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=cool)                 
-    img_path, img_path_print = update_image_file_paths(station, product_type, 'Avg T Departure Summary', show_running_data, running_type='Mean')
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'Min T Summary', show_running_data, running_type='Mean')
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")   
@@ -1097,7 +1135,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1105,7 +1143,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1113,7 +1151,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1121,7 +1159,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1129,7 +1167,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1137,7 +1175,7 @@ def plot_hdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        
+        decimate = 5
 
     else:
         start_date = start_date
@@ -1254,7 +1292,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1262,7 +1300,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1270,7 +1308,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1278,7 +1316,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1286,7 +1324,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1294,7 +1332,7 @@ def plot_cdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        
+        decimate = 5
 
     else:
         start_date = start_date
@@ -1411,7 +1449,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=9)
         d = 7
-        
+        decimate = 1
 
     elif product_type == 'Past 10 Days' or product_type == 10:
 
@@ -1419,7 +1457,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=12) 
         d = 10
-        
+        decimate = 1
 
     elif product_type == 'Past 15 Days' or product_type == 15:
 
@@ -1427,7 +1465,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=17)  
         d = 15
-        
+        decimate = 1
 
     elif product_type == 'Past 30 Days' or product_type == 30:
 
@@ -1435,7 +1473,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=32)   
         d = 30
-        
+        decimate = 1
 
     elif product_type == 'Past 60 Days' or product_type == 60:
 
@@ -1443,7 +1481,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=62)  
         d = 60
-        
+        decimate = 2
 
     elif product_type == 'Past 90 Days' or product_type == 90:
 
@@ -1451,7 +1489,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
         end_date = today - timedelta(days=2)
         start_date = today - timedelta(days=92) 
         d = 90
-        
+        decimate = 5
 
     else:
         start_date = start_date
@@ -1516,20 +1554,20 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
     ax.axhline(y=means[9], color='dimgrey', linestyle='--', alpha=0.5, zorder=2, label='PERIOD MEAN')
     ax.axhline(y=minima[9], color='darkblue', linestyle='--', alpha=0.5, zorder=2, label='PERIOD MIN')
     ax.legend(loc=(0.89, 1.01))
-    ax.text(0.43, -0.1, f"TOP-5 DAYS", fontsize=10, fontweight='bold', transform=ax.transAxes, color='white', bbox=warm)
-    ax.text(0.41, -0.2, f"BOTTOM-5 DAYS", fontsize=10, fontweight='bold', transform=ax.transAxes, color='white', bbox=cool)
+    ax.text(0.43, -0.1, f"TOP-5 DAYS", fontsize=10, fontweight='bold', transform=ax.transAxes, color='white', bbox=green)
+    ax.text(0.41, -0.2, f"BOTTOM-5 DAYS", fontsize=10, fontweight='bold', transform=ax.transAxes, color='white', bbox=orange)
     df.sort_values(['GDD'], ascending=False)
     x = np.arange(0, 5, 1)
     z = np.arange(0, 5, 1)
     r = np.arange(1, 6, 1)
     top_5, top_dates = xm.rank_top_5(df, 'GDD')
     for i, k, j in zip(x, z, r):
-        ax.text(0.137 + (0.15*k), -0.15, f"#{j} {str(int(round(top_5[i],0)))} - {top_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=warm) 
+        ax.text(0.137 + (0.15*k), -0.15, f"#{j} {str(int(round(top_5[i],0)))} - {top_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=green) 
 
     bottom_5, bottom_dates = xm.rank_bottom_5(df, 'GDD')
     for i, k, j in zip(x, z, r):
-        ax.text(0.137 + (0.15*k), -0.25, f"#{j} {str(int(round(bottom_5[i],0)))} - {bottom_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=cool)                 
-    img_path, img_path_print = update_image_file_paths(station, product_type, 'GDD Summary', show_running_data, running_type='Mean')
+        ax.text(0.137 + (0.15*k), -0.25, f"#{j} {str(int(round(bottom_5[i],0)))} - {bottom_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=orange)                 
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'CDD Summary', show_running_data, running_type='Mean')
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")  
