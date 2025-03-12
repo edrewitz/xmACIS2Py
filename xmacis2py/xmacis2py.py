@@ -1529,7 +1529,7 @@ def plot_gdd_summary(station, product_type, start_date=None, end_date=None, show
     bottom_5, bottom_dates = xm.rank_bottom_5(df, 'GDD')
     for i, k, j in zip(x, z, r):
         ax.text(0.137 + (0.15*k), -0.25, f"#{j} {str(int(round(bottom_5[i],0)))} - {bottom_dates[i].strftime(f'%b %d')}", fontsize=7, color='white',  fontweight='bold', transform=ax.transAxes, bbox=cool)                 
-    img_path, img_path_print = update_image_file_paths(station, product_type, 'CDD Summary', show_running_data, running_type='Mean')
+    img_path, img_path_print = update_image_file_paths(station, product_type, 'GDD Summary', show_running_data, running_type='Mean')
     fname = f"{station.upper()}_{product_type}.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     print(f"Saved {fname} to {img_path_print}")  
