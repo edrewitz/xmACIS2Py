@@ -1,3 +1,13 @@
+"""
+xmACIS2Py is software that makes visualizations of ACIS2 data for any station in the ACIS2 database. 
+
+This is the file that holds the data access function and all functions related to rankings and statistical calculations. 
+
+This file was written by: (C) Meteorologist Eric J. Drewitz
+                                       USDA/USFS
+
+"""
+
 import urllib
 import requests
 import json
