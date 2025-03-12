@@ -6,7 +6,7 @@ if sys.version_info[0] < 3:
 
 setup(
     name = "xmacis2py",
-    version = "1.2.1",
+    version = "1.2.2",
     packages = find_packages(),
     install_requires=[
         "matplotlib>=3.7",
