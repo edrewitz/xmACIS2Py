@@ -4,8 +4,14 @@
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/latest_release_date.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/platforms.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/license.svg" /> </a>
+
+Anaconda Downloads:
+
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/downloads.svg" /> </a>
 
+PIP Downloads:
+
+![PyPI - Downloads](https://img.shields.io/pypi/dm/xmacis2py)
 
 # xmACIS2Py
 **Creating xmACIS2 Summary Graphics in Python**
