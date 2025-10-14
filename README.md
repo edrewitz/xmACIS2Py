@@ -7,7 +7,7 @@
 
 Anaconda Downloads:
 
-<a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/downloads.svg" /> </a>
+[![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/xmacis2py.svg)](https://anaconda.org/conda-forge/xmacis2py)
 
 PIP Downloads:
 
