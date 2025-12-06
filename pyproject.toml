@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "xmacis2py"
-version = "1.2.4"
+version = "2.0"
 authors = [
-  { name="Eric J Drewitz, USDA/USFS"},
+  { name="Eric J Drewitz},
 ]
 description = "ACIS2 Data Analysis and Graphical Generation"
 readme = "README.md"
@@ -21,8 +21,5 @@ classifiers = [
 ]
 dependencies = [
 	"matplotlib>=3.7",
-	"metpy>=1.5.1",
-	"numpy>=1.24",
-	"pandas>=2.2",
- 
+  "wxdata>=1.1"
 ]

@@ -16,11 +16,11 @@ import metpy.calc as mpcalc
 import numpy as np
 import pandas as pd
 import os
-import xmacis2py.xmacis_data as xm
+import xmacis2py.analysis_tools.analysis as xm
 import warnings
 warnings.filterwarnings('ignore')
 
-from xmacis2py.file_funcs import update_csv_file_paths, update_image_file_paths
+from xmacis2py.utils.file_funcs import update_csv_file_paths, update_image_file_paths
 from matplotlib.ticker import MaxNLocator
 try:
     from datetime import datetime, timedelta, UTC
