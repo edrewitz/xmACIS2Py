@@ -156,7 +156,7 @@ def period_mean(df,
                            parameter)
     
     print(f"There are {missing_days} missing days of data.")
-    
+    df = df.dropna()
     try:
         var = df[parameter].mean()
         if round == True:
