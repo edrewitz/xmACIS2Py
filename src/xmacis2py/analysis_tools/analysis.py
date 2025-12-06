@@ -152,6 +152,12 @@ def period_mean(df,
     The period mean for the variable of interest.    
     """
     
+    df, missing_days = number_of_missing_days(df,
+                           parameter)
+    df = df.dropna()
+    
+    print(f"There are {missing_days} missing days of data.")
+    
     try:
         var = df[parameter].mean()
         if round == True:
@@ -167,7 +173,7 @@ def period_mean(df,
                     var = int(var)
                 else:
                     var = float(var)
-        return var
+        return var, missing_days
     except Exception as e:
         print(f"An Error Occurred: {e}")
         
