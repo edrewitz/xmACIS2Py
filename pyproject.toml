@@ -1,25 +1,29 @@
-[build-system]
-requires = ["setuptools>=64"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "xmacis2py"
-version = "2.0"
-authors = [
-  { name="Eric J Drewitz},
-]
-description = "ACIS2 Data Analysis and Graphical Generation"
+version = "1.9"
+description = "A Python library that downloads data from the Applied Climate Information System (ACIS) Database, performs various types of analyses on the data and makes various types of graphical summaries of the data."
 readme = "README.md"
-keywords = ["meteorology", "science", "data-analysis", "weather", "forecasting"]
 requires-python = ">=3.10"
+license-files = ["LICENSE*"]
+authors = [
+    { name = "Eric J. Drewitz" },
+]
+keywords = ["meteorology", "atmospheric sciences"]
 classifiers = [
     "Programming Language :: Python",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
     "Operating System :: OS Independent",
-    "License :: OSI Approved :: MIT License",
 ]
+
 dependencies = [
-	"matplotlib>=3.7",
-  	"wxdata>=1.1"
+  "matplotlib>=3.7",
+  "wxdata>=1.1",
 ]
+
+[build-system]
+requires = ["setuptools>=64.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]  # Look for packages in the src directory
