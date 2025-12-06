@@ -18,5 +18,27 @@ For more information on the xmACIS2 Client in the WxData Library, visit: https:/
 # This is our data access (powered by WxData)
 from xmacis2py.data_access.get_data import get_data
 
-# This consists of all the analysis tools in xmACIS2Py
+"""
+Module
+-------
+
+xmacis2py.analysis_tools.analysis
+
+Analysis Tools:
+- replace_trace_with_zeros
+- number_of_missing_days
+- period_mean
+- period_median
+- period_standard_deviation
+- period_mode
+- period_variance
+- period_skewness
+- period_kurtosis
+- period_maximum
+- period_minimum
+- period_sum
+- period_rankings
+- running_sum
+- running_mean
+"""
 from xmacis2py.analysis_tools.analysis import *

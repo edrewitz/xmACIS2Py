@@ -1,6 +1,24 @@
 """
 This file hosts functions that perform various statistical operations on the xmACIS2 Datasets
 
+Analysis Tools:
+
+- replace_trace_with_zeros
+- number_of_missing_days
+- period_mean
+- period_median
+- period_standard_deviation
+- period_mode
+- period_variance
+- period_skewness
+- period_kurtosis
+- period_maximum
+- period_minimum
+- period_sum
+- period_rankings
+- running_sum
+- running_mean
+
 (C) Eric J. Drewitz 2025
 """
 
