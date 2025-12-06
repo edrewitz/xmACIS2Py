@@ -154,7 +154,7 @@ def period_mean(df,
     
     df, missing_days = number_of_missing_days(df,
                            parameter)
-    df = df.dropna()
+    df[parameter] = df[parameter].dropna()
     
     print(f"There are {missing_days} missing days of data.")
     
