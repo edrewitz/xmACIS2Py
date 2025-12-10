@@ -20,7 +20,8 @@ PIP Downloads:
 
 ***ANNOUNCEMENT: xmACIS2Py < 2.0 is now depreciated and replaced with xmACIS2Py >= 2.0***
 
-***xmACIS2Py 2.0 Examples***
+***xmACIS2Py 2.0 Documentation and Jupyter Lab Tutorial***
+
 
 
 
