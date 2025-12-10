@@ -8,6 +8,8 @@ For more information on the xmACIS2 Client in the WxData Library, visit: https:/
 (C) Eric J. Drewitz 2025
 """
 
+import warnings
+warnings.filterwarnings('ignore')
 # Imports the WxData library
 from wxdata import client
 from datetime import datetime, timedelta
