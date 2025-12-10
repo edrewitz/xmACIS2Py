@@ -17,9 +17,16 @@ PIP Downloads:
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/xmacis2py)
 
 # xmACIS2Py
-**Creating xmACIS2 Summary Graphics in Python**
 
-### Jupyter Lab Tutorials
+***ANNOUNCEMENT: xmACIS2Py < 2.0 is now depreciated and replaced with xmACIS2Py >= 2.0***
+
+***xmACIS2Py 2.0 Examples***
+
+
+
+
+***xmACIS2Py < 2.0 (Legacy) Documentation and Jupyter Lab Tutorials***
+***Jupyter Lab Tutorials***
 
 1) In this example we will make 30 and 90-day temperature and precipitation summaries for KRAL - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/KRAL.ipynb)
 2) In this example we will use a custom date range (via changing the optional arguments) and make a temperature and precipitation graphic for PASN (This also is an example with missing data!") - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/PASN.ipynb)
@@ -33,21 +40,9 @@ PIP Downloads:
 10) In this example we will plot the cooling degree days summary for KBRO - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/cdd.ipynb)
 11) In this example we will plot the growing degree days summary for KBRO - [click here](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/gdd.ipynb)
 
-### Table Of Contents
+**Documentation**
 
-1) [plot_temperature_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/tree/main?tab=readme-ov-file#plot_temperature_summarystation-product_type)
-2) [plot_precipitation_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/tree/main?tab=readme-ov-file#plot_precipitation_summarystation-product_type)
-3) [plot_maximum_temperature_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_maximum_temperature_summarystation-product_type)
-4) [plot_minimum_temperature_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_minimum_temperature_summarystation-product_type)
-5) [plot_average_temperature_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_average_temperature_summarystation-product_type)
-6) [plot_average_temperature_departure_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_average_temperature_departure_summarystation-product_type)
-7) [plot_hdd_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_hdd_summarystation-product_type)
-8) [plot_cdd_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_cdd_summarystation-product_type)
-9) [plot_gdd_summary(station, product_type)](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#plot_gdd_summarystation-product_type)
-10) [References](https://github.com/edrewitz/xmACIS2Py/blob/main/README.md#references)
-
-
-#### plot_temperature_summary(station, product_type)
+***plot_temperature_summary(station, product_type)***
 
 This function plots a graphic showing the Temperature Summary for a given station for a given time period. 
 
@@ -66,7 +61,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
-#### plot_precipitation_summary(station, product_type)
+***plot_precipitation_summary(station, product_type)***
 
 This function plots a graphic showing the Precipitation Summary for a given station for a given time period. 
 
@@ -85,7 +80,7 @@ Optional Arguments:
 
 3) show_running_sum (Boolean) - Default = False. When set to True, running sums will be shown
 
-#### plot_maximum_temperature_summary(station, product_type)
+***plot_maximum_temperature_summary(station, product_type)***
 
 This function plots a graphic showing the Maximum Temperature Summary for a given station for a given time period. 
 
@@ -104,7 +99,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
-#### plot_minimum_temperature_summary(station, product_type)
+***plot_minimum_temperature_summary(station, product_type)***
 
 This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
 
@@ -123,7 +118,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
-#### plot_average_temperature_summary(station, product_type)
+***plot_average_temperature_summary(station, product_type)***
 
 This function plots a graphic showing the Average Temperature Summary for a given station for a given time period. 
 
@@ -142,7 +137,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
-#### plot_average_temperature_departure_summary(station, product_type)
+***plot_average_temperature_departure_summary(station, product_type)***
 
 This function plots a graphic showing the Average Temperature Departure Summary for a given station for a given time period. 
 
@@ -161,7 +156,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means will be hidden
 
-#### plot_hdd_summary(station, product_type):
+***plot_hdd_summary(station, product_type)***
 
 This function plots a graphic showing the Heating Degree Days Summary for a given station for a given time period. 
 
@@ -180,7 +175,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means and sums will be hidden
 
-#### plot_cdd_summary(station, product_type):
+***plot_cdd_summary(station, product_type)***
 
 This function plots a graphic showing the Cooling Degree Days Summary for a given station for a given time period. 
 
@@ -199,7 +194,7 @@ Optional Arguments:
 
 3) show_running_mean (Boolean) - Default = True. When set to False, running means and sums will be hidden
 
-#### plot_gdd_summary(station, product_type):
+***plot_gdd_summary(station, product_type)***
 
 This function plots a graphic showing the Growing Degree Days Summary for a given station for a given time period. 
 
@@ -221,17 +216,12 @@ Optional Arguments:
 #### References
 
 
-1) xmACIS2: https://www.rcc-acis.org/docs_webservices.html 
+1) **xmACIS2**: https://www.rcc-acis.org/docs_webservices.html 
 
-2) MetPy: May, R. M., Goebbert, K. H., Thielen, J. E., Leeman, J. R., Camron, M. D., Bruick, Z., Bruning, E. C., Manser, R. P., Arms, S. C., and Marsh, P. T., 2022: MetPy: A Meteorological Python Library for Data Analysis and Visualization. Bull. Amer. Meteor. Soc., 103, E2273-E2284, https://doi.org/10.1175/BAMS-D-21-0125.1.
+2) **MetPy**: May, R. M., Goebbert, K. H., Thielen, J. E., Leeman, J. R., Camron, M. D., Bruick, Z., Bruning, E. C., Manser, R. P., Arms, S. C., and Marsh, P. T., 2022: MetPy: A Meteorological Python Library for Data Analysis and Visualization. Bull. Amer. Meteor. Soc., 103, E2273-E2284, https://doi.org/10.1175/BAMS-D-21-0125.1.
 
-3) NumPy: Harris, C.R., Millman, K.J., van der Walt, S.J. et al. Array programming with NumPy. Nature 585, 357–362 (2020). DOI: 10.1038/s41586-020-2649-2. (Publisher link).
+3) **NumPy**: Harris, C.R., Millman, K.J., van der Walt, S.J. et al. Array programming with NumPy. Nature 585, 357–362 (2020). DOI: 10.1038/s41586-020-2649-2. (Publisher link).
 
-4) Pandas:
-    author       = {The pandas development team},
-    title        = {pandas-dev/pandas: Pandas},
-    publisher    = {Zenodo},
-    version      = {latest},
-    doi          = {10.5281/zenodo.3509134},
-    url          = {https://doi.org/10.5281/zenodo.3509134}
-}
+4) **Pandas**: Pandas: McKinney, W., & others. (2010). Data structures for statistical computing in python. In Proceedings of the 9th Python in Science Conference (Vol. 445, pp. 51–56).
+
+5) **WxData**: Eric J. Drewitz. (2025). edrewitz/WxData: WxData 1.1.4 Released (WxData1.1.4). Zenodo. https://doi.org/10.5281/zenodo.17862030
