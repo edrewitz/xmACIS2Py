@@ -28,27 +28,222 @@ import pandas as pd
 warnings.filterwarnings('ignore')
 
 
-def replace_trace_with_zeros(df):
-    
+def number_of_days_at_value(df,
+                            parameter,
+                            value):
+
     """
-    This function replaces trace amounts of precipitation with zeros.
-    A trace of precipitation gets counted as zero in climatology. 
-    
+    This function tallies the number of days in the period at a certain value.
+
     Required Arguments:
-    
-    1) df (Pandas.DataFrame) - The Pandas.DataFrame of xmACIS2 data.
-    
-    Optional Arguments: None
-    
+
+    1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
+
+    2) parameter (String) - The parameter name.
+
+    3) value (String, Integer or Float) - The value the user wants to set as the threshold.
+
+    For precipitation, if the user wants to have all days where at least a trace occurred, enter 'T'.
+
+    Otherwise, this value must be an integer or a floating point type.
+
     Returns
     -------
-    
-    A Pandas.DataFrame with T replaced by zeros.   
+
+    The number of days a value is at a certain value
     """
-    
-    df = df.replace('T', 0.00)
-    
-    return df
+    try:
+        value = value.upper()
+    except Exception as e:
+        pass
+
+    if value == 'T':
+        value = 0.001
+    else:
+        value = value
+
+    count = 0
+    for val in df[parameter]:
+        if val == value:
+            count = count + 1
+        else:
+            pass
+
+    return count
+
+
+def number_of_days_above_value(df,
+                               parameter,
+                               value):
+
+    """
+    This function tallies the number of days in the period above a certain value.
+
+    Required Arguments:
+
+    1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
+
+    2) parameter (String) - The parameter name.
+
+    3) value (String, Integer or Float) - The value the user wants to set as the threshold.
+
+    For precipitation, if the user wants to have all days where at least a trace occurred, enter 'T'.
+
+    Otherwise, this value must be an integer or a floating point type.
+
+    Returns
+    -------
+
+    The number of days a value is above a certain value
+    """
+    try:
+        value = value.upper()
+    except Exception as e:
+        pass
+
+    if value == 'T':
+        value = 0.001
+    else:
+        value = value
+        
+    count = 0
+    for val in df[parameter]:
+        if val > value:
+            count = count + 1
+        else:
+            pass
+
+    return count
+
+
+def number_of_days_below_value(df,
+                               parameter,
+                               value):
+
+    """
+    This function tallies the number of days in the period below a certain value.
+
+    Required Arguments:
+
+    1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
+
+    2) parameter (String) - The parameter name.
+
+    3) value (String, Integer or Float) - The value the user wants to set as the threshold.
+
+    For precipitation, if the user wants to have all days where at least a trace occurred, enter 'T'.
+
+    Otherwise, this value must be an integer or a floating point type.
+
+    Returns
+    -------
+
+    The number of days a value is below a certain value
+    """
+    try:
+        value = value.upper()
+    except Exception as e:
+        pass
+
+    if value == 'T':
+        value = 0.001
+    else:
+        value = value
+
+    count = 0
+    for val in df[parameter]:
+        if val < value:
+            count = count + 1
+        else:
+            pass
+
+    return count
+
+def number_of_days_at_or_below_value(df,
+                               parameter,
+                               value):
+
+    """
+    This function tallies the number of days in the period at or below a certain value.
+
+    Required Arguments:
+
+    1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
+
+    2) parameter (String) - The parameter name.
+
+    3) value (String, Integer or Float) - The value the user wants to set as the threshold.
+
+    For precipitation, if the user wants to have all days where at least a trace occurred, enter 'T'.
+
+    Otherwise, this value must be an integer or a floating point type.
+
+    Returns
+    -------
+
+    The number of days a value is at or below a certain value
+    """
+    try:
+        value = value.upper()
+    except Exception as e:
+        pass
+
+    if value == 'T':
+        value = 0.001
+    else:
+        value = value
+
+    count = 0
+    for val in df[parameter]:
+        if val <= value:
+            count = count + 1
+        else:
+            pass
+
+    return count
+
+def number_of_days_at_or_above_value(df,
+                                    parameter,
+                                    value):
+
+    """
+    This function tallies the number of days in the period at or above a certain value.
+
+    Required Arguments:
+
+    1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
+
+    2) parameter (String) - The parameter name.
+
+    3) value (String, Integer or Float) - The value the user wants to set as the threshold.
+
+    For precipitation, if the user wants to have all days where at least a trace occurred, enter 'T'.
+
+    Otherwise, this value must be an integer or a floating point type.
+
+    Returns
+    -------
+
+    The number of days a value is at or above a certain value
+    """
+    try:
+        value = value.upper()
+    except Exception as e:
+        pass
+
+    if value == 'T':
+        value = 0.001
+    else:
+        value = value
+
+    count = 0
+    for val in df[parameter]:
+        if val >= value:
+            count = count + 1
+        else:
+            pass
+
+    return count
 
 def number_of_missing_days(df,
                            parameter):
@@ -85,25 +280,19 @@ def number_of_missing_days(df,
     Returns
     -------
     
-    1) A Pandas.DataFrame where M is replaced with NaN.
-    
-    2) The tally of missing days in an analysis period.     
+    1) The tally of missing days in an analysis period for a specific parameter.     
     """
-    
-    try:
-        df = df.replace({'M':np.NaN})
-    except Exception as e:
-        df = df.infer_objects(copy=False)
-        df.replace('M', np.nan, inplace=True)
 
     nan_counts = df[parameter].isna().sum()
 
-    return df, nan_counts
+    nan_counts = int(nan_counts)
+
+    return nan_counts
 
 
 def period_mean(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -118,7 +307,7 @@ def period_mean(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -151,35 +340,34 @@ def period_mean(df,
     
     The period mean for the variable of interest.    
     """
+    data_type = data_type.lower()
     
-    df, missing_days = number_of_missing_days(df,
-                           parameter)
-    
-    print(f"There are {missing_days} missing days of data.")
-    df = df.dropna()
     try:
-        var = df[parameter].mean()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var, missing_days
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].mean()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
         
 def period_median(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -194,7 +382,7 @@ def period_median(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -227,29 +415,112 @@ def period_median(df,
     
     The period median for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].median()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].median()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
+
+def period_percentile(df,
+                    parameter,
+                    round_value=False,
+                    to_nearest=0,
+                    data_type='float',
+                    percentile=0.25):
+    
+    """
+    This function finds the period median for the specified parameter
+    
+    Required Arguments:
+    
+    1) df (Pandas.DataFrame) - The Pandas.DataFrame of xmACIS2 data.
+    
+    2) parameter (String) - The parameter of interest. 
+    
+    Optional Arguments:
+    
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
+    
+    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    3) data_type (String) - Default='float'. The data type of the returned data.
+        Set data_type='integer' if the user prefers to return an integer type rather than a float type.
+
+    4) percentile (Float) - Default=0.25 (25th Percentile). A value between 0 and 1 that represents the percentile.
+        (i.e. 0.25 = 25th percentile, 0.75 = 75th percentile). 
+    
+    Types of Rounding
+    -----------------
+    
+    to_nearest=0 ---> Whole Number
+    to_nearest=1 ---> Nearest Tenth (0.1)
+    to_nearest=2 ---> Nearest Hundredth (0.01)    
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'    
+    
+    Returns
+    -------
+    
+    The period user-specified percentile for the variable of interest.    
+    """
+    data_type = data_type.lower()
+    
+    try:
+        df = df.replace({0.001:np.NaN})
+    except Exception as e:
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].quantile(percentile)
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
+
         
 def period_standard_deviation(df,
                                 parameter,
-                                round=False,
+                                round_value=False,
                                 to_nearest=0,
                                 data_type='float'):
     
@@ -264,7 +535,7 @@ def period_standard_deviation(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -297,30 +568,34 @@ def period_standard_deviation(df,
     
     The period standard deviation for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].std()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].std()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
         
 def period_mode(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -335,7 +610,7 @@ def period_mode(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -368,30 +643,34 @@ def period_mode(df,
     
     The period mode for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].mode()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].mode()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
         
 def period_variance(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -406,7 +685,7 @@ def period_variance(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -439,29 +718,33 @@ def period_variance(df,
     
     The period variance for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].var()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].var()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
 def period_skewness(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -476,7 +759,7 @@ def period_skewness(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -509,30 +792,34 @@ def period_skewness(df,
     
     The period skewness for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].skew()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].skew()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
         
 def period_kurtosis(df,
                     parameter,
-                    round=False,
+                    round_value=False,
                     to_nearest=0,
                     data_type='float'):
     
@@ -547,7 +834,7 @@ def period_kurtosis(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -580,30 +867,34 @@ def period_kurtosis(df,
     
     The period kurtosis for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].kurt()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].kurt()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
 
 def period_maximum(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -618,7 +909,7 @@ def period_maximum(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -651,29 +942,33 @@ def period_maximum(df,
     
     The period maximum for the variable of interest.    
     """
+    data_type = data_type.lower()
     
     try:
-        var = df[parameter].max()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].max()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
         
 def period_minimum(df,
                 parameter,
-                round=False,
+                round_value=False,
                 to_nearest=0,
                 data_type='float'):
     
@@ -688,7 +983,7 @@ def period_minimum(df,
     
     Optional Arguments:
     
-    1) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
     2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
@@ -724,28 +1019,31 @@ def period_minimum(df,
     data_type = data_type.lower()
     
     try:
-        var = df[parameter].min()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
+        df = df.replace({0.001:np.NaN})
     except Exception as e:
-        print(f"An Error Occurred: {e}")
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+    
+    var = df[parameter].min()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
 
 
 def period_sum(df,
-               parameter='Precipitation',
-               round=False,
+               parameter,
+               round_value=False,
                to_nearest=0,
                data_type='float'):
 
@@ -755,17 +1053,16 @@ def period_sum(df,
     Required Arguments:
 
     1) df (Pandas.DataFrame) - The Pandas.DataFrame of xmACIS2 data.
+
+    2) parameter (String) - The parameter of interest. 
     
     Optional Arguments:
-    
-    1) Parameter (String) - Default='Precipitation' Since total precipitation is the most likely
-        use for period_sum(), 'Precipitation' is the default value. 
         
-    2) round (Boolean) - Default=False. If the user would like to round set round=True.
+    1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
     
-    4) data_type (String) - Default='float'. The data type of the returned data.
+    3) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -795,26 +1092,29 @@ def period_sum(df,
     The period sum for the variable of interest.   
     """
     data_type = data_type.lower()
-    try:
-        var = df[parameter].sum()
-        if round == True:
-            if data_type == 'integer':
-                var = int(round(var, 0))
-            else:
-                var = float(round(var, to_nearest))
-        else:
-            if data_type == 'integer' and type(var) != type(0):
-                var = int(round(var, 0))
-            else:
-                if data_type == 'integer':
-                    var = int(var)
-                else:
-                    var = float(var)
-        return var
-    except Exception as e:
-        print(f"An Error Occurred: {e}")
 
-    
+    try:
+        df = df.replace({0.001:np.NaN})
+    except Exception as e:
+        df = df.infer_objects(copy=False)
+        df.replace(0.001, np.nan, inplace=True)
+        
+    var = df[parameter].sum()
+    if round_value == True:
+        if data_type == 'integer':
+            var = int(round(var, 0))
+        else:
+            var = float(round(var, to_nearest))
+    else:
+        if data_type == 'integer' and type(var) != type(0):
+            var = int(round(var, 0))
+        else:
+            if data_type == 'integer':
+                var = int(var)
+            else:
+                var = float(var)
+    return var
+   
 def period_rankings(df,
                     parameter,
                     ascending=False,
@@ -894,7 +1194,7 @@ def period_rankings(df,
             dates = []
             for i in range(0, first, 1):
                 ranked.append(df[parameter].iloc[i])
-                dates.append(df[date_name].iloc[i])
+                dates.append(pd.to_datetime(df[date_name].iloc[i]))
                 
             ranked_df = pd.DataFrame(ranked)
             dates_df = pd.DataFrame(dates)
@@ -906,7 +1206,12 @@ def period_rankings(df,
         elif rank_subset == 'last':
             ranked = []
             dates = []
+            nan_count = number_of_missing_days(df,
+                                   parameter)
+
+            last = last + nan_count + 1
             last = last * -1
+            
             for i in range(-1, last, -1):
                 ranked.append(df[parameter].iloc[i])
                 dates.append(df[date_name].iloc[i])
@@ -931,8 +1236,10 @@ def period_rankings(df,
             df = pd.DataFrame()
             df[date_name] = dates_df
             df[parameter] = ranked_df  
+
+    df = df.dropna()
             
-    return df          
+    return df              
         
 
 def running_sum(df, 

@@ -8,6 +8,9 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
+folder = os.getcwd()
+folder_modified = folder.replace("\\", "/")
+
 def update_csv_file_paths(station, 
                           product_type):
 
@@ -27,11 +30,11 @@ def update_csv_file_paths(station,
     """
 
     try:
-        os.makedirs(f"ACIS Data/{station}/{product_type}")
+        os.makedirs(f"{folder_modified}/ACIS Data/{station}/{product_type}")
     except Exception as e:
         pass
 
-    path = f"ACIS Data/{station}/{product_type}"
+    path = f"{folder_modified}/ACIS Data/{station}/{product_type}"
 
     return path
 
@@ -81,11 +84,11 @@ def update_image_file_paths(station,
             text = f"Without Running Data" 
         
     try:
-        os.makedirs(path = f"ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}")
+        os.makedirs(f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}")
     except Exception as e:
         pass
 
-    path = f"ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}"
+    path = f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}"
 
     return path
 
