@@ -1,9 +1,12 @@
 ![image](https://github.com/user-attachments/assets/fb5ecdf9-bd51-4243-be7d-92af0952bfd8) ![image](https://github.com/user-attachments/assets/da1b43c0-2b6a-4a5c-9eb4-f08b30cab42b)
 
-<a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/version.svg" /> </a>
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/xmacis2py.svg)](https://anaconda.org/conda-forge/xmacis2py)
+![PyPI - Version](https://img.shields.io/pypi/v/xmacis2py)
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/latest_release_date.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/platforms.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/license.svg" /> </a>
+[![Conda Recipe](https://img.shields.io/badge/recipe-xmacis2py-green.svg)](https://anaconda.org/conda-forge/xmacis2py)
+
 
 Anaconda Downloads:
 
