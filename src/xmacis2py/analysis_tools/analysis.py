@@ -3,7 +3,11 @@ This file hosts functions that perform various statistical operations on the xmA
 
 Analysis Tools:
 
-- replace_trace_with_zeros
+- number_of_days_at_value
+- number_of_days_above_value
+- number_of_days_below_value
+- number_of_days_at_or_below_value
+- number_of_days_at_or_above_value
 - number_of_missing_days
 - period_mean
 - period_median
