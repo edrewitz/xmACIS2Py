@@ -1,1 +1,1 @@
-from xmacis2py.analysis_tools.analysis import *
+import xmacis2py.analysis_tools.analysis as analysis

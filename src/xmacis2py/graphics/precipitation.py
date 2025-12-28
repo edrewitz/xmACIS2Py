@@ -5,7 +5,7 @@ This file hosts the functions that plot precipitation summaries that have multip
 """
 
 
-
+import xmacis2py.analysis_tools.analysis as analysis
 import matplotlib as mpl
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
@@ -16,8 +16,6 @@ warnings.filterwarnings('ignore')
 
 from xmacis2py.utils.file_funcs import update_image_file_paths
 from xmacis2py.data_access.get_data import get_data
-from xmacis2py.analysis_tools import *
-
 from matplotlib.ticker import MaxNLocator
 
 try:
@@ -67,7 +65,7 @@ def plot_precipitation_summary(station,
                                 path='default',
                                 filename='default',
                                 notifications='on',
-                               show_running_sum=True,
+                               show_running_sum=False,
                                interpolation_limit=3,
                                x_axis_day_interval=5):
     
@@ -140,40 +138,40 @@ def plot_precipitation_summary(station,
             filename=filename,
             notifications=notifications)
 
-    missing = number_of_missing_days(df,
+    missing = analysis.number_of_missing_days(df,
                            'Precipitation')
     
-    standard_deviation = period_standard_deviation(df,
+    standard_deviation = analysis.period_standard_deviation(df,
                                                     'Precipitation',
                                                     round_value=True,
                                                     to_nearest=2,
                                                     data_type='float')
     
-    variance = period_variance(df,
+    variance = analysis.period_variance(df,
                                 'Precipitation',
                                 round_value=True,
                                 to_nearest=2,
                                 data_type='float')
     
-    skewness = period_skewness(df,
+    skewness = analysis.period_skewness(df,
                                 'Precipitation',
                                 round_value=True,
                                 to_nearest=2,
                                 data_type='float')
     
-    kurtosis = period_kurtosis(df,
+    kurtosis = analysis.period_kurtosis(df,
                                 'Precipitation',
                                 round_value=True,
                                 to_nearest=2,
                                 data_type='float')
     
-    total_precip = period_sum(df,
+    total_precip = analysis.period_sum(df,
                                 'Precipitation',
                                 round_value=False,
                                 to_nearest=2,
                                 data_type='float')
     
-    top5 = period_rankings(df,
+    top5 = analysis.period_rankings(df,
                             'Precipitation',
                             ascending=False,
                             rank_subset='first',
@@ -182,7 +180,7 @@ def plot_precipitation_summary(station,
                             between=[],
                             date_name='Date')
     
-    bot5 = period_rankings(df,
+    bot5 = analysis.period_rankings(df,
                             'Precipitation',
                             ascending=False,
                             rank_subset='last',
@@ -211,7 +209,7 @@ def plot_precipitation_summary(station,
     ax.text(0.0008, 1.01, f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", fontsize=6, fontweight='bold', transform=ax.transAxes, bbox=props)
     
     if show_running_sum == True:
-        run_sum = running_sum(df, 
+        run_sum = analysis.running_sum(df, 
                                     'Precipitation',
                                     interpolation_limit=interpolation_limit)
         df_max = pd.DataFrame(run_sum, 

@@ -29,8 +29,66 @@ Analysis Tools:
 import warnings
 import numpy as np
 import pandas as pd
+import math
+from scipy import signal
 warnings.filterwarnings('ignore')
 
+def _round_down(value, to_nearest):
+    """
+    This function rounds a number down to a specific number of decimal places.
+    
+    Required Arguments:
+    
+    1) value (Float) - The value to be rounded.
+    
+    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    Types of Rounding
+    -----------------
+    
+    to_nearest=0 ---> Whole Number
+    to_nearest=1 ---> Nearest Tenth (0.1)
+    to_nearest=2 ---> Nearest Hundredth (0.01)  
+    
+    Returns
+    -------
+    
+    The rounded value as specified.  
+    """
+    
+    if to_nearest < 0:
+        raise ValueError("Decimals must be a non-negative integer.")
+    factor = 10**to_nearest
+    return math.floor(value * factor) / factor
+
+def _round_up(value,
+              to_nearest):
+    
+    """
+    This function rounds up a value.
+    
+    Required Arguments:
+    
+    1) value (Float) - The value to be rounded.
+    
+    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    Types of Rounding
+    -----------------
+    
+    to_nearest=0 ---> Whole Number
+    to_nearest=1 ---> Nearest Tenth (0.1)
+    to_nearest=2 ---> Nearest Hundredth (0.01)  
+    
+    Returns
+    -------
+    
+    The rounded value as specified.    
+    """
+    
+    new_value = round(value, to_nearest)
+    
+    return new_value
 
 def number_of_days_at_value(df,
                             parameter,
@@ -43,7 +101,21 @@ def number_of_days_at_value(df,
 
     1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
 
-    2) parameter (String) - The parameter name.
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
 
     3) value (String, Integer or Float) - The value the user wants to set as the threshold.
 
@@ -87,7 +159,21 @@ def number_of_days_above_value(df,
 
     1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
 
-    2) parameter (String) - The parameter name.
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
 
     3) value (String, Integer or Float) - The value the user wants to set as the threshold.
 
@@ -131,7 +217,21 @@ def number_of_days_below_value(df,
 
     1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
 
-    2) parameter (String) - The parameter name.
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
 
     3) value (String, Integer or Float) - The value the user wants to set as the threshold.
 
@@ -174,7 +274,21 @@ def number_of_days_at_or_below_value(df,
 
     1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
 
-    2) parameter (String) - The parameter name.
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
 
     3) value (String, Integer or Float) - The value the user wants to set as the threshold.
 
@@ -217,7 +331,21 @@ def number_of_days_at_or_above_value(df,
 
     1) df (Pandas.DataFrame) - The xmaCIS2 dataframe for the period of interest.
 
-    2) parameter (String) - The parameter name.
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
 
     3) value (String, Integer or Float) - The value the user wants to set as the threshold.
 
@@ -297,6 +425,7 @@ def number_of_missing_days(df,
 def period_mean(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -313,9 +442,11 @@ def period_mean(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -355,12 +486,25 @@ def period_mean(df,
     var = df[parameter].mean()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -372,6 +516,7 @@ def period_mean(df,
 def period_median(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -388,9 +533,11 @@ def period_median(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -430,12 +577,25 @@ def period_median(df,
     var = df[parameter].median()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -446,6 +606,7 @@ def period_median(df,
 def period_percentile(df,
                     parameter,
                     round_value=False,
+                    round_up=True,
                     to_nearest=0,
                     data_type='float',
                     percentile=0.25):
@@ -463,12 +624,14 @@ def period_percentile(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
 
-    4) percentile (Float) - Default=0.25 (25th Percentile). A value between 0 and 1 that represents the percentile.
+    5) percentile (Float) - Default=0.25 (25th Percentile). A value between 0 and 1 that represents the percentile.
         (i.e. 0.25 = 25th percentile, 0.75 = 75th percentile). 
     
     Types of Rounding
@@ -508,12 +671,25 @@ def period_percentile(df,
     var = df[parameter].quantile(percentile)
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -525,6 +701,7 @@ def period_percentile(df,
 def period_standard_deviation(df,
                                 parameter,
                                 round_value=False,
+                                round_up=True,
                                 to_nearest=0,
                                 data_type='float'):
     
@@ -541,9 +718,11 @@ def period_standard_deviation(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -583,12 +762,25 @@ def period_standard_deviation(df,
     var = df[parameter].std()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -600,6 +792,7 @@ def period_standard_deviation(df,
 def period_mode(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -616,9 +809,11 @@ def period_mode(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -658,12 +853,25 @@ def period_mode(df,
     var = df[parameter].mode()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -675,6 +883,7 @@ def period_mode(df,
 def period_variance(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -691,9 +900,11 @@ def period_variance(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -733,12 +944,25 @@ def period_variance(df,
     var = df[parameter].var()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -749,6 +973,7 @@ def period_variance(df,
 def period_skewness(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -765,9 +990,11 @@ def period_skewness(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -807,12 +1034,25 @@ def period_skewness(df,
     var = df[parameter].skew()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -824,6 +1064,7 @@ def period_skewness(df,
 def period_kurtosis(df,
                     parameter,
                     round_value=False,
+                    round_up=True,
                     to_nearest=0,
                     data_type='float'):
     
@@ -840,9 +1081,11 @@ def period_kurtosis(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -882,12 +1125,25 @@ def period_kurtosis(df,
     var = df[parameter].kurt()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -899,6 +1155,7 @@ def period_kurtosis(df,
 def period_maximum(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -915,9 +1172,11 @@ def period_maximum(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -957,12 +1216,25 @@ def period_maximum(df,
     var = df[parameter].max()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -973,6 +1245,7 @@ def period_maximum(df,
 def period_minimum(df,
                 parameter,
                 round_value=False,
+                round_up=True,
                 to_nearest=0,
                 data_type='float'):
     
@@ -989,9 +1262,11 @@ def period_minimum(df,
     
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -1031,12 +1306,25 @@ def period_minimum(df,
     var = df[parameter].min()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -1048,6 +1336,7 @@ def period_minimum(df,
 def period_sum(df,
                parameter,
                round_value=False,
+               round_up=True,
                to_nearest=0,
                data_type='float'):
 
@@ -1064,9 +1353,11 @@ def period_sum(df,
         
     1) round_value (Boolean) - Default=False. If the user would like to round set round=True.
     
-    2) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    2) round_up (Boolean) - Default=True. When set to True, the value is rounded up. Set round_up=False to round down.
     
-    3) data_type (String) - Default='float'. The data type of the returned data.
+    3) to_nearest (Integer) - Default=0. When to_nearest=0, the returned data is rounded to the nearest whole number.
+    
+    4) data_type (String) - Default='float'. The data type of the returned data.
         Set data_type='integer' if the user prefers to return an integer type rather than a float type.
     
     Types of Rounding
@@ -1106,12 +1397,25 @@ def period_sum(df,
     var = df[parameter].sum()
     if round_value == True:
         if data_type == 'integer':
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
-            var = float(round(var, to_nearest))
+            if round_up == True:
+                var = _round_up(var, to_nearest)
+            else:
+                var = _round_down(var, to_nearest)
+                
+            var = float(var)
     else:
         if data_type == 'integer' and type(var) != type(0):
-            var = int(round(var, 0))
+            if round_up == True:
+                var = _round_up(var, 0)
+            else:
+                var = _round_down(var, 0)
+            var = int(var)
         else:
             if data_type == 'integer':
                 var = int(var)
@@ -1313,3 +1617,57 @@ def running_mean(df,
         running_means.append(running_sum / (i + 1))
         
     return running_means
+
+def detrend_data(df,
+                 parameter,
+                 detrend_type='linear'):
+    
+    """
+    This function detrends the xmACIS2 data for a user specified parameter. 
+    
+    Required Arguments:
+    
+    1) df (Pandas.DataFrame) - The Pandas.DataFrame of the xmACIS2 data.
+    
+    2) parameter (String) - The parameter of interest. 
+    
+    Parameter List
+    --------------
+    
+    'Maximum Temperature'
+    'Minimum Temperature'
+    'Average Temperature', 
+    'Average Temperature Departure'
+    'Heating Degree Days'
+    'Cooling Degree Days'
+    'Precipitation'
+    'Snowfall'
+    'Snow Depth'
+    'Growing Degree Days'
+    
+    Optional Arguments:
+    
+    1) detrend_type (String) - Default='linear'. The type of detrending. 
+    If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+    If type == 'constant', only the mean of data is subtracted.
+    
+    Returns
+    -------
+    
+    A Pandas.DataFrame of the detrended data for the specific variable.    
+    """
+    var_name = f"{parameter} Detrended"
+    
+    count = number_of_missing_days(df,
+                           parameter)
+    
+    if count > 0:
+        df = df.interpolate(limit=count)
+
+        df = df.fillna(method='ffill').fillna(method='bfill')
+            
+        df[var_name] = signal.detrend(df[parameter], type=detrend_type)
+    else:
+        df[var_name] = signal.detrend(df[parameter], type=detrend_type)
+    
+    return df

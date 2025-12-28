@@ -226,3 +226,5 @@ Optional Arguments:
 4) **Pandas**: Pandas: McKinney, W., & others. (2010). Data structures for statistical computing in python. In Proceedings of the 9th Python in Science Conference (Vol. 445, pp. 51–56).
 
 5) **WxData**: Eric J. Drewitz. (2025). edrewitz/WxData: WxData 1.1.4 Released (WxData1.1.4). Zenodo. https://doi.org/10.5281/zenodo.17862030
+
+6) **scipy**: Virtanen, P., Gommers, R., Oliphant, T.E. et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods 17, 261–272 (2020). https://doi.org/10.1038/s41592-019-0686-2

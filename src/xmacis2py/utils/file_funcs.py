@@ -41,7 +41,9 @@ def update_csv_file_paths(station,
 def update_image_file_paths(station, 
                             product_type, 
                             plot_type, 
-                            show_running_data, 
+                            show_running_data,
+                            detrend_series, 
+                            detrend_type,
                             running_type=None):
 
     """
@@ -57,10 +59,17 @@ def update_image_file_paths(station,
 
     4) show_running_data (Boolean) - Makes the file path take into account if users are choosing to show running means and/or sums
     
+    5) detrend_series (Boolean) - When set to True the data is detrended. 
+    
+    6) detrend_type (String) - The type of detrending. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+    
     Optional Arguments:
 
     1) running_type (String) - Default = None. If the user is showing running data, they must specify either Mean or Sum.
        If set to None, the path will say running data rather than running mean or running sum. 
+       
 
     Returns 
     -------
@@ -82,13 +91,18 @@ def update_image_file_paths(station,
             text = f"Without Running Sum"
         if running_type == None:
             text = f"Without Running Data" 
+            
+    if detrend_series == False:
+        trend = f"No Detrending"
+    else:
+        trend = f"{detrend_type.upper()} Detrending"
         
     try:
-        os.makedirs(f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}")
+        os.makedirs(f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text} {trend}")
     except Exception as e:
         pass
 
-    path = f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text}"
+    path = f"{folder_modified}/ACIS Graphics/{station.upper()}/{product_type}/{plot_type} {text} {trend}"
 
     return path
 
