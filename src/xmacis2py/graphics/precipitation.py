@@ -26,7 +26,6 @@ except Exception as e:
 mpl.rcParams['font.weight'] = 'bold'
 mpl.rcParams['xtick.labelsize'] = 7
 mpl.rcParams['ytick.labelsize'] = 7
-mpl.rcParams['font.size'] = 6
 
 props = dict(boxstyle='round', facecolor='wheat', alpha=1)
 warm = dict(boxstyle='round', facecolor='darkred', alpha=1)
@@ -47,11 +46,16 @@ year = yesterday.year
 month = yesterday.month
 day = yesterday.day
 
-if day >= 10:
-    yesterday = f"{year}-{month}-{day}"
+if month < 10:
+    if day >= 10:
+        yesterday = f"{year}-0{month}-{day}"
+    else:
+        yesterday = f"{year}-0{month}-0{day}"   
 else:
-    yesterday = f"{year}-{month}-0{day}"
-    
+    if day >= 10:
+        yesterday = f"{year}-{month}-{day}"
+    else:
+        yesterday = f"{year}-{month}-0{day}"   
     
 def plot_precipitation_summary(station, 
                                product_type='Precipitation 30 Day Summary',
@@ -67,7 +71,11 @@ def plot_precipitation_summary(station,
                                 notifications='on',
                                show_running_sum=False,
                                interpolation_limit=3,
-                               x_axis_day_interval=5):
+                               x_axis_day_interval=5,
+                               x_axis_date_format='%m/%d',
+                               create_ranking_table=True,
+                               bar_label_fontsize=6,
+                               only_label_bars_greater_than_0=True):
     
     """
     This function plots a graphic showing the Precipitation Summary for a given station for a given time period. 
@@ -125,6 +133,7 @@ def plot_precipitation_summary(station,
     A graphic showing a precipitation summary of xmACIS2 data.
     """
 
+    mpl.rcParams['font.size'] = bar_label_fontsize
 
     df = get_data(station,
             start_date=start_date,
@@ -193,13 +202,17 @@ def plot_precipitation_summary(station,
     fig = plt.figure(figsize=(12,8))
     fig.set_facecolor('aliceblue')
 
-    fig.suptitle(f"{station.upper()} Precipitation Summary [IN]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=18, x=0.6, y=0.98, fontweight='bold', bbox=props)
+    fig.suptitle(f"{station.upper()} Precipitation Summary [IN]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=0.98, fontweight='bold', bbox=props)
     ax = fig.add_subplot(1, 1, 1)
-    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.yaxis.set_major_locator(MaxNLocator(integer=False))
+    ax.xaxis.set_major_formatter(md.DateFormatter(x_axis_date_format))
     ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
     ax.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     bars = plt.bar(df['Date'], df['Precipitation'], color='green', alpha=0.3)
-    plt.bar_label(bars)
+    if only_label_bars_greater_than_0 == True:
+        ax.bar_label(bars, fmt=lambda x: f'{x}' if x > 0 else '', label_type='edge')
+    else:
+        plt.bar_label(bars)
     if missing == 0:
         ax.text(0.87, 1.01, f"Missing Days = {str(missing)}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
     elif missing > 0 and missing < 5:
@@ -220,12 +233,35 @@ def plot_precipitation_summary(station,
     else:
         ax.set_ylim(0, (np.nanmax(df['Precipitation']) + 0.05))
         
-    ax.text(1.01, 0.63, f"""         Top 5 Days\n\n#1 {top5['Precipitation'].iloc[0]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}\n\n#2 {top5['Precipitation'].iloc[1]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}\n\n#3 {top5['Precipitation'].iloc[2]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}\n\n#4 {top5['Precipitation'].iloc[3]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}\n\n#5 {top5['Precipitation'].iloc[4]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}""", transform=ax.transAxes, fontsize=12, fontweight='bold', color='white', bbox=green)
-    ax.text(1.01, 0.01, f"""         Statistics\nSum: {total_precip} [IN]\nStandard Deviation: {standard_deviation}\nVariance: {variance}\nSkewness: {skewness}\nKurtosis: {kurtosis}  """, transform=ax.transAxes, fontsize=12, fontweight='bold', color='white', bbox=gray)
+    img_path = update_image_file_paths(station, 
+                                       product_type, 
+                                       'Precipitation Summary', 
+                                       show_running_sum,
+                                       False,
+                                       'No Detrending', 
+                                       running_type='Sum')
+        
+    fname = f"{station.upper()} {product_type}.png"
+    fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
+    plt.close(fig)
+    print(f"Saved {fname} to {img_path}")
+        
+    if create_ranking_table == True:
+        
+        plt.axis('off')
+        fig = plt.figure(figsize=(12,8))
+        fig.set_facecolor('aliceblue')
+        
+        fig.text(0, 1, f"""Top 5 Days: #1 {top5['Precipitation'].iloc[0]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {top5['Precipitation'].iloc[1]} [IN] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {top5['Precipitation'].iloc[2]} [IN] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {top5['Precipitation'].iloc[3]} [IN] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {top5['Precipitation'].iloc[4]} [IN] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+                                
+Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
+                                    
+                """, fontsize=14, fontweight='bold', color='white', bbox=green)
+        
+        fig.text(0, 0.997, f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", fontsize=6, fontweight='bold', bbox=props)
 
     
-    img_path = update_image_file_paths(station, product_type, 'Precipitation Summary', show_running_sum, running_type='Sum')
-    fname = f"{station.upper()} {product_type}.png"
+    fname = f"{station.upper()} Stats Table.png"
     fig.savefig(f"{img_path}/{fname}", bbox_inches='tight')
     plt.close(fig)
     print(f"Saved {fname} to {img_path}")

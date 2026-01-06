@@ -46,10 +46,16 @@ year = yesterday.year
 month = yesterday.month
 day = yesterday.day
 
-if day >= 10:
-    yesterday = f"{year}-{month}-{day}"
+if month < 10:
+    if day >= 10:
+        yesterday = f"{year}-0{month}-{day}"
+    else:
+        yesterday = f"{year}-0{month}-0{day}"   
 else:
-    yesterday = f"{year}-{month}-0{day}"
+    if day >= 10:
+        yesterday = f"{year}-{month}-{day}"
+    else:
+        yesterday = f"{year}-{month}-0{day}"   
     
 def plot_comprehensive_summary(station, 
                                product_type='Comprehensive 30 Day Summary',
@@ -2202,10 +2208,13 @@ def plot_heating_degree_day_summary(station,
 
     if detrend_series == False:
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
-        ax.set_ylim((np.nanmin(df['Heating Degree Days']) - 5), (np.nanmax(df['Heating Degree Days']) + 5))
+        if np.nanmin(df['Heating Degree Days']) >= 5:
+            ax.set_ylim((np.nanmin(df['Heating Degree Days']) - 5), (np.nanmax(df['Heating Degree Days']) + 5))
+        else:
+            ax.set_ylim(0, (np.nanmax(df['Heating Degree Days']) + 5))
         ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
         if plot_type == 'bar':
-            ax.bar(df['Date'], df['Heating Degree Days'], color='black', zorder=1, alpha=0.3)
+            ax.bar(df['Date'], df['Heating Degree Days'], color='red', zorder=1, alpha=0.3)
         else:
             if shade_anomaly == False:
                 ax.plot(df['Date'], df['Heating Degree Days'], color='black', zorder=1, alpha=0.3)
@@ -2543,7 +2552,10 @@ def plot_cooling_degree_day_summary(station,
 
     if detrend_series == False:
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
-        ax.set_ylim((np.nanmin(df['Cooling Degree Days']) - 5), (np.nanmax(df['Cooling Degree Days']) + 5))
+        if np.nanmin(df['Cooling Degree Days']) >= 5:
+            ax.set_ylim((np.nanmin(df['Cooling Degree Days']) - 5), (np.nanmax(df['Cooling Degree Days']) + 5))
+        else:
+            ax.set_ylim(0, (np.nanmax(df['Cooling Degree Days']) + 5))
         ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
         if plot_type == 'bar':
             ax.bar(df['Date'], df['Cooling Degree Days'], color='black', zorder=1, alpha=0.3)
@@ -2884,10 +2896,13 @@ def plot_growing_degree_day_summary(station,
 
     if detrend_series == False:
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
-        ax.set_ylim((np.nanmin(df['Growing Degree Days']) - 5), (np.nanmax(df['Growing Degree Days']) + 5))
+        if np.nanmin(df['Growing Degree Days']) >= 5:
+            ax.set_ylim((np.nanmin(df['Growing Degree Days']) - 5), (np.nanmax(df['Growing Degree Days']) + 5))
+        else:
+            ax.set_ylim(0, (np.nanmax(df['Growing Degree Days']) + 5))
         ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
         if plot_type == 'bar':
-            ax.bar(df['Date'], df['Growing Degree Days'], color='black', zorder=1, alpha=0.3)
+            ax.bar(df['Date'], df['Growing Degree Days'], color='green', zorder=1, alpha=0.3)
         else:
             if shade_anomaly == False:
                 ax.plot(df['Date'], df['Growing Degree Days'], color='black', zorder=1, alpha=0.3)
