@@ -52,7 +52,17 @@ PIP Downloads:
 20) [Number of Days Above Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_above_value)
 21) [Number of Days At Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_at_value)
 
+***Graphical Summaries***
 
+1) [Compreheisive Temperature Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/compreheisive_summary.md#comprehensive-temperature-summary)
+2) [Maximum Temperature Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/maximum_temperature_summary.md#maximum-temperature-summary)
+3) [Minimum Temperature Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/minimum_temperature_summary.md#minimum-temperature-summary)
+4) [Average Temperature Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/average_temperature_summary.md#average-temperature-summary)
+5) [Average Temperature Departure Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/average_temperature_departure_summary.md#average-temperature-departure-summary)
+6) [Heating Degree Day Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/heating_degree_day_summary.md#heating-degree-day-summary)
+7) [Cooling Degree Day Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/cooling_degree_day_summary.md#cooling-degree-day-summary)
+8) [Growing Degree Day Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/growing_degree_day_summary.md#growing-degree-day-summary)
+9) [Precipitation Summary](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/precipitation_summary.md#precipitation-summary)
 
 
 **Documentation For Legacy Users**
