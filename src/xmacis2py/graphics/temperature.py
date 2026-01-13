@@ -2679,7 +2679,7 @@ def plot_cooling_degree_day_summary(station,
             ax.set_ylim(0, (np.nanmax(df['Cooling Degree Days']) + 5))
         ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
         if plot_type == 'bar':
-            ax.bar(df['Date'], df['Cooling Degree Days'], color='black', zorder=1, alpha=0.3)
+            ax.bar(df['Date'], df['Cooling Degree Days'], color='blue', zorder=1, alpha=0.3)
         else:
             if shade_anomaly == False:
                 ax.plot(df['Date'], df['Cooling Degree Days'], color='black', zorder=1, alpha=0.3)
