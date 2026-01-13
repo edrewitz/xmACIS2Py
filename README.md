@@ -26,6 +26,7 @@ PIP Downloads:
 
 ***Data Access***
 
+1) [Get Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#xmacis2py-data-access)
 
 ***Analysis Tools***
 
