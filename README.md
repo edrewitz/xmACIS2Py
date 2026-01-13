@@ -24,6 +24,13 @@ PIP Downloads:
 
 **xmACIS2Py 2.0 Series Documentation and Jupyter Lab Tutorials**
 
+**Jupyter Lab Tutorials**
+
+1) [xmACIS2Py Data Access & Analysis](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_analysis.ipynb)
+2) [xmACIS2Py Graphical Summaries](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_graphics.ipynb)
+
+**Documentation**
+
 ***Data Access***
 
 1) [Get Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#xmacis2py-data-access)
