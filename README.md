@@ -20,11 +20,43 @@ PIP Downloads:
 
 ***ANNOUNCEMENT: xmACIS2Py < 2.0 is now depreciated and replaced with xmACIS2Py >= 2.0***
 
-### xmACIS2Py Documentation and Jupyter Lab Examples
+### Documentation and Jupyter Lab Examples
 
-***[xmACIS2Py 2.0 Series Documentation and Jupyter Lab Tutorials](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/user_docs.md)***
+**xmACIS2Py 2.0 Series Documentation and Jupyter Lab Tutorials**
 
-***[xmACIS2Py 1.0 Series (Depreciated/Legacy) Documentation and Jupyter Lab Tutorials](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS1.0/user_docs.md)***
+***Data Access***
+
+
+***Analysis Tools***
+
+1) [Period Mean](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_mean)
+2) [Period Median](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_median)
+3) [Period Mode](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_mode)
+4) [Period Percentile](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_percentile)
+5) [Period Standard Deviation](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_standard_deviation)
+6) [Period Variance](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_variance)
+7) [Period Skewness](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_skewness)
+8) [Period Kurtosis](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_kurtosis)
+9) [Period Maximum](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_maximum)
+10) [Period Minimum](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_minimum)
+11) [Period Sum](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_sum)
+12) [Period Rankings](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#period_rankings)
+13) [Running Sum](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#running_sum)
+14) [Running Mean](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#running_mean)
+15) [Detrend Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#detrend_data)
+16) [Number of Missing Days](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_missing_days)
+17) [Number of Days At Or Below Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_at_or_below_value)
+18) [Number of Days At Or Above Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_at_or_above_value)
+19) [Number of Days Below Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_below_value)
+20) [Number of Days Above Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_above_value)
+21) [Number of Days At Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_at_value)
+
+
+
+
+**Documentation For Legacy Users**
+
+*[xmACIS2Py 1.0 Series (Depreciated/Legacy) Documentation and Jupyter Lab Tutorials](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS1.0/user_docs.md)*
 
 
 #### References
