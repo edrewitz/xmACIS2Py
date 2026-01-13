@@ -129,10 +129,29 @@ def plot_comprehensive_summary(station,
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+    
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
+    21) cooling_degree_days (Boolean) - Default=True. Set to False to display Heating Degrees instead of Cooling Degree Days. 
+    
     Returns
     -------
     
-    A graphic showing a comprehensive temperature summary of xmACIS2 data.
+    A graphic showing a comprehensive temperature summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -653,7 +672,7 @@ def plot_maximum_temperature_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Maximum Temperature 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -688,16 +707,33 @@ def plot_maximum_temperature_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+    
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+
     Returns
     -------
     
-    A graphic showing a maximum temperature summary of xmACIS2 data.
+    A graphic showing a maximum temperature summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -990,7 +1026,7 @@ def plot_minimum_temperature_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Minimum Temperature 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -1025,16 +1061,33 @@ def plot_minimum_temperature_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+    
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing a minimum temperature summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -1317,7 +1370,7 @@ def plot_average_temperature_departure_summary(station,
                                shade_anomaly=True):
     
     """
-    This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Average Temperature Departure Summary for a given station for a given time period. 
 
     Required Arguments:
 
@@ -1325,7 +1378,7 @@ def plot_average_temperature_departure_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Average Temperature Departure 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -1360,16 +1413,33 @@ def plot_average_temperature_departure_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+    
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing an average temperature departure summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -1658,7 +1728,7 @@ def plot_average_temperature_summary(station,
                                shade_anomaly=True):
     
     """
-    This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Average Temperature Summary for a given station for a given time period. 
 
     Required Arguments:
 
@@ -1666,7 +1736,7 @@ def plot_average_temperature_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Average Temperature 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -1701,16 +1771,33 @@ def plot_average_temperature_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+        
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing an average temperature summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -2001,7 +2088,7 @@ def plot_heating_degree_day_summary(station,
                                shade_anomaly=True):
     
     """
-    This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Heating Degree Day Summary for a given station for a given time period. 
 
     Required Arguments:
 
@@ -2009,7 +2096,7 @@ def plot_heating_degree_day_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Heating Degree Days 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -2044,16 +2131,33 @@ def plot_heating_degree_day_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+        
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing a heating degree day summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -2345,7 +2449,7 @@ def plot_cooling_degree_day_summary(station,
                                shade_anomaly=True):
     
     """
-    This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Cooling Degree Day Summary for a given station for a given time period. 
 
     Required Arguments:
 
@@ -2353,7 +2457,7 @@ def plot_cooling_degree_day_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Cooling Degree Days 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -2388,16 +2492,33 @@ def plot_cooling_degree_day_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+        
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing a cooling degree day summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()
@@ -2689,7 +2810,7 @@ def plot_growing_degree_day_summary(station,
                                shade_anomaly=True):
     
     """
-    This function plots a graphic showing the Minimum Temperature Summary for a given station for a given time period. 
+    This function plots a graphic showing the Growing Degree Day Summary for a given station for a given time period. 
 
     Required Arguments:
 
@@ -2697,7 +2818,7 @@ def plot_growing_degree_day_summary(station,
 
     Optional Arguments:
     
-    1) product_type (String) - Default='Growing Degree Days 30 Day Summary'. The type of product. 
+    1) product_type (String) - Default='Comprehensive 30 Day Summary'. The type of product. 
     
     2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
         they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
@@ -2732,16 +2853,33 @@ def plot_growing_degree_day_summary(station,
     11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_mean (Boolean) - Default=True. When set to False, running mean will be hidden.
+    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
     13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+
+    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+        Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
+        
+    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+        If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
+        If type == 'constant', only the mean of data is subtracted.
+        
+    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
+    
+    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+        a bar graph looks more aesthetic. 
+        
+    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    
     Returns
     -------
     
-    A graphic showing a minimum temperature summary of xmACIS2 data.
+    A graphic showing a growing degree day summary of xmACIS2 data saved to {path}.
     """
     
     plot_type = plot_type.lower()

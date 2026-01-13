@@ -127,10 +127,19 @@ def plot_precipitation_summary(station,
     
     14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
+    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+        For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
+    
+    16) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 values in second image.
+    
+    17) bar_label_fontsize (Integer) - Default=6. The fontsize of the precipitation values on the top of each bar. 
+    
+    18) only_label_bars_greater_than_0 (Boolean) - Default=True. When set to True, only columns with non-zero values are labeled. 
+    
     Returns
     -------
     
-    A graphic showing a precipitation summary of xmACIS2 data.
+    A graphic showing a precipitation summary of xmACIS2 data saved to {path}.
     """
 
     mpl.rcParams['font.size'] = bar_label_fontsize
@@ -184,15 +193,6 @@ def plot_precipitation_summary(station,
                             'Precipitation',
                             ascending=False,
                             rank_subset='first',
-                            first=5,
-                            last=5,
-                            between=[],
-                            date_name='Date')
-    
-    bot5 = analysis.period_rankings(df,
-                            'Precipitation',
-                            ascending=False,
-                            rank_subset='last',
                             first=5,
                             last=5,
                             between=[],
