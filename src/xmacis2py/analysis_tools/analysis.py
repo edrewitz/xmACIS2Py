@@ -859,7 +859,7 @@ def period_mode(df,
     elif modes == 1:
         print("There is 1 mode in this dataset")
     else:
-        print(f"There are {modes} in this dataset")
+        print(f"There are {modes} modes in this dataset")
     
     if round_value == True:
         if data_type == 'integer':
