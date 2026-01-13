@@ -1,6 +1,6 @@
 [project]
 name = "xmacis2py"
-version = "1.9"
+version = "2.0"
 description = "A Python library that downloads data from the Applied Climate Information System (ACIS) Database, performs various types of analyses on the data and makes various types of graphical summaries of the data."
 readme = "README.md"
 requires-python = ">=3.10"
