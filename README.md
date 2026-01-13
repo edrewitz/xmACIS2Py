@@ -20,6 +20,34 @@ PIP Downloads:
 
 ***ANNOUNCEMENT: xmACIS2Py < 2.0 is now depreciated and replaced with xmACIS2Py >= 2.0***
 
+**How To Install**
+
+Copy and paste either command into your terminal or anaconda prompt:
+
+*Install via Anaconda*
+
+`conda install xmacis2py`
+
+*Install via pip*
+
+`pip install xmacis2py`
+
+**How To Update To The Latest Version**
+
+Copy and paste either command into your terminal or anaconda prompt:
+
+*Update via Anaconda*
+
+***This is for users who initially installed WxData through Anaconda***
+
+`conda update xmacis2py`
+
+*Update via pip*
+
+***This is for users who initially installed WxData through pip***
+
+`pip install --upgrade xmacis2py`
+
 ### Documentation and Jupyter Lab Examples
 
 **xmACIS2Py 2.0 Series Documentation and Jupyter Lab Tutorials**
