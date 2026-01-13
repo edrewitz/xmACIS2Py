@@ -851,6 +851,16 @@ def period_mode(df,
         df.replace(0.001, np.nan, inplace=True)
     
     var = df[parameter].mode()
+    
+    modes = len(var)
+    
+    if modes == 0:
+        print("There are zero modes in this dataset")
+    elif modes == 1:
+        print("There is 1 mode in this dataset")
+    else:
+        print(f"There are {modes} in this dataset")
+    
     if round_value == True:
         if data_type == 'integer':
             if round_up == True:
@@ -874,9 +884,15 @@ def period_mode(df,
             var = int(var)
         else:
             if data_type == 'integer':
-                var = int(var)
+                try:
+                    var = int(var)
+                except Exception as e:
+                    var = var
             else:
-                var = float(var)
+                try:
+                    var = float(var)
+                except Exception as e:
+                    var = var
     return var
         
         
