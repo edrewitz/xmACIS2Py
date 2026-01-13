@@ -11,20 +11,11 @@ For more information on the xmACIS2 Client in the WxData Library, visit: https:/
 """
 
 
-# These are the various functions that create graphical summaries of xmACIS2 Temperature Data.
-from xmacis2py.graphics.temperature import(
-    plot_comprehensive_summary,
-    plot_maximum_temperature_summary,
-    plot_minimum_temperature_summary,
-    plot_average_temperature_summary,
-    plot_average_temperature_departure_summary,
-    plot_heating_degree_day_summary,
-    plot_cooling_degree_day_summary,
-    plot_growing_degree_day_summary
-)
+# This is the module to create xmACIS2 temperature graphics
+import xmacis2py.graphics.temperature as temperature
 
-# These are the various functions that create graphical summaries of xmACIS2 Temperature Data.
-from xmacis2py.graphics.precipitation import plot_precipitation_summary
+# This is the module to create xmACIS2 precipitation graphics
+import xmacis2py.graphics.precipitation as precipitation
 
 # This function wraps the xmACIS2 Data Client from the WxData Library into the xmACIS2Py Library.
 from xmacis2py.data_access.get_data import get_data
