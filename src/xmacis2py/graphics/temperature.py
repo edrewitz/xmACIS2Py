@@ -2334,12 +2334,12 @@ def plot_heating_degree_day_summary(station,
     ax = fig.add_subplot(1, 1, 1)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.xaxis.set_major_formatter(md.DateFormatter(x_axis_date_format))
-    fig.suptitle(f"{station.upper()} Heating Degree Days Summary [°F]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
+    fig.suptitle(f"{station.upper()} Heating Degree Days Summary    Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
 
     if detrend_series == False:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Heating Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Heating Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Heating Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Heating Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Heating Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Heating Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         if np.nanmin(df['Heating Degree Days']) >= 5:
             ax.set_ylim((np.nanmin(df['Heating Degree Days']) - 5), (np.nanmax(df['Heating Degree Days']) + 5))
@@ -2355,9 +2355,9 @@ def plot_heating_degree_day_summary(station,
                 ax.fill_between(df['Date'], mean, df['Heating Degree Days'], color='red', alpha=0.3, where=(df['Heating Degree Days'] > mean))
                 ax.fill_between(df['Date'], mean, df['Heating Degree Days'], color='blue', alpha=0.3, where=(df['Heating Degree Days'] < mean))
     else:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Heating Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Heating Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Heating Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Heating Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Heating Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Heating Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.85, 1.01, f"{detrend_type.upper()} DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         bar_colors = ['red' if t >= 0 else 'blue' for t in df['Heating Degree Days Detrended']]
         ax.set_ylim((np.nanmin(df['Heating Degree Days Detrended']) - 5), (np.nanmax(df['Heating Degree Days Detrended']) + 5))
@@ -2423,9 +2423,9 @@ def plot_heating_degree_day_summary(station,
         
         if detrend_series == True:
     
-            fig.text(0, 1, f"""{station.upper()} Heating Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Heating Degree Days Detrended'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Heating Degree Days Detrended'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Heating Degree Days Detrended'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Heating Degree Days Detrended'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Heating Degree Days Detrended'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Heating Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Heating Degree Days Detrended'].iloc[0], 0))} - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Heating Degree Days Detrended'].iloc[1], 0))} - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Heating Degree Days Detrended'].iloc[2], 0))} - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Heating Degree Days Detrended'].iloc[3], 0))} - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Heating Degree Days Detrended'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Heating Degree Days Detrended'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Heating Degree Days Detrended'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Heating Degree Days Detrended'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Heating Degree Days Detrended'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Heating Degree Days Detrended'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Heating Degree Days Detrended'].iloc[0], 0))} - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Heating Degree Days Detrended'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Heating Degree Days Detrended'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Heating Degree Days Detrended'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Heating Degree Days Detrended'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
@@ -2436,9 +2436,9 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
         else:
             
-            fig.text(0, 1, f"""{station.upper()} Heating Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Heating Degree Days'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Heating Degree Days'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Heating Degree Days'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Heating Degree Days'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Heating Degree Days'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Heating Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Heating Degree Days'].iloc[0], 0))}  - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Heating Degree Days'].iloc[1], 0))}  - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Heating Degree Days'].iloc[2], 0))}  - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Heating Degree Days'].iloc[3], 0))}  - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Heating Degree Days'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Heating Degree Days'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Heating Degree Days'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Heating Degree Days'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Heating Degree Days'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Heating Degree Days'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Heating Degree Days'].iloc[0], 0))}  - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Heating Degree Days'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Heating Degree Days'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Heating Degree Days'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Heating Degree Days'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
@@ -2701,12 +2701,12 @@ def plot_cooling_degree_day_summary(station,
     ax = fig.add_subplot(1, 1, 1)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.xaxis.set_major_formatter(md.DateFormatter(x_axis_date_format))
-    fig.suptitle(f"{station.upper()} Cooling Degree Days Summary [°F]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
+    fig.suptitle(f"{station.upper()} Cooling Degree Days Summary    Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
 
     if detrend_series == False:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Cooling Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Cooling Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Cooling Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Cooling Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Cooling Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Cooling Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         if np.nanmin(df['Cooling Degree Days']) >= 5:
             ax.set_ylim((np.nanmin(df['Cooling Degree Days']) - 5), (np.nanmax(df['Cooling Degree Days']) + 5))
@@ -2722,9 +2722,9 @@ def plot_cooling_degree_day_summary(station,
                 ax.fill_between(df['Date'], mean, df['Cooling Degree Days'], color='blue', alpha=0.3, where=(df['Cooling Degree Days'] > mean))
                 ax.fill_between(df['Date'], mean, df['Cooling Degree Days'], color='red', alpha=0.3, where=(df['Cooling Degree Days'] < mean))
     else:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Cooling Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Cooling Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Cooling Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Cooling Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=cool)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Cooling Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=warm)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Cooling Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.85, 1.01, f"{detrend_type.upper()} DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         bar_colors = ['red' if t >= 0 else 'blue' for t in df['Cooling Degree Days Detrended']]
         ax.set_ylim((np.nanmin(df['Cooling Degree Days Detrended']) - 5), (np.nanmax(df['Cooling Degree Days Detrended']) + 5))
@@ -2790,9 +2790,9 @@ def plot_cooling_degree_day_summary(station,
         
         if detrend_series == True:
     
-            fig.text(0, 1, f"""{station.upper()} Cooling Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Cooling Degree Days Detrended'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Cooling Degree Days Detrended'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Cooling Degree Days Detrended'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Cooling Degree Days Detrended'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Cooling Degree Days Detrended'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Cooling Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Cooling Degree Days Detrended'].iloc[0], 0))}  - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Cooling Degree Days Detrended'].iloc[1], 0))}  - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Cooling Degree Days Detrended'].iloc[2], 0))}  - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Cooling Degree Days Detrended'].iloc[3], 0))}  - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Cooling Degree Days Detrended'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Cooling Degree Days Detrended'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Cooling Degree Days Detrended'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Cooling Degree Days Detrended'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Cooling Degree Days Detrended'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Cooling Degree Days Detrended'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Cooling Degree Days Detrended'].iloc[0], 0))}  - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Cooling Degree Days Detrended'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Cooling Degree Days Detrended'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Cooling Degree Days Detrended'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Cooling Degree Days Detrended'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
@@ -2803,9 +2803,9 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
         else:
             
-            fig.text(0, 1, f"""{station.upper()} Cooling Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Cooling Degree Days'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Cooling Degree Days'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Cooling Degree Days'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Cooling Degree Days'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Cooling Degree Days'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Cooling Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Cooling Degree Days'].iloc[0], 0))}  - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Cooling Degree Days'].iloc[1], 0))}  - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Cooling Degree Days'].iloc[2], 0))}  - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Cooling Degree Days'].iloc[3], 0))}  - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Cooling Degree Days'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Cooling Degree Days'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Cooling Degree Days'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Cooling Degree Days'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Cooling Degree Days'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Cooling Degree Days'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Cooling Degree Days'].iloc[0], 0))}  - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Cooling Degree Days'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Cooling Degree Days'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Cooling Degree Days'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Cooling Degree Days'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
@@ -3068,12 +3068,12 @@ def plot_growing_degree_day_summary(station,
     ax = fig.add_subplot(1, 1, 1)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.xaxis.set_major_formatter(md.DateFormatter(x_axis_date_format))
-    fig.suptitle(f"{station.upper()} Growing Degree Days Summary [°F]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
+    fig.suptitle(f"{station.upper()} Growing Degree Days Summary    Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}", fontsize=14, y=1.06, fontweight='bold', bbox=props)
 
     if detrend_series == False:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Growing Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Growing Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=orange)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Growing Degree Days']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Growing Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Growing Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=orange)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Growing Degree Days']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.875, 1.01, f"NO DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         if np.nanmin(df['Growing Degree Days']) >= 5:
             ax.set_ylim((np.nanmin(df['Growing Degree Days']) - 5), (np.nanmax(df['Growing Degree Days']) + 5))
@@ -3089,9 +3089,9 @@ def plot_growing_degree_day_summary(station,
                 ax.fill_between(df['Date'], mean, df['Growing Degree Days'], color='green', alpha=0.3, where=(df['Growing Degree Days'] > mean))
                 ax.fill_between(df['Date'], mean, df['Growing Degree Days'], color='orange', alpha=0.3, where=(df['Growing Degree Days'] < mean))
     else:
-        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Growing Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
-        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Growing Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=orange)
-        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Growing Degree Days Detrended']), 0))} [°F]", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
+        ax.text(0.0008, 1.07, f"MAX: {int(round(np.nanmax(df['Growing Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
+        ax.text(0.175, 1.07, f"MIN: {int(round(np.nanmin(df['Growing Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=orange)
+        ax.text(0.35, 1.07, f"MEAN: {int(round(np.nanmean(df['Growing Degree Days Detrended']), 0))}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=gray)
         ax.text(0.85, 1.01, f"{detrend_type.upper()} DETRENDING", fontsize=8, fontweight='bold', bbox=props, transform=ax.transAxes)
         bar_colors = ['red' if t >= 0 else 'blue' for t in df['Growing Degree Days Detrended']]
         ax.set_ylim((np.nanmin(df['Growing Degree Days Detrended']) - 5), (np.nanmax(df['Growing Degree Days Detrended']) + 5))
@@ -3157,9 +3157,9 @@ def plot_growing_degree_day_summary(station,
         
         if detrend_series == True:
     
-            fig.text(0, 1, f"""{station.upper()} Growing Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Growing Degree Days Detrended'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Growing Degree Days Detrended'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Growing Degree Days Detrended'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Growing Degree Days Detrended'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Growing Degree Days Detrended'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Growing Degree Day Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Growing Degree Days Detrended'].iloc[0], 0))}  - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Growing Degree Days Detrended'].iloc[1], 0))}  - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Growing Degree Days Detrended'].iloc[2], 0))}  - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Growing Degree Days Detrended'].iloc[3], 0))}  - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Growing Degree Days Detrended'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Growing Degree Days Detrended'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Growing Degree Days Detrended'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Growing Degree Days Detrended'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Growing Degree Days Detrended'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Growing Degree Days Detrended'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Growing Degree Days Detrended'].iloc[0], 0))}  - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Growing Degree Days Detrended'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Growing Degree Days Detrended'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Growing Degree Days Detrended'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Growing Degree Days Detrended'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
@@ -3170,9 +3170,9 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
         else:
             
-            fig.text(0, 1, f"""{station.upper()} Growing Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Growing Degree Days'].iloc[0], 0))} [°F] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Growing Degree Days'].iloc[1], 0))} [°F] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Growing Degree Days'].iloc[2], 0))} [°F] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Growing Degree Days'].iloc[3], 0))} [°F] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Growing Degree Days'].iloc[4], 0))} [°F] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+            fig.text(0, 1, f"""{station.upper()} Growing Degree Day Detrended Summary   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {int(round(top5['Growing Degree Days'].iloc[0], 0))}  - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(top5['Growing Degree Days'].iloc[1], 0))}  - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(top5['Growing Degree Days'].iloc[2], 0))}  - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(top5['Growing Degree Days'].iloc[3], 0))}  - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(top5['Growing Degree Days'].iloc[4], 0))}  - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
-Bottom 5 Days: #1 {int(round(bot5['Growing Degree Days'].iloc[0], 0))} [°F] - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Growing Degree Days'].iloc[1], 0))} [°F] - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Growing Degree Days'].iloc[2], 0))} [°F] - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Growing Degree Days'].iloc[3], 0))} [°F] - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Growing Degree Days'].iloc[4]))} [°F] - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
+Bottom 5 Days: #1 {int(round(bot5['Growing Degree Days'].iloc[0], 0))}  - {bot5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {int(round(bot5['Growing Degree Days'].iloc[1], 0))}  - {bot5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {int(round(bot5['Growing Degree Days'].iloc[2], 0))}  - {bot5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {int(round(bot5['Growing Degree Days'].iloc[3], 0))}  - {bot5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {int(round(bot5['Growing Degree Days'].iloc[4]))}  - {bot5['Date'].iloc[4].strftime('%m/%d/%Y')}
                     
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                         
