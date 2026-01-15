@@ -20,6 +20,8 @@ PIP Downloads:
 
 # xmACIS2Py
 
+***(C) Eric J. Drewitz 2025-2026***
+
 ***ANNOUNCEMENT: xmACIS2Py < 2.0 is now depreciated and replaced with xmACIS2Py >= 2.0***
 
 **How To Install**
