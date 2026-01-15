@@ -252,7 +252,7 @@ def plot_precipitation_summary(station,
         fig = plt.figure(figsize=(12,8))
         fig.set_facecolor('aliceblue')
         
-        fig.text(0, 1, f"""Top 5 Days: #1 {top5['Precipitation'].iloc[0]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {top5['Precipitation'].iloc[1]} [IN] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {top5['Precipitation'].iloc[2]} [IN] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {top5['Precipitation'].iloc[3]} [IN] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {top5['Precipitation'].iloc[4]} [IN] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
+        fig.text(0, 1, f"""{station.upper()} Precipitation Summary [IN]   Period Of Record: {df['Date'].iloc[0].strftime('%m/%d/%Y')} - {df['Date'].iloc[-1].strftime('%m/%d/%Y')}\n\nTop 5 Days: #1 {top5['Precipitation'].iloc[0]} [IN] - {top5['Date'].iloc[0].strftime('%m/%d/%Y')}   #2 {top5['Precipitation'].iloc[1]} [IN] - {top5['Date'].iloc[1].strftime('%m/%d/%Y')}   #3 {top5['Precipitation'].iloc[2]} [IN] - {top5['Date'].iloc[2].strftime('%m/%d/%Y')}   #4 {top5['Precipitation'].iloc[3]} [IN] - {top5['Date'].iloc[3].strftime('%m/%d/%Y')}   #5 {top5['Precipitation'].iloc[4]} [IN] - {top5['Date'].iloc[4].strftime('%m/%d/%Y')}
                                 
 Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {skewness}   Kurtosis: {kurtosis}
                                     
