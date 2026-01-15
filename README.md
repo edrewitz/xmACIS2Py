@@ -5,7 +5,7 @@
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/latest_release_date.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/platforms.svg" /> </a>
 <a href="https://anaconda.org/conda-forge/xmacis2py"> <img src="https://anaconda.org/conda-forge/xmacis2py/badges/license.svg" /> </a>
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18227997.svg)](https://doi.org/10.5281/zenodo.18227997)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18227996.svg)](https://doi.org/10.5281/zenodo.18227996)
 
 [![Conda Recipe](https://img.shields.io/badge/recipe-xmacis2py-green.svg)](https://anaconda.org/conda-forge/xmacis2py)
 
