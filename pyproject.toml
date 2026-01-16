@@ -1,6 +1,6 @@
 [project]
 name = "xmacis2py"
-version = "2.1.1"
+version = "2.2"
 description = "A Python library that downloads data from the Applied Climate Information System (ACIS) Database, performs various types of analyses on the data and makes various types of graphical summaries of the data."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -27,3 +27,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]  # Look for packages in the src directory
+
+[project.urls]
+Documentation = "https://pypi.org/project/xmacis2py/"
+Repository = "https://github.com/edrewitz/xmACIS2Py"

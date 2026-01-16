@@ -75,7 +75,8 @@ def plot_precipitation_summary(station,
                                x_axis_date_format='%m/%d',
                                create_ranking_table=True,
                                bar_label_fontsize=6,
-                               only_label_bars_greater_than_0=True):
+                               only_label_bars_greater_than_0=True,
+                               hide_bar_labels=False):
     
     """
     This function plots a graphic showing the Precipitation Summary for a given station for a given time period. 
@@ -135,6 +136,9 @@ def plot_precipitation_summary(station,
     17) bar_label_fontsize (Integer) - Default=6. The fontsize of the precipitation values on the top of each bar. 
     
     18) only_label_bars_greater_than_0 (Boolean) - Default=True. When set to True, only columns with non-zero values are labeled. 
+    
+    19) hide_bar_labels (Boolean) - Default=False. To hide the bar labels, set to True. This is useful for users who do not want to 
+        display the precipitation amounts on top of each bar and only want the graph without the labels to reduce potential clutter.
     
     Returns
     -------
@@ -207,12 +211,14 @@ def plot_precipitation_summary(station,
     ax.yaxis.set_major_locator(MaxNLocator(integer=False))
     ax.xaxis.set_major_formatter(md.DateFormatter(x_axis_date_format))
     ax.xaxis.set_major_locator(md.DayLocator(interval=x_axis_day_interval))
-    ax.xaxis.set_major_formatter(md.DateFormatter('%m/%d'))
     bars = plt.bar(df['Date'], df['Precipitation'], color='green', alpha=0.3)
-    if only_label_bars_greater_than_0 == True:
-        ax.bar_label(bars, fmt=lambda x: f'{x}' if x > 0 else '', label_type='edge')
+    if hide_bar_labels == False:
+        if only_label_bars_greater_than_0 == True:
+            ax.bar_label(bars, fmt=lambda x: f'{x}' if x > 0 else '', label_type='edge')
+        else:
+            plt.bar_label(bars)
     else:
-        plt.bar_label(bars)
+        pass
     if missing == 0:
         ax.text(0.87, 1.01, f"Missing Days = {str(missing)}", fontsize=9, fontweight='bold', color='white', transform=ax.transAxes, bbox=green)
     elif missing > 0 and missing < 5:
