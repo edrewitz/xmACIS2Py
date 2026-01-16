@@ -18,7 +18,8 @@
                                x_axis_date_format='%m/%d',
                                create_ranking_table=True,
                                bar_label_fontsize=6,
-                               only_label_bars_greater_than_0=True):***
+                               only_label_bars_greater_than_0=True,
+                               hide_bar_labels=False):***
 
     This function plots a graphic showing the Precipitation Summary for a given station for a given time period. 
 
@@ -77,6 +78,9 @@
     17) bar_label_fontsize (Integer) - Default=6. The fontsize of the precipitation values on the top of each bar. 
     
     18) only_label_bars_greater_than_0 (Boolean) - Default=True. When set to True, only columns with non-zero values are labeled. 
+    
+    19) hide_bar_labels (Boolean) - Default=False. To hide the bar labels, set to True. This is useful for users who do not want to 
+        display the precipitation amounts on top of each bar and only want the graph without the labels to reduce potential clutter.
     
     Returns
     -------
