@@ -40,7 +40,7 @@ def get_data(station,
             from_when=yesterday,
             time_delta=30,
             proxies=None,
-            clear_recycle_bin=True,
+            clear_recycle_bin=False,
             to_csv=False,
             path='default',
             filename='default',
@@ -76,8 +76,9 @@ def get_data(station,
                            'https':'https://url'
                         } 
                         
-    6) clear_recycle_bin (Boolean) - Default=True. When set to True, the contents in your recycle/trash bin will be deleted with each run
-        of the program you are calling WxData. This setting is to help preserve memory on the machine. 
+    6) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
+        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
+        This setting is to help preserve memory on the machine. 
         
     7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
