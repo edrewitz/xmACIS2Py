@@ -18,7 +18,7 @@ classifiers = [
 
 dependencies = [
   "matplotlib>=3.7",
-  "wxdata>=1.2.3",
+  "wxdata>=1.2.5",
 ]
 
 [build-system]
