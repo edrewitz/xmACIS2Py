@@ -26,12 +26,12 @@ Analysis Tools:
 (C) Eric J. Drewitz 2025
 """
 
-import warnings
-import numpy as np
-import pandas as pd
-import math
+import warnings as _warnings
+import numpy as _np
+import pandas as _pd
+import mathas _math
 from scipy import signal
-warnings.filterwarnings('ignore')
+_warnings.filterwarnings('ignore')
 
 def _round_down(value, to_nearest):
     """
@@ -478,10 +478,10 @@ def period_mean(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].mean()
     if round_value == True:
@@ -569,10 +569,10 @@ def period_median(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].median()
     if round_value == True:
@@ -663,10 +663,10 @@ def period_percentile(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].quantile(percentile)
     if round_value == True:
@@ -754,10 +754,10 @@ def period_standard_deviation(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].std()
     if round_value == True:
@@ -845,10 +845,10 @@ def period_mode(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].mode()
     
@@ -952,10 +952,10 @@ def period_variance(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].var()
     if round_value == True:
@@ -1042,10 +1042,10 @@ def period_skewness(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].skew()
     if round_value == True:
@@ -1133,10 +1133,10 @@ def period_kurtosis(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].kurt()
     if round_value == True:
@@ -1224,10 +1224,10 @@ def period_maximum(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].max()
     if round_value == True:
@@ -1314,10 +1314,10 @@ def period_minimum(df,
     data_type = data_type.lower()
     
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
     
     var = df[parameter].min()
     if round_value == True:
@@ -1405,10 +1405,10 @@ def period_sum(df,
     data_type = data_type.lower()
 
     try:
-        df = df.replace({0.001:np.NaN})
+        df = df.replace({0.001:_np.NaN})
     except Exception as e:
         df = df.infer_objects(copy=False)
-        df.replace(0.001, np.nan, inplace=True)
+        df.replace(0.001, _np.nan, inplace=True)
         
     var = df[parameter].sum()
     if round_value == True:
@@ -1503,10 +1503,10 @@ def period_rankings(df,
             ranked.append(df[parameter].iloc[i])
             dates.append(df[date_name].iloc[i])
             
-        ranked_df = pd.DataFrame(ranked)
-        dates_df = pd.DataFrame(dates)
+        ranked_df = _pd.DataFrame(ranked)
+        dates_df = _pd.DataFrame(dates)
         
-        df = pd.DataFrame()
+        df = _pd.DataFrame()
         df[date_name] = dates_df
         df[parameter] = ranked_df
                    
@@ -1518,12 +1518,12 @@ def period_rankings(df,
             dates = []
             for i in range(0, first, 1):
                 ranked.append(df[parameter].iloc[i])
-                dates.append(pd.to_datetime(df[date_name].iloc[i]))
+                dates.append(_pd.to_datetime(df[date_name].iloc[i]))
                 
-            ranked_df = pd.DataFrame(ranked)
-            dates_df = pd.DataFrame(dates)
+            ranked_df = _pd.DataFrame(ranked)
+            dates_df = _pd.DataFrame(dates)
             
-            df = pd.DataFrame()
+            df = _pd.DataFrame()
             df[date_name] = dates_df
             df[parameter] = ranked_df
                 
@@ -1540,10 +1540,10 @@ def period_rankings(df,
                 ranked.append(df[parameter].iloc[i])
                 dates.append(df[date_name].iloc[i])
                 
-            ranked_df = pd.DataFrame(ranked)
-            dates_df = pd.DataFrame(dates)
+            ranked_df = _pd.DataFrame(ranked)
+            dates_df = _pd.DataFrame(dates)
             
-            df = pd.DataFrame()
+            df = _pd.DataFrame()
             df[date_name] = dates_df
             df[parameter] = ranked_df
             
@@ -1554,10 +1554,10 @@ def period_rankings(df,
                 ranked.append(df[parameter].iloc[i])
                 dates.append(df[date_name].iloc[i])
                 
-            ranked_df = pd.DataFrame(ranked)
-            dates_df = pd.DataFrame(dates)
+            ranked_df = _pd.DataFrame(ranked)
+            dates_df = _pd.DataFrame(dates)
             
-            df = pd.DataFrame()
+            df = _pd.DataFrame()
             df[date_name] = dates_df
             df[parameter] = ranked_df  
 
