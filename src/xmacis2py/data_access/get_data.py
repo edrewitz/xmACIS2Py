@@ -8,14 +8,17 @@ For more information on the xmACIS2 Client in the WxData Library, visit: https:/
 (C) Eric J. Drewitz 2025
 """
 
-import warnings
-warnings.filterwarnings('ignore')
+import warnings as _warnings
+_warnings.filterwarnings('ignore')
 # Imports the WxData library
-from wxdata import client
-from datetime import datetime, timedelta
+from wxdata import client as _client
+from datetime import(
+    datetime as _datetime,
+    timedelta as _timedelta
+)
 
-now = datetime.now()
-yesterday = now - timedelta(days=1)
+now = _datetime.now()
+yesterday = now - _timedelta(days=1)
 
 year = yesterday.year
 month = yesterday.month
@@ -91,13 +94,15 @@ def get_data(station,
     10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
         
+        
     Returns
     -------
     
     A Pandas.DataFrame of the xmACIS2 climate data the user specifies
     """
     
-    df = client.get_xmacis_data(station,
+    
+    df = _client.get_xmacis_data(station,
                     start_date=start_date,
                     end_date=end_date,
                     from_when=from_when,

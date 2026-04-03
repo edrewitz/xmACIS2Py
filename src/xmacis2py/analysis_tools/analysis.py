@@ -29,7 +29,7 @@ Analysis Tools:
 import warnings as _warnings
 import numpy as _np
 import pandas as _pd
-import mathas _math
+import math as _math
 from scipy import signal
 _warnings.filterwarnings('ignore')
 
@@ -59,7 +59,7 @@ def _round_down(value, to_nearest):
     if to_nearest < 0:
         raise ValueError("Decimals must be a non-negative integer.")
     factor = 10**to_nearest
-    return math.floor(value * factor) / factor
+    return _math.floor(value * factor) / factor
 
 def _round_up(value,
               to_nearest):
