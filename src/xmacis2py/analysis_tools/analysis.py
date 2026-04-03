@@ -30,7 +30,7 @@ import warnings as _warnings
 import numpy as _np
 import pandas as _pd
 import math as _math
-from scipy import signal
+from scipy import signal as _signal
 _warnings.filterwarnings('ignore')
 
 def _round_down(value, to_nearest):
@@ -1682,8 +1682,8 @@ def detrend_data(df,
 
         df = df.fillna(method='ffill').fillna(method='bfill')
             
-        df[var_name] = signal.detrend(df[parameter], type=detrend_type)
+        df[var_name] = _signal.detrend(df[parameter], type=detrend_type)
     else:
-        df[var_name] = signal.detrend(df[parameter], type=detrend_type)
+        df[var_name] = _signal.detrend(df[parameter], type=detrend_type)
     
     return df
