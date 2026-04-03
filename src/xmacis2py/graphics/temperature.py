@@ -42,9 +42,9 @@ _purple = dict(boxstyle='round', facecolor='purple', alpha=1)
 _orange = dict(boxstyle='round', facecolor='darkorange', alpha=1)
 
 try:
-    utc = _datetime.now(_UTC)
+    _utc = _datetime.now(_UTC)
 except Exception as e:
-    utc = _datetime.utcnow()
+    _utc = _datetime.utcnow()
     
 _today = _datetime.now()
 _yesterday = _today - _timedelta(days=1)
@@ -55,20 +55,20 @@ _day = _yesterday.day
 
 if _month < 10:
     if _day >= 10:
-        yesterday = f"{_year}-0{_month}-{_day}"
+        _yesterday = f"{_year}-0{_month}-{_day}"
     else:
-        yesterday = f"{_year}-0{_month}-0{_day}"   
+        _yesterday = f"{_year}-0{_month}-0{_day}"   
 else:
     if _day >= 10:
-        yesterday = f"{_year}-{_month}-{_day}"
+        _yesterday = f"{_year}-{_month}-{_day}"
     else:
-        yesterday = f"{_year}-{_month}-0{_day}"   
+        _yesterday = f"{_year}-{_month}-0{_day}"   
     
 def plot_comprehensive_summary(station, 
                                product_type='Comprehensive 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -431,7 +431,7 @@ def plot_comprehensive_summary(station,
                  bbox=_purple)
     ax1.text(0.0008, 
              1.05, 
-             f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+             f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
              fontsize=6, 
              fontweight='bold', 
              transform=ax1.transAxes, 
@@ -921,7 +921,7 @@ def plot_maximum_temperature_summary(station,
                                product_type='Maximum Temperature 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -1305,7 +1305,7 @@ def plot_maximum_temperature_summary(station,
         
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -1366,7 +1366,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -1384,7 +1384,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -1407,7 +1407,7 @@ def plot_minimum_temperature_summary(station,
                                product_type='Minimum Temperature 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -1786,7 +1786,7 @@ def plot_minimum_temperature_summary(station,
         
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -1847,7 +1847,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -1865,7 +1865,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -1886,7 +1886,7 @@ def plot_average_temperature_departure_summary(station,
                                product_type='Average Temperature Departure Departure 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -2279,7 +2279,7 @@ def plot_average_temperature_departure_summary(station,
     
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -2340,7 +2340,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -2358,7 +2358,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -2379,7 +2379,7 @@ def plot_average_temperature_summary(station,
                                product_type='Average Temperature 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -2768,7 +2768,7 @@ def plot_average_temperature_summary(station,
                 bbox=_purple)
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -2829,7 +2829,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -2847,7 +2847,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -2870,7 +2870,7 @@ def plot_heating_degree_day_summary(station,
                                product_type='Heating Degree Days 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -3254,7 +3254,7 @@ def plot_heating_degree_day_summary(station,
                 bbox=_purple)
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -3315,7 +3315,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -3333,7 +3333,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -3354,7 +3354,7 @@ def plot_cooling_degree_day_summary(station,
                                product_type='Cooling Degree Days 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -3746,7 +3746,7 @@ def plot_cooling_degree_day_summary(station,
         
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -3807,7 +3807,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -3825,7 +3825,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -3846,7 +3846,7 @@ def plot_growing_degree_day_summary(station,
                                product_type='Growing Degree Days 30 Day Summary',
                                start_date=None,
                                 end_date=None,
-                                from_when=yesterday,
+                                from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
                                 clear_recycle_bin=False,
@@ -4239,7 +4239,7 @@ def plot_growing_degree_day_summary(station,
         
     ax.text(0.0008, 
             1.01, 
-            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+            f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
             fontsize=6, 
             fontweight='bold', 
             transform=ax.transAxes, 
@@ -4300,7 +4300,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)
@@ -4318,7 +4318,7 @@ Standard Deviation: {standard_deviation}   Variance: {variance}   Skewness: {ske
             
             fig.text(0, 
                      0.997, 
-                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {utc.strftime('%Y-%m-%d %H:%MZ')}", 
+                     f"Plot Created with xmACIS2Py (C) Eric J. Drewitz {_utc.strftime('%Y')} | Data Source: xmACIS2 | Image Creation Time: {_utc.strftime('%Y-%m-%d %H:%MZ')}", 
                      fontsize=6, 
                      fontweight='bold', 
                      bbox=_props)

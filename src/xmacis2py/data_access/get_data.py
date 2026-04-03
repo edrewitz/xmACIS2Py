@@ -17,30 +17,30 @@ from datetime import(
     timedelta as _timedelta
 )
 
-now = _datetime.now()
-yesterday = now - _timedelta(days=1)
+_now = _datetime.now()
+_yesterday = _now - _timedelta(days=1)
 
-year = yesterday.year
-month = yesterday.month
-day = yesterday.day
+_year = _yesterday.year
+_month = _yesterday.month
+_day = _yesterday.day
 
-if month < 10:
-    if day >= 10:
-        yesterday = f"{year}-0{month}-{day}"
+if _month < 10:
+    if _day >= 10:
+        yesterday = f"{_year}-0{_month}-{_day}"
     else:
-        yesterday = f"{year}-0{month}-0{day}"   
+        yesterday = f"{_year}-0{_month}-0{_day}"   
 else:
-    if day >= 10:
-        yesterday = f"{year}-{month}-{day}"
+    if _day >= 10:
+        yesterday = f"{_year}-{_month}-{_day}"
     else:
-        yesterday = f"{year}-{month}-0{day}" 
+        yesterday = f"{_year}-{_month}-0{_day}" 
 
 
 
 def get_data(station,
             start_date=None,
             end_date=None,
-            from_when=yesterday,
+            from_when=_yesterday,
             time_delta=30,
             proxies=None,
             clear_recycle_bin=False,
