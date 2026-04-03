@@ -23,7 +23,7 @@ Analysis Tools:
 - running_sum
 - running_mean
 
-(C) Eric J. Drewitz 2025
+(C) Eric J. Drewitz 2025-2026
 """
 
 import warnings as _warnings

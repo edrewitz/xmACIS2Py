@@ -1,7 +1,7 @@
 """
 This file hosts the functions that plot temperature summaries that have multiple parameters in xmACIS2 Data
 
-(C) Eric J. Drewitz 2025
+(C) Eric J. Drewitz 2025-2026
 """
 import matplotlib as _mpl
 import matplotlib.dates as _md
