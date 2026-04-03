@@ -26,14 +26,14 @@ _day = _yesterday.day
 
 if _month < 10:
     if _day >= 10:
-        yesterday = f"{_year}-0{_month}-{_day}"
+        _yesterday = f"{_year}-0{_month}-{_day}"
     else:
-        yesterday = f"{_year}-0{_month}-0{_day}"   
+        _yesterday = f"{_year}-0{_month}-0{_day}"   
 else:
     if _day >= 10:
-        yesterday = f"{_year}-{_month}-{_day}"
+        _yesterday = f"{_year}-{_month}-{_day}"
     else:
-        yesterday = f"{_year}-{_month}-0{_day}" 
+        _yesterday = f"{_year}-{_month}-0{_day}" 
 
 
 
