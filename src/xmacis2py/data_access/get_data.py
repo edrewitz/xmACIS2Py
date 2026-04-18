@@ -107,18 +107,33 @@ def get_data(station,
     and set to_csv = True. 
     """
     
+    if return_pandas_df == True:
     
-    df = _client.get_xmacis_data(station,
-                    start_date=start_date,
-                    end_date=end_date,
-                    from_when=from_when,
-                    time_delta=time_delta,
-                    proxies=proxies,
-                    clear_recycle_bin=clear_recycle_bin,
-                    to_csv=to_csv,
-                    path=path,
-                    filename=filename,
-                    notifications=notifications,
-                    return_pandas_df=return_pandas_df)
+        df = _client.get_xmacis_data(station,
+                        start_date=start_date,
+                        end_date=end_date,
+                        from_when=from_when,
+                        time_delta=time_delta,
+                        proxies=proxies,
+                        clear_recycle_bin=clear_recycle_bin,
+                        to_csv=to_csv,
+                        path=path,
+                        filename=filename,
+                        notifications=notifications,
+                        return_pandas_df=return_pandas_df)
     
-    return df
+        return df
+    
+    else:
+        _client.get_xmacis_data(station,
+                        start_date=start_date,
+                        end_date=end_date,
+                        from_when=from_when,
+                        time_delta=time_delta,
+                        proxies=proxies,
+                        clear_recycle_bin=clear_recycle_bin,
+                        to_csv=to_csv,
+                        path=path,
+                        filename=filename,
+                        notifications=notifications,
+                        return_pandas_df=return_pandas_df)
