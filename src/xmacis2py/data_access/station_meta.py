@@ -30,7 +30,7 @@ def single_station_meta(station_id,
                                }
     2) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    3) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    3) path (String) - Default="XMACIS META". If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
     4) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
@@ -109,7 +109,7 @@ def multi_station_meta(station_ids,
                                }
     2) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    3) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    3) path (String) - Default="XMACIS META". If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
     4) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
