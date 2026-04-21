@@ -206,7 +206,7 @@ def get_multi_station_data(station_ids,
     Returns
     -------
     
-    A Pandas.DataFrame of the xmACIS2 climate data the user specifies if return_pandas_df = True.
+    A List of Pandas.DataFrames for each station of the xmACIS2 climate data the user specifies if return_pandas_df = True.
     """
     
     df_list = []
