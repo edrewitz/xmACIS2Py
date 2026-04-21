@@ -79,6 +79,8 @@ def single_station_meta(station_id,
     df['Latitude'] = lat
     df['Longitude'] = lon
     
+    df = df.drop(columns=["state", "sids", "ll", "elev", "name"])
+    
     if to_csv == False:
         pass
     else:
