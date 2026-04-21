@@ -120,12 +120,11 @@ def multi_station_meta(station_ids,
     
     The meta-data for the specified ACIS2 stations in the form of a Pandas.DataFrame    
     """
-    
-    df_list = []
-    for station in station_ids:
-        station = station.upper()
-        
-        if return_pandas_df == True:
+
+    if return_pandas_df == True:
+        df_list = []
+        for station in station_ids:
+            station = station.upper()
             df = single_station_meta(station,
                         proxies=proxies,
                         to_csv=to_csv,
@@ -134,11 +133,12 @@ def multi_station_meta(station_ids,
             
             df_list.append(df)
             
-            df = _pd.concat(df_list, index=False)
-            
-            return df
+        df = _pd.concat(df_list, index=False)
         
-        else:
+        return df
+        
+    else:
+        for station in station_ids:
             single_station_meta(station,
                         proxies=proxies,
                         to_csv=to_csv,
