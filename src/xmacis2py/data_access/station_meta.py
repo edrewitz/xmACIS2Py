@@ -43,11 +43,6 @@ def single_station_meta(station_id,
     The meta-data for an ACIS2 station in the form of a Pandas.DataFrame    
     """
     
-    try:
-        _os.makedirs(f"{path}")
-    except Exception as e:
-        pass
-    
     url = "https://data.rcc-acis.org/StnMeta"
 
     payload = {
@@ -83,6 +78,10 @@ def single_station_meta(station_id,
     if to_csv == False:
         pass
     else:
+        try:
+            _os.makedirs(f"{path}")
+        except Exception as e:
+            pass
         filename = f"{station_id.upper()}.csv"
         df.to_csv(f"{path}/{filename}", index=False)
         
@@ -126,11 +125,6 @@ def multi_station_meta(station_ids,
     
     The meta-data for the specified ACIS2 stations in the form of a Pandas.DataFrame    
     """
-    
-    try:
-        _os.makedirs(f"{path}")
-    except Exception as e:
-        pass
 
     if return_pandas_df == True:
         df_list = []
