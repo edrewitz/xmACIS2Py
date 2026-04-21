@@ -133,7 +133,7 @@ def multi_station_meta(station_ids,
             
             df_list.append(df)
             
-        df = _pd.concat(df_list, index=False)
+        df = _pd.concat(df_list, ignore_index=True)
         
         return df
         
