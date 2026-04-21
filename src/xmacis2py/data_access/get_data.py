@@ -229,9 +229,8 @@ def get_multi_station_data(station_ids,
                             return_pandas_df=return_pandas_df)
             
             df_list.append(df)
-            df = _pd.concat(df_list, ignore_index=True)         
-            
-            return df
+                        
+            return df_list
         
         else:
             _client.get_xmacis_data(station,
