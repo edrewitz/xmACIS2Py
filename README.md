@@ -42,13 +42,13 @@ Copy and paste either command into your terminal or anaconda prompt:
 
 *Update via Anaconda*
 
-***This is for users who initially installed WxData through Anaconda***
+***This is for users who initially installed xmACIS2Py through Anaconda***
 
 `conda update xmacis2py`
 
 *Update via pip*
 
-***This is for users who initially installed WxData through pip***
+***This is for users who initially installed xmACIS2Py through pip***
 
 `pip install --upgrade xmacis2py`
 
