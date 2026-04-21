@@ -27,6 +27,9 @@
        
     4) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
         To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+
+    5) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified.
     
     Returns
     -------
