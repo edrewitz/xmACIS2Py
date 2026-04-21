@@ -18,7 +18,10 @@ import xmacis2py.graphics.temperature as temperature
 import xmacis2py.graphics.precipitation as precipitation
 
 # This function wraps the xmACIS2 Data Client from the WxData Library into the xmACIS2Py Library.
-from xmacis2py.data_access.get_data import get_data
+from xmacis2py.data_access.get_data import(
+    get_data,
+    get_multi_station_data
+)
 
 """
 Module

@@ -10,6 +10,7 @@ For more information on the xmACIS2 Client in the WxData Library, visit: https:/
 
 import warnings as _warnings
 _warnings.filterwarnings('ignore')
+import pandas as _pd
 # Imports the WxData library
 from wxdata import client as _client
 from datetime import(
@@ -51,6 +52,8 @@ def get_data(station,
             return_pandas_df=True):
     
     """
+    ***For Single-Station Queries***
+    
     This function is a client that downloads user-specified xmACIS2 data and returns a Pandas.DataFrame
     The user can also save the data as a CSV file in a specified location
     This client supports VPN/PROXY connections. 
@@ -102,9 +105,6 @@ def get_data(station,
     -------
     
     A Pandas.DataFrame of the xmACIS2 climate data the user specifies if return_pandas_df = True.
-    
-    If the user wants to download multiple CSV files reflecting multiple stations, it is recommend to set return_pandas_df = False
-    and set to_csv = True. 
     """
     
     if return_pandas_df == True:
@@ -137,3 +137,114 @@ def get_data(station,
                         filename=filename,
                         notifications=notifications,
                         return_pandas_df=return_pandas_df)
+        
+        
+def get_multi_station_data(station_ids,
+                            start_date=None,
+                            end_date=None,
+                            from_when=_yesterday,
+                            time_delta=30,
+                            proxies=None,
+                            clear_recycle_bin=False,
+                            to_csv=False,
+                            path='default',
+                            filename='default',
+                            notifications='on',
+                            return_pandas_df=True):
+    
+    
+    """
+    ***For Multi-Station Queries***
+    
+    This function is a client that downloads user-specified xmACIS2 data and returns a Pandas.DataFrame
+    The user can also save the data as a CSV file in a specified location
+    This client supports VPN/PROXY connections. 
+    
+    Required Arguments:
+    
+    1) station (String) - The 4 letter station ID (i.e. KRAL for Riverside Municipal Airport in Riverside, CA)
+    
+    Optional Arguments:
+    
+    1) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    2) end_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    3) from_when (String or Datetime) - Default=Yesterday. Default value is yesterday's date. 
+       Dates can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+       
+    4) time_delta (Integer) - Default=30. If from_when is NOT None, time_delta represents how many days IN THE PAST 
+       from the time 'from_when.' (e.g. From January 31st back 30 days)
+       
+    5) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
+
+       proxies=None ---> proxies={
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
+                        
+    6) clear_recycle_bin (Boolean) - (Default=False in WxData >= 1.2.5) (Default=True in WxData < 1.2.5). When set to True, 
+        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
+        This setting is to help preserve memory on the machine. 
+        
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+       directory path.
+       
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+       filename. 
+       
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified. 
+        
+    11) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of the xmACIS2 climate data the user specifies if return_pandas_df = True.
+    """
+    
+    df_list = []
+    for station in station_ids:
+        station = station.upper()
+        
+        if return_pandas_df == True:
+        
+            df = _client.get_xmacis_data(station,
+                            start_date=start_date,
+                            end_date=end_date,
+                            from_when=from_when,
+                            time_delta=time_delta,
+                            proxies=proxies,
+                            clear_recycle_bin=clear_recycle_bin,
+                            to_csv=to_csv,
+                            path=path,
+                            filename=filename,
+                            notifications=notifications,
+                            return_pandas_df=return_pandas_df)
+            
+            df_list.append(df)
+            df = _pd.concat(df_list, ignore_index=True)         
+            
+            return df
+        
+        else:
+            _client.get_xmacis_data(station,
+                            start_date=start_date,
+                            end_date=end_date,
+                            from_when=from_when,
+                            time_delta=time_delta,
+                            proxies=proxies,
+                            clear_recycle_bin=clear_recycle_bin,
+                            to_csv=to_csv,
+                            path=path,
+                            filename=filename,
+                            notifications=notifications,
+                            return_pandas_df=return_pandas_df)
+        
+        
