@@ -58,8 +58,10 @@ Copy and paste either command into your terminal or anaconda prompt:
 
 **Jupyter Lab Tutorials**
 
-1) [xmACIS2Py Data Access & Analysis](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_analysis.ipynb)
-2) [xmACIS2Py Graphical Summaries](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_graphics.ipynb)
+1) [Data Access & Analysis](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_analysis.ipynb)
+2) [Graphical Summaries](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_graphics.ipynb)
+3) [Multi-Station Data Retrieval](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/acis_multi_station.ipynb)
+4) [Retrieving Station Meta-Data](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/station_meta.ipynb)
 
 **Documentation**
 
