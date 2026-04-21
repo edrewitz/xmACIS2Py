@@ -17,11 +17,22 @@ import xmacis2py.graphics.temperature as temperature
 # This is the module to create xmACIS2 precipitation graphics
 import xmacis2py.graphics.precipitation as precipitation
 
-# This function wraps the xmACIS2 Data Client from the WxData Library into the xmACIS2Py Library.
+# ACIS2 Data Access
+# - Single Station
+# - Multi Station
 from xmacis2py.data_access.get_data import(
     get_data,
     get_multi_station_data
 )
+
+# ACIS2 Station Meta-Data
+# - Single Station
+# - Multi Station
+from xmacis2py.data_access.station_meta import (
+    single_station_meta,
+    multi_station_meta
+)
+
 
 """
 Module
