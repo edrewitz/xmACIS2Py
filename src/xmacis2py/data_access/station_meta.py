@@ -6,6 +6,7 @@ This file hosts the function that download and returns a station's meta-data for
 
 import requests as _requests
 import pandas as _pd
+import os as _os
 
 def single_station_meta(station_id,
                         proxies=None,
@@ -120,6 +121,11 @@ def multi_station_meta(station_ids,
     
     The meta-data for the specified ACIS2 stations in the form of a Pandas.DataFrame    
     """
+    
+    try:
+        _os.makedirs(f"{path}")
+    except Exception as e:
+        pass
 
     if return_pandas_df == True:
         df_list = []
