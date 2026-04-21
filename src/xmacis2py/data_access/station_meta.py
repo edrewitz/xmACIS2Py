@@ -12,7 +12,8 @@ def single_station_meta(station_id,
                         proxies=None,
                         to_csv=False,
                         path=f"XMACIS META",
-                        return_pandas_df=True):
+                        return_pandas_df=True,
+                        notifications='on'):
     
     """
     ***For Single Station Meta-Data Query***
@@ -36,6 +37,9 @@ def single_station_meta(station_id,
        
     4) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
         To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    5) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified.
     
     Returns
     -------
@@ -84,6 +88,8 @@ def single_station_meta(station_id,
             pass
         filename = f"{station_id.upper()}.csv"
         df.to_csv(f"{path}/{filename}", index=False)
+        if notifications.lower() == 'on':
+            print(f"{filename} saved to {path}")
         
     if return_pandas_df == True:
         return df
@@ -95,7 +101,8 @@ def multi_station_meta(station_ids,
                         proxies=None,
                         to_csv=False,
                         path=f"XMACIS META",
-                        return_pandas_df=True):
+                        return_pandas_df=True,
+                        notifications='on'):
     
     """
     ***For Multi Station Meta-Data Query***
@@ -119,6 +126,9 @@ def multi_station_meta(station_ids,
        
     4) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
         To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    5) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified.
     
     Returns
     -------
@@ -134,7 +144,8 @@ def multi_station_meta(station_ids,
                         proxies=proxies,
                         to_csv=to_csv,
                         path=path,
-                        return_pandas_df=return_pandas_df)
+                        return_pandas_df=return_pandas_df,
+                        notifications=notifications)
             
             df_list.append(df)
             
@@ -148,4 +159,5 @@ def multi_station_meta(station_ids,
                         proxies=proxies,
                         to_csv=to_csv,
                         path=path,
-                        return_pandas_df=return_pandas_df)
+                        return_pandas_df=return_pandas_df,
+                        notifications=notifications)
