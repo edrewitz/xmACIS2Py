@@ -65,7 +65,10 @@ Copy and paste either command into your terminal or anaconda prompt:
 
 ***Data Access***
 
-1) [Get Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#xmacis2py-data-access)
+1) [Get Single Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#xmacis2py-data-access)
+2) [Get Multi Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/multi_station_data.md#retrieving-multi-station-data)
+3) [Get Single Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/single_station_meta.md#single-station-meta-data)
+4) [Get Multi Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/multi_station_meta.md#multi-station-meta-data)
 
 ***Analysis Tools***
 
