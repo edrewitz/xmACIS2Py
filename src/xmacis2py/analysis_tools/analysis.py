@@ -1703,7 +1703,7 @@ def calculate_daily_normals(station,
                             return_pandas_df=True):
     
     """
-    This function calculates daily climatological means for a user-specified period.
+    This function calculates daily climatological normals for a user-specified period.
     
     This function is useful for those who do not want the day to day fluctuations smoothed out
     as xmACIS2 smooths out the normals (the ones downloaded from the server via get_single_station_climate_normals()).
