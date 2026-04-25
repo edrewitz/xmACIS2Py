@@ -984,3 +984,153 @@
     -------
 
     The number of days a value is at a certain value
+
+
+### calculate_daily_normals()
+
+***def calculate_daily_normals(station,
+                            df=None,
+                            input_path=None,
+                            start_date=None,
+                            end_date=None,
+                            to_csv=False,
+                            output_path=f"XMACIS2 DAILY NORMALS",
+                            return_pandas_df=True):***
+
+    This function calculates daily climatological normals for a user-specified period.
+    
+    This function is useful for those who do not want the day to day fluctuations smoothed out
+    as xmACIS2 smooths out the normals (the ones downloaded from the server via get_single_station_climate_normals()).
+    
+    This is also useful for creating daily climatology normals for a custom period. (i.e. a 50-year climatology)
+    
+    Required Arguments: 
+    
+    1) station (String) - The 4-letter ID of the ACIS2 station.
+    
+    Optional Arguments
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df.
+        
+    2) input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file.
+        
+    3) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    4) end_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    5) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    6) output_path (String) - Default="XMACIS2 DAILY NORMALS". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    7) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of daily climatological normals for a custom period. 
+
+
+### filter_analog_years()
+
+***def filter_analog_years(station,
+                        analogs,
+                        df=None,
+                        input_path=None,
+                        to_csv=False,
+                        output_path=f"XMACIS2 ANALOGS",
+                        return_pandas_df=True):***
+
+
+    This function filters for analog periods in the form of month and year. 
+    
+    This can be useful when wanting to perform an analysis of analog years for seasonal forecasting applications.
+    
+    Required Arguments: 
+    
+    1) station (String) - The 4-letter ID of the ACIS2 station.
+    
+    2) analogs (Tuple List) - A list of tuples that represent the analog periods in the query. 
+        Format: [(YYYY 1, mm 1), (YYYY 2, mm2),...., (YYYY n, mm n)]
+        Example: Let's query winters 2006, 2016 and 2026
+        
+        [(2005, 12), (2006, 1), (2006, 2),
+        (2015, 12), (2016, 1), (2016, 2),
+        (2025, 12), (2026, 1), (2026, 2)]
+    
+    Optional Arguments
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df.
+        
+    2) input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file.
+    
+    3) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    4) output_path (String) - Default="XMACIS2 ANALOGS". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    5) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of analog years for years 1-n for a period for months 1-n.   
+
+
+### analog_weighted_mean()
+
+***def analog_weighted_mean(df,
+                  parameter,
+                  weights):***
+
+    This function calculates the weighted mean for a given variable.
+    
+    This is useful when wanting to create weighted means of analogs when
+    comparing analog years for seasonal forecasting applications.
+    
+    Required Arguments:
+    
+    1) df (Pandas.DataFrame) - The dataframe of ACIS2 data.
+    
+    2) parameter (String) - The parameter of interest.
+    
+    3) weights (Float/Integer Array) - An array of numbers (can be both float and int) of the weights applied.
+    
+    Returns
+    -------
+    
+    The weighted mean of the variable in a Pandas.DataFrame.  
+
+
+### analog_weighted_percentile()
+
+***def analog_weighted_percentile(df,
+                  parameter,
+                  weights,
+                  percentile):***
+
+    This function calculates the weighted mean for values of a given percentile.
+    
+    This is useful when wanting to create weighted means applied to percentile values of analogs when
+    comparing analog years for seasonal forecasting applications.
+    
+    Required Arguments:
+    
+    1) df (Pandas.DataFrame) - The dataframe of ACIS2 data.
+    
+    2) parameter (String) - The parameter of interest.
+    
+    3) weights (Float/Integer Array) - An array of numbers (can be both float and int) of the weights applied.
+    
+    4) percentile (Float or Int) - A value between 0 and 1. (0.5 = 50th percentile)
+    
+    Returns
+    -------
+    
+    The weighted mean of a given percentile of the variable in a Pandas.DataFrame.   
