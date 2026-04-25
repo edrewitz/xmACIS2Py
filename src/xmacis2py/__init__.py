@@ -18,11 +18,15 @@ import xmacis2py.graphics.temperature as temperature
 import xmacis2py.graphics.precipitation as precipitation
 
 # ACIS2 Data Access
-# - Single Station
-# - Multi Station
-from xmacis2py.data_access.get_data import(
-    get_data,
-    get_multi_station_data
+# - Single ACIS Station
+# - Multi ACIS Station
+from xmacis2py.data_access.station_data import(
+    get_single_station_acis_data,
+    get_multi_station_acis_data,
+    get_single_station_climate_normals,
+    get_multi_station_climate_normals,
+    get_single_station_departures,
+    get_multi_station_departures
 )
 
 # ACIS2 Station Meta-Data
@@ -60,5 +64,6 @@ Functions:
 - period_rankings
 - running_sum
 - running_mean
+- calculate_daily_normals
 """
 import xmacis2py.analysis_tools.analysis as analysis

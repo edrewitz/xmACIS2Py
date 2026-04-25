@@ -28,6 +28,7 @@ Analysis Tools:
 
 import warnings as _warnings
 import numpy as _np
+import os as _os
 import pandas as _pd
 import math as _math
 from scipy import signal as _signal
@@ -1687,3 +1688,107 @@ def detrend_data(df,
         df[var_name] = _signal.detrend(df[parameter], type=detrend_type)
     
     return df
+
+def calculate_daily_normals(station_id,
+                            df=None,
+                            input_path=None,
+                            start_date=None,
+                            end_date=None,
+                            to_csv=False,
+                            output_path=f"XMACIS2 DAILY NORMALS",
+                            return_pandas_df=True):
+    
+    """
+    This function calculates daily climatological means for a user-specified period.
+    
+    This function is useful for those who do not want the day to day fluctuations smoothed out
+    as xmACIS2 smooths out the normals (the ones downloaded from the server via get_single_station_climate_normals()).
+    
+    This is also useful for creating daily climatology normals for a custom period. (i.e. a 50-year climatology)
+    
+    Required Arguments: 
+    
+    1) station_id (String) - The 4-letter ID of the ACIS2 station.
+    
+    Optional Arguments
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df.
+        
+    2) input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file.
+        
+    3) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    4) end_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
+        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+        
+    5) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    6) output_path (String) - Default="XMACIS2 DAILY NORMALS". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    7) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of daily climatological normals for a custom period.     
+    """
+    
+    if df is not None:
+        df = df
+    else:
+        df = _pd.read_csv(f"{input_path}")
+        
+    if start_date is not None and end_date is not None:
+        df = df.loc[start_date:end_date]
+    else:
+        pass
+    
+    df['date'] = _pd.to_datetime(df['Date'])
+    
+    df = df.groupby(df['date'].dt.dayofyear).agg({
+        "Maximum Temperature": "mean",
+        "Minimum Temperature": "mean",
+        "Average Temperature": "mean",
+        "Heating Degree Days": "mean",
+        "Cooling Degree Days": "mean",
+        "Growing Degree Days": "mean",
+        "Precipitation": "mean",
+        "Snowfall": "mean",
+        "Snow Depth": "mean"
+    })
+    
+    df = df.reset_index().rename(columns={"date": "Day Of Year"})
+    
+    df['Date'] = _pd.to_datetime(
+        df["Day Of Year"] - 1,
+        unit="D",
+        origin="2000-01-01"
+    )
+    
+    df['Date'] = df['Date'].dt.strftime("%m-%d")
+    
+    if to_csv == True:
+        try:
+            _os.makedirs(f"{output_path}")
+        except Exception as e:
+            pass
+        
+        df.to_csv(f"{output_path}/{station_id.upper()}.csv")
+        
+    else:
+        pass
+    
+    if return_pandas_df == True:
+        return df
+    else:
+        pass
+        
+        
+    
+    
+    
+    

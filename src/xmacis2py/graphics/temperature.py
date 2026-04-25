@@ -13,7 +13,7 @@ _warnings.filterwarnings('ignore')
 import xmacis2py.analysis_tools.analysis as _analysis
 
 from xmacis2py.utils.file_funcs import update_image_file_paths as _update_image_file_paths
-from xmacis2py.data_access.get_data import get_data as _get_data
+from xmacis2py.data_access.station_data import get_single_station_acis_data as _get_data
 from matplotlib.ticker import MaxNLocator as _MaxNLocator
 
 try:
