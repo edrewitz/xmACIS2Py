@@ -1902,7 +1902,7 @@ def analog_weighted_mean(df,
     means[parameter].values,
     axis=0,
     weights=weights
-)
+    )
     
     return weighted_mean
 
