@@ -95,6 +95,10 @@ Copy and paste either command into your terminal or anaconda prompt:
 19) [Number of Days Below Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_below_value)
 20) [Number of Days Above Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_above_value)
 21) [Number of Days At Value](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#number_of_days_at_value)
+22) [Calculate Daily Normals](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#calculate_daily_normals)
+23) [Filter Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#filter_analog_years)
+24) [Calculate Weighted Mean For Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#analog_weighted_mean)
+25) [Calculate Weighted Percentile For Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#analog_weighted_percentile)
 
 ***Graphical Summaries***
 
