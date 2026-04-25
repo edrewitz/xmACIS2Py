@@ -278,11 +278,11 @@ def get_single_station_climate_normals(station,
     
     1) interval (String) - Default='daily'. The interval of the climate normals. (daily, monthly, yearly)
     
-    2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
-        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+    2) start_date (String or Datetime) - Default=Yesterday - 30 days. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
         
-    3) end_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
-        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+    3) end_date (String or Datetime) - Default=Yesterday. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
         
     4) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
 
@@ -435,11 +435,11 @@ def get_multi_station_climate_normals(stations,
     
     1) interval (String) - Default='daily'. The interval of the climate normals. (daily, monthly, yearly)
     
-    2) start_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
-        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+    2) start_date (String or Datetime) - Default=Yesterday - 30 days. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
         
-    3) end_date (String or Datetime) - Default=None. For users who want specific start and end dates for their analysis,
-        they can either be passed in as a string in the format of 'YYYY-mm-dd' or as a datetime object.
+    3) end_date (String or Datetime) - Default=Yesterday. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
         
     4) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
 
@@ -507,12 +507,49 @@ def get_single_station_departures(station,
                         return_pandas_df=True):
     
     """
-    This function downloads and returns the 30-year climate normals for a user-specified station at a user-specified interval 
-    (i.e. daily, monthly, yearly).
+    ***For Single-Station Queries***
     
+    This function is a client that downloads departure from normals for a user-specified ACIS2 station and returns a Pandas.DataFrame
+    The user can also save the data as a CSV file in a specified location
+    This client supports VPN/PROXY connections. 
     
+    Required Arguments:
     
+    1) station (String) - The 4 letter station ID (i.e. KRAL for Riverside Municipal Airport in Riverside, CA)
     
+    Optional Arguments:
+    
+    1) interval (String) - Default='daily'. The interval of the climate normals. (daily, monthly, yearly)
+    
+    2) start_date (String or Datetime) - Default=Yesterday - 30 days. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
+        
+    3) end_date (String or Datetime) - Default=Yesterday. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
+        
+    4) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+
+       
+    5) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
+
+       proxies=None ---> proxies={
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
+                    
+    6) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DEPARTURES/file". Only change if you want to create your 
+       directory path.
+       
+    7) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified. 
+        
+    8) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of the departures from normal for a user-specified ACIS2 station.  
     """
     url = f"https://data.rcc-acis.org/StnData"
     
@@ -613,7 +650,52 @@ def get_multi_station_departures(stations,
                         notifications='on',
                         return_pandas_df=True):
     
+    """
+    ***For Multi-Station Queries***
     
+    This function is a client that downloads departures from normal for a user-specified list of ACIS2 station and returns a Pandas.DataFrame
+    for each user-specified station.
+    The user can also save the data as a CSV file in a specified location
+    This client supports VPN/PROXY connections. 
+    
+    Required Arguments:
+    
+    1) stations (String List) - A list of 4 letter station IDs (i.e. KRAL for Riverside Municipal Airport in Riverside, CA)
+    
+    Optional Arguments:
+    
+    1) interval (String) - Default='daily'. The interval of the climate normals. (daily, monthly, yearly)
+    
+    2) start_date (String or Datetime) - Default=Yesterday - 30 days. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
+        
+    3) end_date (String or Datetime) - Default=Yesterday. Users can set this to a custom date by passing
+        in a string in the 'YYYY-mm-dd' format. 
+        
+    4) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+
+       
+    5) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
+
+       proxies=None ---> proxies={
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
+                    
+    6) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DEPARTURES/file". Only change if you want to create your 
+       directory path.
+       
+    7) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+        they specified. 
+        
+    8) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A list of Pandas.DataFrames of departures from normal for each station in the user-specified list of stations. 
+    """ 
     
     df_list = []
     if return_pandas_df == True:
