@@ -67,10 +67,14 @@ Copy and paste either command into your terminal or anaconda prompt:
 
 ***Data Access***
 
-1) [Get Single Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#xmacis2py-data-access)
-2) [Get Multi Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/multi_station_data.md#retrieving-multi-station-data)
-3) [Get Single Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/single_station_meta.md#single-station-meta-data)
-4) [Get Multi Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/multi_station_meta.md#multi-station-meta-data)
+1) [Get Single Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_single_station_acis_data)
+2) [Get Multi Station Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_multi_station_acis_data)
+3) [Get Single Station Climate Normals](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_single_station_climate_normals)
+4) [Get Multi Station Climate Normals](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_multi_station_climate_normals)
+5) [Get Single Station Departures From Normal](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_single_station_departures)
+6) [Get Multi Station Departures From Normal](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/data_access.md#get_multi_station_departures)
+7) [Get Single Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/single_station_meta.md#single-station-meta-data)
+8) [Get Multi Station Meta-Data](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/multi_station_meta.md#multi-station-meta-data)
 
 ***Analysis Tools***
 
