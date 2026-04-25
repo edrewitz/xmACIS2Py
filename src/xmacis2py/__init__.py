@@ -18,8 +18,12 @@ import xmacis2py.graphics.temperature as temperature
 import xmacis2py.graphics.precipitation as precipitation
 
 # ACIS2 Data Access
-# - Single ACIS Station
-# - Multi ACIS Station
+# - Single ACIS Station Data
+# - Multi ACIS Station Data
+# - Single ACIS Station 30-Year Climate Normals
+# - Multi ACIS Station 30-Year Climate Normals
+# - Single ACIS Station Departures from Normal
+# - Multi AC
 from xmacis2py.data_access.station_data import(
     get_single_station_acis_data,
     get_multi_station_acis_data,
