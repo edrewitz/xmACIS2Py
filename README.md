@@ -128,3 +128,5 @@ Copy and paste either command into your terminal or anaconda prompt:
 5) **WxData**: Eric J. Drewitz. (2026). edrewitz/WxData: WxData 1.6 Released (WxData1.6). Zenodo. https://doi.org/10.5281/zenodo.19644125
 
 6) **scipy**: Virtanen, P., Gommers, R., Oliphant, T.E. et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods 17, 261–272 (2020). https://doi.org/10.1038/s41592-019-0686-2
+
+7) **requests**: K. Reitz, "Requests: HTTP for Humans". Available: https://requests.readthedocs.io/.
