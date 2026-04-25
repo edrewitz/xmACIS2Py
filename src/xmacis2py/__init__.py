@@ -23,7 +23,7 @@ import xmacis2py.graphics.precipitation as precipitation
 # - Single ACIS Station 30-Year Climate Normals
 # - Multi ACIS Station 30-Year Climate Normals
 # - Single ACIS Station Departures from Normal
-# - Multi AC
+# - Multi ACIS Station Departures from Normal.
 from xmacis2py.data_access.station_data import(
     get_single_station_acis_data,
     get_multi_station_acis_data,
@@ -69,5 +69,8 @@ Functions:
 - running_sum
 - running_mean
 - calculate_daily_normals
+- filter_analog_years
+- analog_weighted_mean
+- analog_weighted_percentile
 """
 import xmacis2py.analysis_tools.analysis as analysis

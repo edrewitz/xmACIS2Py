@@ -22,6 +22,10 @@ Analysis Tools:
 - period_rankings
 - running_sum
 - running_mean
+- calculate_daily_normals
+- filter_analog_years
+- analog_weighted_mean
+- analog_weighted_percentile
 
 (C) Eric J. Drewitz 2025-2026
 """
