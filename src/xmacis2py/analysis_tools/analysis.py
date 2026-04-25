@@ -1946,7 +1946,7 @@ def analog_weighted_percentile(df,
     percentiles[parameter].values,
     axis=0,
     weights=weights
-)
+    )
     
     return weighted_percentile
     
