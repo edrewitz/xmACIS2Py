@@ -62,6 +62,8 @@ Copy and paste either command into your terminal or anaconda prompt:
 2) [Graphical Summaries](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_graphics.ipynb)
 3) [Multi-Station Data Retrieval](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/acis_multi_station.ipynb)
 4) [Retrieving Station Meta-Data](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/station_meta.ipynb)
+5) [Retrieving 30-Year Climatological Normals and Departures From Normal](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_normal_departure.ipynb)
+6) [Calculating Daily Normals and Performing Analysis of ENSO Analog Years at KJFK](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/jfk_analysis.ipynb)
 
 **Documentation**
 
