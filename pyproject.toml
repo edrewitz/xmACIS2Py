@@ -1,6 +1,6 @@
 [project]
 name = "xmacis2py"
-version = "2.4"
+version = "2.4.1"
 description = "A Python package that brings the xmACIS2 Climate Analysis Tool into the Python Ecosystem"
 readme = "README.md"
 requires-python = ">=3.10"
