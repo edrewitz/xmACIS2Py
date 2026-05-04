@@ -239,18 +239,20 @@ def get_multi_station_acis_data(stations,
         return df_list
         
     else:
-        _client.get_xmacis_data(station,
-                        start_date=start_date,
-                        end_date=end_date,
-                        from_when=from_when,
-                        time_delta=time_delta,
-                        proxies=proxies,
-                        clear_recycle_bin=clear_recycle_bin,
-                        to_csv=to_csv,
-                        path=path,
-                        filename=filename,
-                        notifications=notifications,
-                        return_pandas_df=return_pandas_df)
+        for station in stations:
+            station = station.upper()
+            _client.get_xmacis_data(station,
+                            start_date=start_date,
+                            end_date=end_date,
+                            from_when=from_when,
+                            time_delta=time_delta,
+                            proxies=proxies,
+                            clear_recycle_bin=clear_recycle_bin,
+                            to_csv=to_csv,
+                            path=path,
+                            filename=filename,
+                            notifications=notifications,
+                            return_pandas_df=return_pandas_df)
             
             
 def get_single_station_climate_normals(station,
