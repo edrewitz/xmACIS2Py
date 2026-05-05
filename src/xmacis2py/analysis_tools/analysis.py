@@ -1891,6 +1891,15 @@ def analog_weighted_mean(df,
     The weighted mean of the variable in a Pandas.DataFrame.    
     """
     
+    if not isinstance(df.index, _pd.DatetimeIndex):
+        # Case A: A 'Date' column exists
+        if "Date" in df.columns:
+            df["Date"] = _pd.to_datetime(df["Date"])
+            df = df.set_index("Date")
+        else:
+            # Case B: Index itself must be converted
+            df.index = _pd.to_datetime(df.index)
+    
     df["Year"] = df.index.to_series().apply(
     lambda d: d.year + 1 if d.month == 12 else d.year
     )
@@ -1934,6 +1943,15 @@ def analog_weighted_percentile(df,
     
     The weighted mean of a given percentile of the variable in a Pandas.DataFrame.    
     """
+    
+    if not isinstance(df.index, _pd.DatetimeIndex):
+        # Case A: A 'Date' column exists
+        if "Date" in df.columns:
+            df["Date"] = _pd.to_datetime(df["Date"])
+            df = df.set_index("Date")
+        else:
+            # Case B: Index itself must be converted
+            df.index = _pd.to_datetime(df.index)
     
     df["Year"] = df.index.to_series().apply(
     lambda d: d.year + 1 if d.month == 12 else d.year
