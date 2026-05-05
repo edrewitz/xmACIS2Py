@@ -1915,6 +1915,8 @@ def analog_weighted_mean(df,
     if len(means) == 0:
         return _np.nan
     
+    weights = _np.array(weights[:len(means)], dtype=float)
+    
     weighted_mean = _np.average(
     means[parameter].values,
     axis=0,
@@ -1974,6 +1976,8 @@ def analog_weighted_percentile(df,
     # If no years have data, return NaN
     if len(percentiles) == 0:
         return _np.nan
+    
+    weights = _np.array(weights[:len(percentiles)], dtype=float)
     
     weighted_percentile = _np.average(
     percentiles[parameter].values,
