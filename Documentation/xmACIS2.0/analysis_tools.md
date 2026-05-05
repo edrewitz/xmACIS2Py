@@ -1134,3 +1134,63 @@
     -------
     
     The weighted mean of a given percentile of the variable in a Pandas.DataFrame.   
+
+### calculate_daily_departures()
+
+***def calculate_daily_departures(
+        station,
+        variables,
+        df=None,
+        norm=None,
+        raw_data_input_path=None,
+        normals_input_path=None,
+        to_csv=False,
+        output_path="XMACIS2 DAILY DEPARTURES",
+        return_pandas_df=True):***
+
+    This function calculates the daily departures (daily anomalies).
+    
+    Required Arguments:
+    
+    1) station (String) - The station ID.
+    
+    2) variables (String List) - The list of parameters to calculate the departures. 
+    
+        Variable List
+        -------------
+        'Maximum Temperature'
+        'Minimum Temperature'
+        'Average Temperature', 
+        'Average Temperature Departure'
+        'Heating Degree Days'
+        'Cooling Degree Days'
+        'Precipitation'
+        'Snowfall'
+        'Snow Depth'
+        'Growing Degree Days'
+        
+    Optional Arguments:
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df. This is for the dataset of raw data.
+        
+    2) norm (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set norm=norm. This is for the dataset of calculated normals.
+        
+    3) raw_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file that hosts the raw station data.
+        
+    4) normals_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file that hosts the calculated normals.
+        
+    5) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    6) output_path (String) - Default="XMACIS2 DAILY DEPARTURES". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    7) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of the calculated daily departures.        
