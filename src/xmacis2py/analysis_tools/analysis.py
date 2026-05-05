@@ -1904,10 +1904,8 @@ def analog_weighted_mean(df,
     lambda d: d.year + 1 if d.month == 12 else d.year
     )
     
-    if "Date" in df.columns:
-        df = df.drop(columns=["Date"])
-    else:
-        pass
+    string_cols = [col for col in df.columns if df[col].apply(lambda x: isinstance(x, str)).any()]
+    df = df.drop(columns=string_cols)
     
     means = df.groupby("Year").mean()
 
@@ -1961,10 +1959,8 @@ def analog_weighted_percentile(df,
     lambda d: d.year + 1 if d.month == 12 else d.year
     )
     
-    if "Date" in df.columns:
-        df = df.drop(columns=["Date"])
-    else:
-        pass
+    string_cols = [col for col in df.columns if df[col].apply(lambda x: isinstance(x, str)).any()]
+    df = df.drop(columns=string_cols)
     
     percentiles = df.groupby("Year").quantile(percentile)
 
