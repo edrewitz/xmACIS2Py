@@ -1,6 +1,6 @@
 [project]
 name = "xmacis2py"
-version = "2.5"
+version = "2.5.1"
 description = "A Python package that brings the xmACIS2 Climate Analysis Tool into the Python Ecosystem"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,8 +18,7 @@ classifiers = [
 
 dependencies = [
   "matplotlib>=3.7",
-  "wxdata>=1.6.1",
-  "scipy>=1.15.3"
+  "wxdata>=1.6.1"
 ]
 
 [build-system]
