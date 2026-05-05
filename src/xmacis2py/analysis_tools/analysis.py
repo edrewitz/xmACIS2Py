@@ -1995,44 +1995,6 @@ def calculate_daily_departures(
         output_path="XMACIS2 DAILY DEPARTURES",
         return_pandas_df=True):
 
-    """
-    Calculate daily departures from normal for a station.
-
-    Parameters
-    ----------
-    station : str
-        4-letter ACIS station ID.
-
-    variables : list of str
-        List of variable names to compute departures for.
-
-    df : pandas.DataFrame, optional
-        Raw daily data. If None, raw_data_input_path must be provided.
-
-    norm : pandas.DataFrame, optional
-        Daily normals. If None, normals_input_path must be provided.
-
-    raw_data_input_path : str, optional
-        Path to raw daily CSV.
-
-    normals_input_path : str, optional
-        Path to daily normals CSV.
-
-    to_csv : bool, default False
-        Save output CSV.
-
-    output_path : str, default "XMACIS2 DAILY DEPARTURES"
-        Directory for output CSVs.
-
-    return_pandas_df : bool, default True
-        Return the departures DataFrame.
-
-    Returns
-    -------
-    pandas.DataFrame
-        Daily departures merged with normals.
-    """
-
     # ---------------------------------------------------------
     # 1. Load data
     # ---------------------------------------------------------
@@ -2043,25 +2005,33 @@ def calculate_daily_departures(
         norm = _pd.read_csv(normals_input_path)
 
     # ---------------------------------------------------------
-    # 2. Ensure Date columns exist and convert to datetime
+    # 2. Convert raw data Date column to datetime
     # ---------------------------------------------------------
     if "Date" not in df.columns:
         raise ValueError("Raw data must contain a 'Date' column.")
 
+    df["Date"] = _pd.to_datetime(df["Date"])
+    df["monthday"] = df["Date"].dt.strftime("%m-%d")
+
+    # ---------------------------------------------------------
+    # 3. Handle normals Date column (may be MM-DD or YYYY-MM-DD)
+    # ---------------------------------------------------------
     if "Date" not in norm.columns:
         raise ValueError("Normals file must contain a 'Date' column.")
 
-    df["Date"] = _pd.to_datetime(df["Date"])
-    norm["Date"] = _pd.to_datetime(norm["Date"])
+    # If normals Date looks like MM-DD, DO NOT convert to datetime
+    sample = str(norm["Date"].iloc[0])
+
+    if len(sample) == 5 and sample[2] == "-":
+        # Format is MM-DD
+        norm["monthday"] = norm["Date"]
+    else:
+        # Format is full date
+        norm["Date"] = _pd.to_datetime(norm["Date"])
+        norm["monthday"] = norm["Date"].dt.strftime("%m-%d")
 
     # ---------------------------------------------------------
-    # 3. Create monthday keys for merging
-    # ---------------------------------------------------------
-    df["monthday"] = df["Date"].dt.strftime("%m-%d")
-    norm["monthday"] = norm["Date"].dt.strftime("%m-%d")
-
-    # ---------------------------------------------------------
-    # 4. Ensure normals have exactly one row per day
+    # 4. Ensure one normal per day
     # ---------------------------------------------------------
     norm = norm.drop_duplicates(subset="monthday")
 
@@ -2076,14 +2046,10 @@ def calculate_daily_departures(
     )
 
     # ---------------------------------------------------------
-    # 6. Compute departures for each variable
+    # 6. Compute departures
     # ---------------------------------------------------------
     for v in variables:
-        normal_col = f"{v}_normal"
-        if normal_col not in df_norm.columns:
-            raise KeyError(f"Normal column '{normal_col}' not found in normals file.")
-
-        df_norm[f"{v}_anom"] = df_norm[v] - df_norm[normal_col]
+        df_norm[f"{v}_anom"] = df_norm[v] - df_norm[f"{v}_normal"]
 
     # ---------------------------------------------------------
     # 7. Save CSV if requested
@@ -2097,6 +2063,5 @@ def calculate_daily_departures(
     # ---------------------------------------------------------
     if return_pandas_df:
         return df_norm
-    
         
         
