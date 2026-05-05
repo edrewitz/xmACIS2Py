@@ -152,7 +152,7 @@ def multi_station_meta(station_ids,
                 
                 df_list.append(df)
             except Exception as e:
-              pass
+              print(f"{station} not found in database. Skipping...")
             
         df = _pd.concat(df_list, ignore_index=True)
         
@@ -169,4 +169,4 @@ def multi_station_meta(station_ids,
                             return_pandas_df=return_pandas_df,
                             notifications=notifications)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")

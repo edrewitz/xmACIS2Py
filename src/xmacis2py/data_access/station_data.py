@@ -236,7 +236,7 @@ def get_multi_station_acis_data(stations,
                 
                 df_list.append(df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
                         
         return df_list
         
@@ -257,7 +257,7 @@ def get_multi_station_acis_data(stations,
                                 notifications=notifications,
                                 return_pandas_df=return_pandas_df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
             
             
 def get_single_station_climate_normals(station,
@@ -489,7 +489,7 @@ def get_multi_station_climate_normals(stations,
                 
                 dfs.append(df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
             
         return dfs
     
@@ -506,7 +506,7 @@ def get_multi_station_climate_normals(stations,
                             notifications=notifications,
                             return_pandas_df=return_pandas_df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
         
 
 def get_single_station_departures(station,
@@ -726,7 +726,7 @@ def get_multi_station_departures(stations,
                 
                 df_list.append(df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
             
         return df_list
     else:
@@ -742,4 +742,4 @@ def get_multi_station_departures(stations,
                                 notifications=notifications,
                                 return_pandas_df=return_pandas_df)
             except Exception as e:
-                pass
+                print(f"{station} not found in database. Skipping...")
