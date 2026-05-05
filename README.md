@@ -107,6 +107,7 @@ Copy and paste either command into your terminal or anaconda prompt:
 23) [Filter Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#filter_analog_years)
 24) [Calculate Weighted Mean For Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#analog_weighted_mean)
 25) [Calculate Weighted Percentile For Analog Years](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#analog_weighted_percentile)
+26) [Calculate Daily Departures From Normal](https://github.com/edrewitz/xmACIS2Py/blob/main/Documentation/xmACIS2.0/analysis_tools.md#calculate_daily_departures)
 
 ***Graphical Summaries***
 
