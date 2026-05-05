@@ -1909,6 +1909,11 @@ def analog_weighted_mean(df,
     
     means = df.groupby("Year").mean()
 
+    means = means.dropna()
+
+    # If no years have data, return NaN
+    if len(means) == 0:
+        return _np.nan
     
     weighted_mean = _np.average(
     means[parameter].values,
@@ -1964,6 +1969,11 @@ def analog_weighted_percentile(df,
     
     percentiles = df.groupby("Year").quantile(percentile)
 
+    percentiles = percentiles.dropna()
+
+    # If no years have data, return NaN
+    if len(percentiles) == 0:
+        return _np.nan
     
     weighted_percentile = _np.average(
     percentiles[parameter].values,
