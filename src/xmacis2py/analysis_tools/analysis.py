@@ -2011,27 +2011,68 @@ def calculate_daily_departures(
         output_path="XMACIS2 DAILY DEPARTURES",
         return_pandas_df=True):
 
-    # ---------------------------------------------------------
-    # 1. Load data
-    # ---------------------------------------------------------
+    """
+    This function calculates the daily departures (daily anomalies).
+    
+    Required Arguments:
+    
+    1) station (String) - The station ID.
+    
+    2) variables (String List) - The list of parameters to calculate the departures. 
+    
+        Variable List
+        -------------
+        'Maximum Temperature'
+        'Minimum Temperature'
+        'Average Temperature', 
+        'Average Temperature Departure'
+        'Heating Degree Days'
+        'Cooling Degree Days'
+        'Precipitation'
+        'Snowfall'
+        'Snow Depth'
+        'Growing Degree Days'
+        
+    Optional Arguments:
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df. This is for the dataset of raw data.
+        
+    2) norm (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set norm=norm. This is for the dataset of calculated normals.
+        
+    3) raw_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file that hosts the raw station data.
+        
+    4) normals_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file that hosts the calculated normals.
+        
+    5) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    6) output_path (String) - Default="XMACIS2 DAILY DEPARTURES". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    7) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of the calculated daily departures.        
+    """
     if df is None:
         df = _pd.read_csv(raw_data_input_path)
 
     if norm is None:
         norm = _pd.read_csv(normals_input_path)
 
-    # ---------------------------------------------------------
-    # 2. Convert raw data Date column to datetime
-    # ---------------------------------------------------------
+
     if "Date" not in df.columns:
         raise ValueError("Raw data must contain a 'Date' column.")
 
     df["Date"] = _pd.to_datetime(df["Date"])
     df["monthday"] = df["Date"].dt.strftime("%m-%d")
 
-    # ---------------------------------------------------------
-    # 3. Handle normals Date column (may be MM-DD or YYYY-MM-DD)
-    # ---------------------------------------------------------
+
     if "Date" not in norm.columns:
         raise ValueError("Normals file must contain a 'Date' column.")
 
@@ -2046,14 +2087,10 @@ def calculate_daily_departures(
         norm["Date"] = _pd.to_datetime(norm["Date"])
         norm["monthday"] = norm["Date"].dt.strftime("%m-%d")
 
-    # ---------------------------------------------------------
-    # 4. Ensure one normal per day
-    # ---------------------------------------------------------
+
     norm = norm.drop_duplicates(subset="monthday")
 
-    # ---------------------------------------------------------
-    # 5. Merge raw data with normals
-    # ---------------------------------------------------------
+
     df_norm = df.merge(
         norm,
         on="monthday",
@@ -2061,22 +2098,13 @@ def calculate_daily_departures(
         suffixes=("", "_normal")
     )
 
-    # ---------------------------------------------------------
-    # 6. Compute departures
-    # ---------------------------------------------------------
     for v in variables:
         df_norm[f"{v}_anom"] = df_norm[v] - df_norm[f"{v}_normal"]
 
-    # ---------------------------------------------------------
-    # 7. Save CSV if requested
-    # ---------------------------------------------------------
     if to_csv:
         _os.makedirs(output_path, exist_ok=True)
         df_norm.to_csv(f"{output_path}/{station}.csv", index=False)
 
-    # ---------------------------------------------------------
-    # 8. Return DataFrame
-    # ---------------------------------------------------------
     if return_pandas_df:
         return df_norm
         
