@@ -1781,8 +1781,14 @@ def calculate_daily_normals(station,
             _os.makedirs(f"{output_path}")
         except Exception as e:
             pass
-        
-        df.to_csv(f"{output_path}/{station.upper()}.csv")
+        try:
+            df.to_csv(f"{output_path}/{station.upper()}.csv")
+        except Exception as e:
+            try:
+                df.to_csv(f"{output_path}/{station}.csv")
+            except Exception as e:
+                pass
+
         
     else:
         pass
@@ -1856,7 +1862,13 @@ def filter_analog_years(station,
         except Exception as e:
             pass
         
-        df.to_csv(f"{output_path}/{station.upper()}.csv")
+        try:
+            df.to_csv(f"{output_path}/{station.upper()}.csv")
+        except Exception as e:
+            try:
+                df.to_csv(f"{output_path}/{station}.csv")
+            except Exception as e:
+                pass
         
     else:
         pass
