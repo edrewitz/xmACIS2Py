@@ -11,7 +11,7 @@ import os as _os
 def single_station_meta(station_id,
                         proxies=None,
                         to_csv=False,
-                        path=f"XMACIS META",
+                        path=f"XMACIS2 META",
                         return_pandas_df=True,
                         notifications='on'):
     
@@ -102,7 +102,7 @@ def single_station_meta(station_id,
 def multi_station_meta(station_ids,
                         proxies=None,
                         to_csv=False,
-                        path=f"XMACIS META",
+                        path=f"XMACIS2 META",
                         return_pandas_df=True,
                         notifications='on'):
     

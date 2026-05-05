@@ -1951,3 +1951,104 @@ def analog_weighted_percentile(df,
     return weighted_percentile
     
     
+def calculate_daily_departures(station,
+                                variables,
+                                df=None,
+                                norm=None,
+                                raw_data_input_path=None,
+                                normals_input_path=None,
+                                to_csv=False,
+                                output_path=f"XMACIS2 DAILY DEPARTURES",
+                                return_pandas_df=True):
+    
+    """
+    This function calculates the daily departures from normal.
+    
+    Required Arguments: 
+    
+    1) station (String) - The 4-letter ID of the ACIS2 station.
+    
+    2) variables (String List) - The list of variable names.
+    
+        Variables
+        ----------
+        'Maximum Temperature'
+        'Minimum Temperature'
+        'Average Temperature', 
+        'Average Temperature Departure'
+        'Heating Degree Days'
+        'Cooling Degree Days'
+        'Precipitation'
+        'Snowfall'
+        'Snow Depth'
+        'Growing Degree Days'
+    
+    Optional Arguments
+    
+    1) df (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set df=df. This is for the raw station data.
+        
+    1) norm (Pandas.DataFrame) - Default=None. If the user is passing in a dataframe (df) without reading in the data from a CSV
+        file, set norm=norm. This is for the calculated daily normals.  
+        
+    2) raw_data_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file. This is for the raw station data.
+        
+    2) normals_input_path (String) - Default=None. If the user is reading in data from a CSV file, enter the full path to the
+        CSV file. This is for the calculated daily normals.   
+        
+    3) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified path.
+    
+    4) output_path (String) - Default="XMACIS2 DAILY DEPARTURES". The output directory hosting the CSV file (only needed if to_csv=True).
+    
+    5) return_pandas_df (Boolean) - Default=True. When set to True, a pandas.DataFrame is returned.
+        To only download CSV files and not return a pandas.DataFrame for each file set to False. 
+        
+    Returns
+    -------
+    
+    A Pandas.DataFrame of daily departures from normal.     
+    """
+    
+    if df is not None:
+        df = df
+        norm = norm
+    if raw_data_input_path is not None:
+        df = _pd.read_csv(f"{raw_data_input_path}")
+        norm = _pd.read_csv(f"{normals_input_path}")
+        
+    df.index = _pd.to_datetime(df.index)
+    norm.index = _pd.to_datetime(norm.index)
+    
+    df["monthday"] = df.index.strftime("%m-%d")
+    norm["monthday"] = norm.index.strftime("%m-%d")
+    
+    df_norm = df.merge(
+    norm,
+    on="monthday",
+    how="left",
+    suffixes=("", "_normal")
+    )
+
+    for v in variables:
+        df_norm[f"{v}_anom"] = df_norm[v] - df_norm[f"{v}_normal"]
+        
+    if to_csv == True:
+        try:
+            _os.makedirs(f"{output_path}")
+        except Exception as e:
+            pass
+        
+        df_norm.to_csv(f"{output_path}/{station}.csv")
+        
+    else:
+        pass
+    
+    if return_pandas_df == True:
+        return df_norm
+    
+    else:
+        pass
+    
+        
+        
