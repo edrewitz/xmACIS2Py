@@ -2020,16 +2020,19 @@ def calculate_daily_departures(station,
         
     df.index = _pd.to_datetime(df.index)
     norm.index = _pd.to_datetime(norm.index)
-    
+
+    # Create monthday key
     df["monthday"] = df.index.strftime("%m-%d")
     norm["monthday"] = norm.index.strftime("%m-%d")
-    
-    df_norm = df.merge(
-    norm,
-    on="monthday",
-    how="left",
-    suffixes=("", "_normal")
-    )
+
+    # Reduce normals to one row per day
+    norm = norm.drop_duplicates(subset="monthday")
+
+    # Merge cleanly
+    df_norm = df.merge(norm, 
+                       on="monthday", 
+                       how="left", 
+                       suffixes=("", "_normal"))
 
     for v in variables:
         df_norm[f"{v}_anom"] = df_norm[v] - df_norm[f"{v}_normal"]
