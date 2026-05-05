@@ -1137,16 +1137,15 @@
 
 ### calculate_daily_departures()
 
-***def calculate_daily_departures(
-        station,
-        variables,
-        df=None,
-        norm=None,
-        raw_data_input_path=None,
-        normals_input_path=None,
-        to_csv=False,
-        output_path="XMACIS2 DAILY DEPARTURES",
-        return_pandas_df=True):***
+***def calculate_daily_departures(station,
+                              variables,
+                              df=None,
+                              norm=None,
+                              raw_data_input_path=None,
+                              normals_input_path=None,
+                              to_csv=False,
+                              output_path="XMACIS2 DAILY DEPARTURES",
+                              return_pandas_df=True):***
 
     This function calculates the daily departures (daily anomalies).
     
