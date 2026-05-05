@@ -64,6 +64,8 @@ Copy and paste either command into your terminal or anaconda prompt:
 4) [Retrieving Station Meta-Data](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/station_meta.ipynb)
 5) [Retrieving 30-Year Climatological Normals and Departures From Normal](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/xmacis_normal_departure.ipynb)
 6) [Calculating Daily Normals and Performing Analysis of ENSO Analog Years at KJFK](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/jfk_analysis.ipynb)
+7) [Creating an ENSO Analog Composite for Temperatures Across the Pacific Northwest (Plotting xmACIS2 Data on a Map!!)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/enso_study.ipynb)
+8) [Creating an ENSO Analog Composite for Precipitation Across California and Nevada (Plotting xmACIS2 Data on a Map!!)](https://github.com/edrewitz/xmACIS2Py-Jupyter-Lab-Tutorials/blob/main/Tutorials/enso_precip.ipynb)
 
 **Documentation**
 
