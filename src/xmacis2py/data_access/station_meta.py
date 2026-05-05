@@ -142,14 +142,17 @@ def multi_station_meta(station_ids,
         df_list = []
         for station in station_ids:
             station = station.upper()
-            df = single_station_meta(station,
-                        proxies=proxies,
-                        to_csv=to_csv,
-                        path=path,
-                        return_pandas_df=return_pandas_df,
-                        notifications=notifications)
-            
-            df_list.append(df)
+            try:
+                df = single_station_meta(station,
+                            proxies=proxies,
+                            to_csv=to_csv,
+                            path=path,
+                            return_pandas_df=return_pandas_df,
+                            notifications=notifications)
+                
+                df_list.append(df)
+            except Exception as e:
+              pass
             
         df = _pd.concat(df_list, ignore_index=True)
         
