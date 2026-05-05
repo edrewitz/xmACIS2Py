@@ -26,6 +26,7 @@ Analysis Tools:
 - filter_analog_years
 - analog_weighted_mean
 - analog_weighted_percentile
+- calculate_daily_departures
 
 (C) Eric J. Drewitz 2025-2026
 """

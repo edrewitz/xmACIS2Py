@@ -72,5 +72,6 @@ Functions:
 - filter_analog_years
 - analog_weighted_mean
 - analog_weighted_percentile
+- calculate_daily_departures
 """
 import xmacis2py.analysis_tools.analysis as analysis
