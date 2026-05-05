@@ -220,39 +220,44 @@ def get_multi_station_acis_data(stations,
     if return_pandas_df == True:
         for station in stations:
             station = station.upper()
-        
-            df = _client.get_xmacis_data(station,
-                            start_date=start_date,
-                            end_date=end_date,
-                            from_when=from_when,
-                            time_delta=time_delta,
-                            proxies=proxies,
-                            clear_recycle_bin=clear_recycle_bin,
-                            to_csv=to_csv,
-                            path=path,
-                            filename=filename,
-                            notifications=notifications,
-                            return_pandas_df=return_pandas_df)
-            
-            df_list.append(df)
+            try:
+                df = _client.get_xmacis_data(station,
+                                start_date=start_date,
+                                end_date=end_date,
+                                from_when=from_when,
+                                time_delta=time_delta,
+                                proxies=proxies,
+                                clear_recycle_bin=clear_recycle_bin,
+                                to_csv=to_csv,
+                                path=path,
+                                filename=filename,
+                                notifications=notifications,
+                                return_pandas_df=return_pandas_df)
+                
+                df_list.append(df)
+            except Exception as e:
+                pass
                         
         return df_list
         
     else:
         for station in stations:
             station = station.upper()
-            _client.get_xmacis_data(station,
-                            start_date=start_date,
-                            end_date=end_date,
-                            from_when=from_when,
-                            time_delta=time_delta,
-                            proxies=proxies,
-                            clear_recycle_bin=clear_recycle_bin,
-                            to_csv=to_csv,
-                            path=path,
-                            filename=filename,
-                            notifications=notifications,
-                            return_pandas_df=return_pandas_df)
+            try:
+                _client.get_xmacis_data(station,
+                                start_date=start_date,
+                                end_date=end_date,
+                                from_when=from_when,
+                                time_delta=time_delta,
+                                proxies=proxies,
+                                clear_recycle_bin=clear_recycle_bin,
+                                to_csv=to_csv,
+                                path=path,
+                                filename=filename,
+                                notifications=notifications,
+                                return_pandas_df=return_pandas_df)
+            except Exception as e:
+                pass
             
             
 def get_single_station_climate_normals(station,
@@ -471,31 +476,37 @@ def get_multi_station_climate_normals(stations,
     dfs = []
     if return_pandas_df == True:
         for station in stations:
-            df = get_single_station_climate_normals(station,
-                        interval=interval,
-                        start_date=start_date,
-                        end_date=end_date,
-                        to_csv=to_csv,
-                        proxies=proxies,
-                        path=path,
-                        notifications=notifications,
-                        return_pandas_df=return_pandas_df)
-            
-            dfs.append(df)
+            try:
+                df = get_single_station_climate_normals(station,
+                            interval=interval,
+                            start_date=start_date,
+                            end_date=end_date,
+                            to_csv=to_csv,
+                            proxies=proxies,
+                            path=path,
+                            notifications=notifications,
+                            return_pandas_df=return_pandas_df)
+                
+                dfs.append(df)
+            except Exception as e:
+                pass
             
         return dfs
     
     else:
         for station in stations:
-            get_single_station_climate_normals(station,
-                        interval=interval,
-                        start_date=start_date,
-                        end_date=end_date,
-                        to_csv=to_csv,
-                        proxies=proxies,
-                        path=path,
-                        notifications=notifications,
-                        return_pandas_df=return_pandas_df)
+            try:
+                get_single_station_climate_normals(station,
+                            interval=interval,
+                            start_date=start_date,
+                            end_date=end_date,
+                            to_csv=to_csv,
+                            proxies=proxies,
+                            path=path,
+                            notifications=notifications,
+                            return_pandas_df=return_pandas_df)
+            except Exception as e:
+                pass
         
 
 def get_single_station_departures(station,
@@ -702,22 +713,8 @@ def get_multi_station_departures(stations,
     df_list = []
     if return_pandas_df == True:
         for station in stations:
-            df = get_single_station_departures(station,
-                        interval=interval,
-                        start_date=start_date,
-                        end_date=end_date,
-                        to_csv=to_csv,
-                        proxies=proxies,
-                        path=path,
-                        notifications=notifications,
-                        return_pandas_df=return_pandas_df)
-            
-            df_list.append(df)
-            
-        return df_list
-    else:
-        for station in stations:
-            get_single_station_departures(station,
+            try:
+                df = get_single_station_departures(station,
                             interval=interval,
                             start_date=start_date,
                             end_date=end_date,
@@ -726,3 +723,23 @@ def get_multi_station_departures(stations,
                             path=path,
                             notifications=notifications,
                             return_pandas_df=return_pandas_df)
+                
+                df_list.append(df)
+            except Exception as e:
+                pass
+            
+        return df_list
+    else:
+        for station in stations:
+            try:
+                get_single_station_departures(station,
+                                interval=interval,
+                                start_date=start_date,
+                                end_date=end_date,
+                                to_csv=to_csv,
+                                proxies=proxies,
+                                path=path,
+                                notifications=notifications,
+                                return_pandas_df=return_pandas_df)
+            except Exception as e:
+                pass

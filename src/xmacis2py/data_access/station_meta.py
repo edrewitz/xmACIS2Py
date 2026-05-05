@@ -161,9 +161,12 @@ def multi_station_meta(station_ids,
     else:
         for station in station_ids:
             station = station.upper()
-            single_station_meta(station,
-                        proxies=proxies,
-                        to_csv=to_csv,
-                        path=path,
-                        return_pandas_df=return_pandas_df,
-                        notifications=notifications)
+            try:
+                single_station_meta(station,
+                            proxies=proxies,
+                            to_csv=to_csv,
+                            path=path,
+                            return_pandas_df=return_pandas_df,
+                            notifications=notifications)
+            except Exception as e:
+                pass
