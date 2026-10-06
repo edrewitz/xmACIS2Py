@@ -37,7 +37,6 @@ _mpl.rcParams['ytick.labelsize'] = 7
 _props = dict(boxstyle='round', facecolor='wheat', alpha=1)
 _warm = dict(boxstyle='round', facecolor='darkred', alpha=1)
 _green = dict(boxstyle='round', facecolor='darkgreen', alpha=1)
-_gray = dict(boxstyle='round', facecolor='gray', alpha=1)
 _purple = dict(boxstyle='round', facecolor='purple', alpha=1)
 
 
