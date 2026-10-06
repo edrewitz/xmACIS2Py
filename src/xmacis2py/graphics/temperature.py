@@ -71,7 +71,6 @@ def plot_comprehensive_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -112,49 +111,45 @@ def plot_comprehensive_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine. 
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
     
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
-    21) cooling_degree_days (Boolean) - Default=True. Set to False to display Heating Degrees instead of Cooling Degree Days. 
+    20) cooling_degree_days (Boolean) - Default=True. Set to False to display Heating Degrees instead of Cooling Degree Days. 
     
     Returns
     -------
@@ -170,7 +165,6 @@ def plot_comprehensive_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -924,7 +918,6 @@ def plot_maximum_temperature_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -965,47 +958,43 @@ def plot_maximum_temperature_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine. 
-        
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
+                          
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
     
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
 
     Returns
     -------
@@ -1022,7 +1011,6 @@ def plot_maximum_temperature_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -1410,7 +1398,6 @@ def plot_minimum_temperature_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -1451,47 +1438,43 @@ def plot_minimum_temperature_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine. 
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
     
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -1508,7 +1491,6 @@ def plot_minimum_temperature_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -1889,7 +1871,6 @@ def plot_average_temperature_departure_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -1930,47 +1911,43 @@ def plot_average_temperature_departure_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine. 
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
     
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -1987,7 +1964,6 @@ def plot_average_temperature_departure_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -2382,7 +2358,6 @@ def plot_average_temperature_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -2423,47 +2398,43 @@ def plot_average_temperature_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine.  
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
         
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -2480,7 +2451,6 @@ def plot_average_temperature_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -2873,7 +2843,6 @@ def plot_heating_degree_day_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -2914,47 +2883,43 @@ def plot_heating_degree_day_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine.  
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
         
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image.
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -2971,7 +2936,6 @@ def plot_heating_degree_day_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -3357,7 +3321,6 @@ def plot_cooling_degree_day_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -3398,47 +3361,43 @@ def plot_cooling_degree_day_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine. 
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
         
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -3455,7 +3414,6 @@ def plot_cooling_degree_day_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
@@ -3849,7 +3807,6 @@ def plot_growing_degree_day_summary(station,
                                 from_when=_yesterday,
                                 time_delta=30,
                                 proxies=None,
-                                clear_recycle_bin=False,
                                 to_csv=False,
                                 path='default',
                                 filename='default',
@@ -3890,47 +3847,43 @@ def plot_growing_degree_day_summary(station,
     6) proxies (dict or None) - Default=None. If the user is using proxy server(s), the user must change the following:
 
        proxies=None ---> proxies={
-                           'http':'http://url',
-                           'https':'https://url'
-                        } 
-                        
-    7) clear_recycle_bin (Boolean) - (Default=False in xmACIS2Py >= 2.2.1) (Default=True in xmACIS2Py < 2.2.1). When set to True, 
-        the contents in your recycle/trash bin will be deleted with each run of the program you are calling WxData. 
-        This setting is to help preserve memory on the machine.  
+                               'http':'http://your-proxy-address:port',
+                               'https':'http://your-proxy-address:port'
+                               }
         
-    8) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
+    7) to_csv (Boolean) - Default=False. When set to True, a CSV file of the data will be created and saved to the user specified or default path.
     
-    9) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
+    8) path (String) - Default='default'. If set to 'default' the path will be "XMACIS2 DATA/file". Only change if you want to create your 
        directory path.
        
-    10) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
+    9) filename (String) - Default='default'. If set to 'default' the filename will be the station ID. Only change if you want a custom
        filename. 
        
-    11) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
+    10) notifications (String) - Default='on'. When set to 'on' a print statement to the user will tell the user their file saved to the path
         they specified. 
     
-    12) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
+    11) show_running_means (Boolean) - Default=True. When set to False, running means will be hidden.
     
-    13) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
+    12) interpolation_limit (Integer) - Default=3. If there are missing days in the dataset, this value represents the amount of consecutive missing days to interpolate between.
     
-    14) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
+    13) x_axis_day_interval (Integer) - Default=5. The amount of days the x-axis tick marks are spaced apart. 
     
-    15) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
+    14) x_axis_date_format (String) - Default='%m/%d'. The datetime format as a string. 
         For more information regarding datetime string formats: https://docs.python.org/3/library/datetime.html#:~:text=Notes-,%25a,-Weekday%20as%20locale%E2%80%99s
 
-    16) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
+    15) detrend_series (Boolean) - Default=False. When set to True, either 'linear' or 'constant' detrending is applied to the dataset.
         Detrending the data removes the seasonality for a variable and is recommended if the user wants to analyze anomalies.
         
-    17) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
+    16) detrend_type (String) - Default='linear'. This uses scipy.signal.detrend() to detrend the data and thus remove the signal of seasonality. 
         If type == 'linear' (default), the result of a linear least-squares fit to data is subtracted from data. 
         If type == 'constant', only the mean of data is subtracted.
         
-    18) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
+    17) create_ranking_table (Boolean) - Default=True. Creates a table for top 5 and bottom 5 in a second image. 
     
-    19) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
+    18) plot_type (String) - Default='bar'. Options are 'bar' and 'line'. For long periods (years), a line graph looks better, though for shorter periods (month), 
         a bar graph looks more aesthetic. 
         
-    20) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
+    19) shade_anomaly (Boolean) - Default=True. For line plots, users can shade the area under the curve. Set to False to not shade under the curve. 
     
     Returns
     -------
@@ -3947,7 +3900,6 @@ def plot_growing_degree_day_summary(station,
             from_when=from_when,
             time_delta=time_delta,
             proxies=proxies,
-            clear_recycle_bin=clear_recycle_bin,
             to_csv=to_csv,
             path=path,
             filename=filename,
