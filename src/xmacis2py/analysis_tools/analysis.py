@@ -1686,7 +1686,11 @@ def detrend_data(df,
     if count > 0:
         df = df.interpolate(limit=count)
 
-        df = df.fillna(method='ffill').fillna(method='bfill')
+        try:
+            df = df.fillna(method='ffill').fillna(method='bfill')
+        except Exception as e:
+            df = df.ffill()
+            df = df.bfill()
             
         df[var_name] = _signal.detrend(df[parameter], type=detrend_type)
     else:
